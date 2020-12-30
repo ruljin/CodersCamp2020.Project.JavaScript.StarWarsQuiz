@@ -7,7 +7,6 @@ Jedna osoba z zespołu (np. Mentor) powinna użyć przycisku `Use this template`
 
 Wykorzystanie asynchronicznego JavaScript oraz korzystanie z REST API.
 
-![Star Wars Quiz - Ekrany](./.github/images/StarWarsQuizEkrany.png)
 Proponowany projekt — Quiz Star Wars (opis poniżej).
 
 ### Zasady wykonywania projektu (wspólne dla wszystkich grup i mentorów):
