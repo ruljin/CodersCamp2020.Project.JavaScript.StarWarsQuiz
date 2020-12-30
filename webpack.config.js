@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('./config.js');
 
 const createHtmlWebpackPlugin = siteName =>
   new HtmlWebpackPlugin({
@@ -9,11 +10,9 @@ const createHtmlWebpackPlugin = siteName =>
     filename: `${siteName}.html`
   });
 
-const sitesNames = ['index', 'about', 'contacts'];
-
 module.exports = {
   entry: Object.fromEntries(
-    sitesNames.map(siteName => [
+    config.SITES.map(siteName => [
       siteName,
       `./src/pages/${siteName}/${siteName}.js`
     ])
@@ -29,6 +28,10 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource'
       },
       {
         test: /\.s[ac]ss$/i,
@@ -48,5 +51,5 @@ module.exports = {
       }
     ]
   },
-  plugins: sitesNames.map(createHtmlWebpackPlugin)
+  plugins: config.SITES.map(createHtmlWebpackPlugin)
 };
