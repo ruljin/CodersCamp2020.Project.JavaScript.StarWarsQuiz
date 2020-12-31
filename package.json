@@ -4,7 +4,7 @@
   "description": "TODO",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js --mode development",
+    "start": "webpack serve --config webpack.dev.js --mode development",
     "build": "webpack --mode production",
     "format": "npx prettier --write ."
   },
