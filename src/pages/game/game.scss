@@ -1,0 +1,29 @@
+.container__question {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+
+    .question__image {
+        width: 200px;
+        height: 400px;
+        background-color: blue;
+    }
+
+    .answers {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 50px;
+        justify-items: center;
+        align-items: center;
+        width: 80%;
+
+        .answer__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+    }
+}
+
