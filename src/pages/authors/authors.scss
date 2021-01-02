@@ -1,137 +1,122 @@
 @import '../../styles/variables.scss';
 
-.container {
-    overflow: hidden;
+.container-star-wars-effect {
+  position: absolute;
+  margin: 0 auto;
+  perspective: 680px;
+  perspective-origin: bottom;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100vw;
 }
 
-a {
-    text-decoration: none;
+.container-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $tertiary-font-color;
+  text-align: center;
+  animation: logo-animation 15s ease-out;
+  animation-fill-mode: forwards;
+  transform-origin: left top;
 }
 
-.container--star-wars-effect {
-    position: absolute;
-    margin: 0 auto;
-    perspective: 680px;
-    perspective-origin: bottom;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    width: 100vw;
-
-    .container__logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: $tertiary-font-color;
-        text-align: center;
-        animation: logo-animation 15s linear;
-        animation-fill-mode: forwards;
-        transform-origin: left top;
-
-        .logo__image {
-            width: 120vw;
-        }
-    }
-
-    .container--scroll {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 100%;
-        animation: text-scroll 50s linear;
-        animation-delay: 10s;
-        text-align: center;
-        width: 100vw;
-    
-        .scroll__element {
-            margin-bottom: 10rem;
-    
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    
-        p {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            text-shadow: 0 0 4px black;
-            font-size: 6rem;
-        }
-    }
-
-    .button--skip {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
+.logo__image {
+  width: 120vw;
 }
 
-.container--authors {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100vh;
-    display: none;
+.container-scroll {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  animation: text-scroll 50s linear;
+  animation-delay: 10s;
+  text-align: center;
+  width: 100vw;
+}
 
-    .authors__list {
-        text-align: center;
+.scroll__element {
+  margin-bottom: 10rem;
 
-        .list__item {
-            margin-top: 2rem;
-            text-shadow: 0 0 10px white;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
 
-            &:first-child {
-                margin-top: 0;
-            }
-        }
-    }
+.scroll__paragraph {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  text-shadow: 0 0 4px black;
+  font-size: 6rem;
+}
 
-    .container__buttons {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: baseline;
-    }
+.button--skip {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.container-authors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+  display: none;
+}
+
+.authors__list {
+  text-align: center;
+}
+
+.list__item {
+  margin-top: 2rem;
+  text-shadow: 0 0 10px white;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 @keyframes logo-animation {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    5% {
-        opacity: 1;
-    }
+  5% {
+    opacity: 1;
+  }
 
-    10% {
-        transform: scale(1) translate(-50%, -50%);
-    }
+  10% {
+    transform: scale(1) translate(-50%, -50%);
+  }
 
-    95% {
-        opacity: 1;
-        transform: scale(0.05) translate(-50%, -50%);
-    }
+  90% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-        transform: scale(0.01) translate(-50%, -50%);
-        display: none;
-    }
+  100% {
+    opacity: 0;
+    transform: scale(0.01) translate(-50%, -50%);
+    display: none;
+  }
 }
 
 @keyframes text-scroll {
-    0% {
-        transform: rotateX(21deg) translate3d(0 ,0, 0) translateX(-50%);
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    100% {
-        transform: rotateX(21deg) translate3d(0, -500vh, 0) translateX(-50%);
-        opacity: 0;
-    }
+  0% {
+    transform: rotateX(21deg) translate3d(0, 0, 0) translateX(-50%);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(21deg) translate3d(0, -500vh, 0) translateX(-50%);
+    opacity: 0;
+  }
 }
