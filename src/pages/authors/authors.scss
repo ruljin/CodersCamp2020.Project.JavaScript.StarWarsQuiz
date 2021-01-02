@@ -23,10 +23,10 @@
   animation: logo-animation 15s ease-out;
   animation-fill-mode: forwards;
   transform-origin: left top;
-}
 
-.logo__image {
-  width: 120vw;
+  &__image {
+    width: 120vw;
+  }
 }
 
 .scroll {
@@ -39,13 +39,13 @@
   animation-delay: 10s;
   text-align: center;
   width: 100vw;
-}
 
-.scroll__element {
-  margin-bottom: 10rem;
+  &__element {
+    margin-bottom: 10rem;
 
-  &:last-child {
-    margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -70,16 +70,16 @@
   display: none;
 }
 
-.authors__list {
+.list {
   text-align: center;
-}
 
-.list__item {
-  margin-top: 2rem;
-  text-shadow: 0 0 10px white;
+  &__item {
+    margin-top: 2rem;
+    text-shadow: 0 0 10px white;
 
-  &:first-child {
-    margin-top: 0;
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 
