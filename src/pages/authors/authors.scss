@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.container-star-wars-effect {
+.container__star-wars-effect {
   position: absolute;
   margin: 0 auto;
   perspective: 680px;
@@ -13,7 +13,7 @@
   width: 100vw;
 }
 
-.container-logo {
+.container__logo {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,7 +29,7 @@
   width: 120vw;
 }
 
-.container-scroll {
+.container__scroll {
   position: absolute;
   top: 100%;
   left: 50%;
@@ -62,7 +62,7 @@
   right: 20px;
 }
 
-.container-authors {
+.container__authors {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
