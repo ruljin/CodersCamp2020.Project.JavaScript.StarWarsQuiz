@@ -5,24 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Star Wars Quiz</title>
   </head>
-  <body>
-    <div class="container container--cover-page">
-      <header class="banner">
-          <p>Who is this character?</p>
-      </header>
-
-      <main class="container__question">
-        <!-- <img src="./1.jpg" alt=""> -->
-        <div class="question__image"></div>
-
-        <div class="answers">
-            <div class="selector answer__item"><p>Luke Skywalker</p></div>
-            <div class="selector answer__item"><p>Darth Vader</p></div>
-            <div class="selector answer__item"><p>Padme Amidala</p></div>
-            <div class="selector answer__item"><p>Jar Jar Binks</p></div>
+  <body class="container container--cover-page">
+    <header class="banner">
+      <p>Who is this character?</p>
+    </header>
+    <main class="container__question">
+      <img
+        class="question-image"
+        src="../src/assets/img/modes/people/1.jpg"
+        alt=""
+      />
+      <div class="answers">
+        <div class="selector answer__item"><p>Luke Skywalker</p></div>
+        <div class="selector answer__item answer__item--blue">
+          <p>Darth Vader</p>
         </div>
-
-      </main>
-    </div>
+        <div class="selector answer__item answer__item--red">
+          <p>Padme Amidala</p>
+        </div>
+        <div class="selector answer__item"><p>Jar Jar Binks</p></div>
+      </div>
+    </main>
+    <footer class="container__footer">
+      <div class="container__light-timer">
+        <img src="../src/assets/ui/lightsaberHandle.png" alt="lightsaber" />
+        <div class="light-timer">
+          <div class="light-timer__background"></div>
+          <div class="light-timer__countdown-timer shadow shadow--red"></div>
+          <!-- <div class="light-timer__countdown-timer shadow shadow--blue"></div> -->
+        </div>
+      </div>
+      <div class="timer margin-top-20">
+        <p class="text text-shadow text-shadow--red">Time Left:</p>
+        <p class="text text--red text-shadow text-shadow--red margin-left-20">
+          0m 43s
+        </p>
+        <!-- <p class="text text-shadow text-shadow--blue">Time Left:</p> -->
+        <!-- <p class="text text--blue text-shadow text-shadow--blue margin-left-20">0m 43s</p> -->
+      </div>
+    </footer>
   </body>
 </html>
