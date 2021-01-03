@@ -1,17 +1,10 @@
-@import '../../styles/assets.scss';
 @import '../../styles/variables.scss';
 
 
 .container {
     gap: 3.5rem;
-    &__h1--lost {
+    &__header {
         color: $quaternary-color;
-        font-weight: bold;
-        font-size: 13rem;
-        text-align: center;
-    }
-    &__h1--won {
-        color: $tertiary-color;
         font-weight: bold;
         font-size: 13rem;
         text-align: center;
