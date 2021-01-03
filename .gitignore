@@ -1,7 +1,5 @@
 .idea
-dist
 .cache
 node_modules
-package-lock.json
 *.css
 *.css.map
