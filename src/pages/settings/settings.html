@@ -6,25 +6,37 @@
     <title>Settings</title>
   </head>
   <body>
-  <header class="banner">
-    <p>Settings</p>
-  </header>
-    <div class="container">
-      <button class="selector">Mode</button>
-      <button class="selector">People</button>
-      <button class="selector">Vehicles</button>
-      <button class="selector">Starships</button>
-      <button class="selector">Game Speed</button>
-      <button class="selector">Fast</button>
-      <button class="selector">Normal</button>
-      <button class="selector">Long</button>
-      <button class="selector">Player</button>
-      <button class="selector">Solo</button>
-      <button class="selector">Versus</button>
+    <div class="container container--cover-page container--default">
+      <div class="container__header">
+        <div class="banner">Settings</div>
+      </div>
+      <div class="container__body">
+        <div class="settings-menu">
+          <div class="row">
+            <button class="selector--static">Mode</button>
+            <button class="selector--selected">People</button>
+            <button class="selector">Vehicles</button>
+            <button class="selector">Starships</button>
+          </div>
+          <div class="row">
+            <button class="selector--static">Game speed</button>
+            <button class="selector--selected">Fast</button>
+            <button class="selector">Normal</button>
+            <button class="selector">Long</button>
+          </div>
+          <div class="row">
+            <button class="selector--static">Player</button>
+            <button class="selector--selected">Solo</button>
+            <button class="selector">Versus</button>
+          </div>
+        </div>
+      </div>
+      <div class="container__footer">
+        <div class="button-container">
+          <button class="button">Back</button>
+          <button class="button--play">PLAY</button>
+        </div>
+      </div>
     </div>
-    <footer>
-      <button class="button">Back</button>
-      <button class="button--alternative">Play</button>
-    </footer>
   </body>
 </html>
