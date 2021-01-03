@@ -1,60 +1,44 @@
 @import '../../styles/variables.scss';
 
 .button--play {
-    width: $button-width-large;
-    height: $button-height-large;
-    font-size: $button-font-size-large;
-    border: none;
-    border-radius: 0.9rem;
-    box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
+  width: $button-width-large;
+  height: $button-height-large;
+  font-size: $button-font-size-large;
+  border: none;
+  border-radius: 0.9rem;
+  box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
     0.4rem 0.4rem 4rem $tertiary-color;
-    background-color: $tertiary-color;
-    color: $primary-font-color;
-    font-weight: 600;
-    cursor: pointer;
+  background-color: $tertiary-color;
+  color: $primary-font-color;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .selector {
+  margin: 25px;
+
+  &--static {
     margin: 25px;
     width: $selector-width;
     height: $selector-height;
     border: none;
     border-radius: 0.9rem;
-    background-color: $secondary-color;
-    color: $primary-font-color;
     font-size: $selector-font-size;
-    font-weight: 600;
-    cursor: pointer;
-  
-    &--static {
-        margin: 25px;
-        width: $selector-width;
-        height: $selector-height;
-        outline: none;
-        border: none;
-        border-radius: 0.9rem;
-        font-size: $selector-font-size;
-        box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
-        0.4rem 0.4rem 4rem $primary-color;
-         background-color: $primary-color;
-        cursor: default;
-    }
-  
-    &--selected {
-        margin: 25px;
-        border: none;
-        border-radius: 0.9rem;
-        width: $selector-width;
-        height: $selector-height;
-        font-size: $selector-font-size;
-        border: 0.5rem solid $primary-color;
-        box-shadow: 0.4rem 0.4rem 4rem $primary-color;
-        cursor: pointer;
-    }
   }
 
-  .button-container {
-      margin-left: 100px;
-      margin-right: 100px;
-      justify-content: space-between;
+  &--selected {
+    margin: 25px;
+    width: $selector-width;
+    height: $selector-height;
+    border: none;
+    border-radius: 0.9rem;
+    font-size: $selector-font-size;
+    cursor: pointer;
+  }
+}
+
+.button-container {
+  margin-left: 100px;
+  margin-right: 100px;
+  justify-content: space-between;
 }

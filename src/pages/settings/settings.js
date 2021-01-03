@@ -1,2 +1,2 @@
 import '../../styles/assets.scss';
-import './settings.scss'
+import './settings.scss';
