@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 html,
 body,
 div,
@@ -95,7 +95,7 @@ ul {
 
 html {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 62.5%;
 }
 
@@ -103,7 +103,7 @@ html {
 *::before,
 *::after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 img,
@@ -129,7 +129,7 @@ th:not([align]) {
 .container {
   font-family: 'Montserrat', sans-serif;
   background-color: #000;
-  background: url("../assets/ui/background.png") fixed;
+  background: url('../assets/ui/background.png') fixed;
   background-size: cover;
 }
 
@@ -142,8 +142,8 @@ th:not([align]) {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: min-content 1fr min-content;
-      grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
-      grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
+  grid-template-rows: min-content 1fr min-content;
   place-items: center;
 }
 
@@ -157,11 +157,11 @@ th:not([align]) {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .container__footer {
@@ -174,11 +174,11 @@ th:not([align]) {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .button {
@@ -186,8 +186,9 @@ th:not([align]) {
   height: 7rem;
   border: none;
   border-radius: 0.9rem;
-  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
-          box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
+  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001,
+    0.4rem 0.4rem 4rem #fac300;
+  box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
   background-color: #fac300;
   color: #000;
   font-size: 2.5rem;
@@ -203,8 +204,9 @@ th:not([align]) {
 
 .button--alternative {
   background-color: #70b5f5;
-  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #70b5f5;
-          box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #70b5f5;
+  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001,
+    0.4rem 0.4rem 4rem #70b5f5;
+  box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #70b5f5;
 }
 
 .banner {
@@ -215,8 +217,9 @@ th:not([align]) {
   display: -ms-grid;
   display: grid;
   place-items: center;
-  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
-          box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
+  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001,
+    0.4rem 0.4rem 4rem #fac300;
+  box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
   background-color: #fac300;
   color: #000;
   font-size: 3.5rem;
@@ -237,8 +240,9 @@ th:not([align]) {
 
 .selector--static {
   outline: none;
-  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
-          box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
+  -webkit-box-shadow: inset 0.2rem 0.3rem 0.4rem #000001,
+    0.4rem 0.4rem 4rem #fac300;
+  box-shadow: inset 0.2rem 0.3rem 0.4rem #000001, 0.4rem 0.4rem 4rem #fac300;
   background-color: #fac300;
   cursor: default;
 }
@@ -246,7 +250,7 @@ th:not([align]) {
 .selector--selected {
   border: 0.5rem solid #fac300;
   -webkit-box-shadow: 0.4rem 0.4rem 4rem #fac300;
-          box-shadow: 0.4rem 0.4rem 4rem #fac300;
+  box-shadow: 0.4rem 0.4rem 4rem #fac300;
 }
 
 .text {
