@@ -1,2 +1,2 @@
 import '../../styles/assets.scss';
-import './style.scss';
+import './scores.scss';
