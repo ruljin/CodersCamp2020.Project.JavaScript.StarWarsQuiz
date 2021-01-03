@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config.js');
+const path = require('path');
 
 const createHtmlWebpackPlugin = siteName =>
   new HtmlWebpackPlugin({
@@ -14,7 +15,7 @@ module.exports = {
   entry: Object.fromEntries(
     config.SITES.map(siteName => [
       siteName,
-      `./src/pages/${siteName}/${siteName}.js`
+      path.resolve(__dirname, `./src/pages/${siteName}/${siteName}.js`)
     ])
   ),
   devServer: {
