@@ -16,29 +16,4 @@
 
 .selector {
   margin: 25px;
-
-  &--static {
-    margin: 25px;
-    width: $selector-width;
-    height: $selector-height;
-    border: none;
-    border-radius: 0.9rem;
-    font-size: $selector-font-size;
-  }
-
-  &--selected {
-    margin: 25px;
-    width: $selector-width;
-    height: $selector-height;
-    border: none;
-    border-radius: 0.9rem;
-    font-size: $selector-font-size;
-    cursor: pointer;
-  }
-}
-
-.button-container {
-  margin-left: 100px;
-  margin-right: 100px;
-  justify-content: space-between;
 }
