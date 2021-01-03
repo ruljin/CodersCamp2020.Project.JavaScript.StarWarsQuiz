@@ -47,7 +47,7 @@
   height: $button-height;
   border: none;
   border-radius: 0.9rem;
-  box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
+  box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0.5),
     0.4rem 0.4rem 4rem $primary-color;
   background-color: $primary-color;
   color: $primary-font-color;
@@ -63,7 +63,7 @@
 
   &--alternative {
     background-color: $tertiary-color;
-    box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
+    box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0.5),
       0.4rem 0.4rem 4rem $tertiary-color;
   }
 }
@@ -75,7 +75,7 @@
   margin: 0 auto;
   display: grid;
   place-items: center;
-  box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
+  box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0.5),
     0.4rem 0.4rem 4rem $primary-color;
   background-color: $primary-color;
   color: $primary-font-color;
@@ -96,7 +96,7 @@
 
   &--static {
     outline: none;
-    box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0, 0.5),
+    box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0.5),
       0.4rem 0.4rem 4rem $primary-color;
     background-color: $primary-color;
     cursor: default;
