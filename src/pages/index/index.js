@@ -1,4 +1,2 @@
-import './styles/index.scss';
-import printer from './scripts/fancyEffects';
-
-printer();
+import '../../styles/assets.scss';
+import './style.scss';

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --mode development",
+    "start:alt": "webpack serve --config webpack.dev.js --mode development",
     "build": "webpack --mode production",
     "format": "npx prettier --write ."
   },
@@ -30,6 +31,7 @@
     "prettier": "2.2.1",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
+    "serve": "^11.3.2",
     "style-loader": "^2.0.0",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.0",
