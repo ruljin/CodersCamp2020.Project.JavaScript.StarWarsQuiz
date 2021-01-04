@@ -6,7 +6,7 @@
   "scripts": {
     "start": "jest && webpack serve --config webpack.dev.js --mode development",
     "build": "webpack --mode production",
-    "clean": "npx prettier --write .",
+    "format": "npx prettier --write .",
     "test": "jest"
   },
   "repository": {
