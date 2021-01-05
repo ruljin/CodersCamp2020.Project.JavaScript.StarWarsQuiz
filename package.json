@@ -4,10 +4,11 @@
   "description": "TODO",
   "main": "index.js",
   "scripts": {
-    "start": "jest && webpack serve --config webpack.dev.js --mode development",
+    "start": "webpack serve --config webpack.dev.js --mode development",
     "build": "webpack --mode production",
     "format": "npx prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
