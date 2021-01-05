@@ -1,13 +1,8 @@
-import {
-  LOCAL_STORAGE_SETTINGS,
-  LOCAL_STORAGE_SCOREBOARD,
-  LOCAL_STORAGE_PLAYER_CORRECT,
-  LOCAL_STORAGE_COMPUTER_CORRECT
-} from '../config';
+const config = require('../../config.js');
 
 const saveSettings = (category, speed, mode, difficulty) => {
   const settings = createSettingsObject(category, speed, mode, difficulty);
-  saveToLocalStorage(LOCAL_STORAGE_SETTINGS, settings);
+  saveToLocalStorage(config.LOCAL_STORAGE_SETTINGS, settings);
 };
 
 const createSettingsObject = (category, speed, mode, difficulty) => {
@@ -19,7 +14,7 @@ const savePlayerScore = (name, points, category) => {
   const playerScore = createPlayerScoreObject(name, points, category);
   const oldScoreboard = getScoreboard();
   const newScoreboard = saveScoreToScoreboard(oldScoreboard, playerScore);
-  saveToLocalStorage(LOCAL_STORAGE_SCOREBOARD, newScoreboard);
+  saveToLocalStorage(config.LOCAL_STORAGE_SCOREBOARD, newScoreboard);
 };
 
 const createPlayerScoreObject = (name, points, category) => {
@@ -28,8 +23,16 @@ const createPlayerScoreObject = (name, points, category) => {
 };
 
 const getScoreboard = () => {
-  const scoreboard = getFromLocalStorage(LOCAL_STORAGE_SCOREBOARD);
+  let scoreboard = getFromLocalStorage(config.LOCAL_STORAGE_SCOREBOARD);
+  if (scoreboard === null) {
+    scoreboard = createScoreboard();
+  }
   return scoreboard;
+};
+
+const createScoreboard = () => {
+  saveToLocalStorage(config.LOCAL_STORAGE_SCOREBOARD, []);
+  return getFromLocalStorage(config.LOCAL_STORAGE_SCOREBOARD);
 };
 
 const saveScoreToScoreboard = (scoreboard, playerScore) => {
@@ -37,15 +40,11 @@ const saveScoreToScoreboard = (scoreboard, playerScore) => {
 };
 
 const savePlayerCorrectAnswersNumber = number => {
-  saveCorrectAnswersNumber(LOCAL_STORAGE_PLAYER_CORRECT, number);
+  saveToLocalStorage(config.LOCAL_STORAGE_PLAYER_CORRECT, number);
 };
 
 const saveComputerCorrectAnswersNumber = number => {
-  saveCorrectAnswersNumber(LOCAL_STORAGE_COMPUTER_CORRECT, number);
-};
-
-const saveCorrectAnswersNumber = (player, number) => {
-  saveToLocalStorage(player, number);
+  saveToLocalStorage(config.LOCAL_STORAGE_COMPUTER_CORRECT, number);
 };
 
 const saveToLocalStorage = (key, object) => {
@@ -53,7 +52,7 @@ const saveToLocalStorage = (key, object) => {
 };
 
 const getSettings = () => {
-  return getFromLocalStorage(LOCAL_STORAGE_SETTINGS);
+  return getFromLocalStorage(config.LOCAL_STORAGE_SETTINGS);
 };
 
 const getFromLocalStorage = key => {
@@ -61,14 +60,28 @@ const getFromLocalStorage = key => {
 };
 
 const getPlayerCorrectAnswersNumber = () => {
-  getCorrectAnswersNumber(LOCAL_STORAGE_PLAYER_CORRECT);
+  return getFromLocalStorage(config.LOCAL_STORAGE_PLAYER_CORRECT);
 };
 
 const getComputerCorrectAnswersNumber = () => {
-  getCorrectAnswersNumber(LOCAL_STORAGE_COMPUTER_CORRECT);
+  return getFromLocalStorage(config.LOCAL_STORAGE_COMPUTER_CORRECT);
 };
 
-export {
+const removeFromLocalStorage = key => {
+  localStorage.removeItem(key);
+};
+
+const removeLastScore = () => {
+  const oldScoreboard = getScoreboard();
+  const newScoreboard = removeLastScoreFromScoreboard(oldScoreboard);
+  saveToLocalStorage(config.LOCAL_STORAGE_SCOREBOARD, newScoreboard);
+};
+
+const removeLastScoreFromScoreboard = scoreboard => {
+  return scoreboard.slice(1);
+};
+
+module.exports = {
   saveSettings,
   savePlayerScore,
   savePlayerCorrectAnswersNumber,
@@ -76,5 +89,7 @@ export {
   getSettings,
   getScoreboard,
   getPlayerCorrectAnswersNumber,
-  getComputerCorrectAnswersNumber
+  getComputerCorrectAnswersNumber,
+  removeFromLocalStorage,
+  removeLastScore
 };

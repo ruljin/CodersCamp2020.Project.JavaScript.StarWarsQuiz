@@ -5,7 +5,7 @@ const LOCAL_STORAGE_SCOREBOARD = 'scoreboard';
 const LOCAL_STORAGE_PLAYER_CORRECT = 'playerCorrectAnswers';
 const LOCAL_STORAGE_COMPUTER_CORRECT = 'computerCorrectAnswers';
 
-export {
+module.exports = {
   SW_API_BASE_URL,
   SITES,
   LOCAL_STORAGE_SETTINGS,
