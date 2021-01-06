@@ -52,5 +52,8 @@ module.exports = {
       }
     ]
   },
+  performance: {
+    hints: false
+  },
   plugins: config.SITES.map(createHtmlWebpackPlugin)
 };
