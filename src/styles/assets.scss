@@ -39,7 +39,7 @@
   color: $primary-font-color;
   text-align: center;
   font-size: $button-font-size;
-  line-height: $button-font-size;
+  line-height: $button-height;
   font-weight: 600;
   cursor: pointer;
 
@@ -47,6 +47,7 @@
     width: $button-width-large;
     height: $button-height-large;
     font-size: $button-font-size-large;
+    line-height: $button-height-large;
   }
 
   &--alternative {
