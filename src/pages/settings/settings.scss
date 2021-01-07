@@ -2,15 +2,35 @@
 
 .page-content {
   height: 100%;
-  width: 90%;
-  padding: 6rem 0;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.selector-container {
   display: grid;
-  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  grid-template: repeat(4, min-content) / repeat(4, min-content);
   align-items: center;
+  align-content: center;
+  justify-content: center;
+  row-gap: 3rem;
+  column-gap: 2rem;
 }
 
 .selector--empty {
   opacity: 0;
   pointer-events: none;
+}
+
+.category-image {
+  align-self: center;
+
+  &__image {
+    width: 17rem;
+    border-radius: 1.6rem;
+    box-shadow: 4px 4px 40px $primary-color;
+  }
+
+  &__label {
+    text-align: center;
+  }
 }
