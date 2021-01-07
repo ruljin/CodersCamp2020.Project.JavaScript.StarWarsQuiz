@@ -1,44 +1,30 @@
 @import 'reset';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 @import 'variables';
 
-.container {
-  font-family: 'Montserrat', sans-serif;
+.background {
   background-color: #000;
   background: url('../assets/ui/background.png') fixed;
   background-size: cover;
+}
 
-  &--cover-page {
-    width: 100vw;
-    height: 100vh;
-  }
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 3rem 0;
+  display: grid;
+  grid-template: min-content 1fr min-content / 80%;
+  justify-items: stretch;
+  justify-content: center;
+  align-items: center;
 
-  &--default {
-    display: grid;
-    grid-template-rows: min-content 1fr min-content;
-    place-items: center;
-  }
-
-  &__header {
-    width: 100%;
-    margin: 3rem 0;
-  }
-
-  &__body {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
-  &__footer {
-    width: 100%;
-    margin: 0 0 3rem 0;
+  &--invisible {
+    display: none;
   }
 }
 
 .button-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -51,7 +37,9 @@
     0.4rem 0.4rem 4rem $primary-color;
   background-color: $primary-color;
   color: $primary-font-color;
+  text-align: center;
   font-size: $button-font-size;
+  line-height: $button-font-size;
   font-weight: 600;
   cursor: pointer;
 
@@ -69,7 +57,7 @@
 }
 
 .banner {
-  width: $banner-width;
+  width: 100%;
   height: $banner-height;
   border-radius: 0.9rem;
   margin: 0 auto;
