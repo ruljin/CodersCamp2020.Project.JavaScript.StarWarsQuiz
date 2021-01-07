@@ -1,5 +1,9 @@
 @import '../../styles/variables.scss';
 
+.container--invisible {
+  display: none;
+}
+
 .star-wars-effect {
   position: absolute;
   margin: 0 auto;
