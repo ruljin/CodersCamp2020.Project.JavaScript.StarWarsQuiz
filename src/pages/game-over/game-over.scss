@@ -1,65 +1,36 @@
 @import '../../styles/variables.scss';
 
-.container {
-  gap: 3.5rem;
-  &__header {
-    color: $quaternary-color;
-    font-weight: bold;
-    font-size: 13rem;
-    text-align: center;
-    margin: 0;
-  }
-  &__footer {
-    padding-bottom: 3rem;
-    margin: 0;
-    margin-top: 3rem;
-  }
-}
-
-.table {
-  width: 750px;
-  height: 100px;
-  margin-right: auto;
-  margin-left: auto;
-  &__row--highlighted {
-    height: 5px;
-  }
-}
-
-.text--alternative {
-  font-weight: bold;
-  font-size: 4.5rem;
-  text-align: center;
-  text-transform: uppercase;
-}
-
 .form {
+  height: 6rem;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-  &__text {
-    color: $secondary-color;
-    font-weight: 600;
-    font-size: 15px;
-    white-space: wrap;
-    align-self: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: center;
+
+  &__input {
+    height: 6rem;
+    padding: 1rem;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1.5rem;
+    font-size: $text-font-size;
   }
 }
 
-.submit {
-  justify-self: end;
-  width: 200px;
+.text--small {
+  font-size: 1.5rem;
 }
 
-.input {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 16px;
-  width: 350px;
-  height: 7rem;
-  align-self: center;
-  justify-self: center;
-  font-size: 2.5rem;
+.button--submit {
+  justify-self: end;
+  width: 15rem;
+}
+
+.page-content {
+  height: 100%;
+  padding: 7rem 0 4rem 0;
+  max-width: 80rem;
+  margin: auto;
+  display: grid;
+  place-items: center;
 }
