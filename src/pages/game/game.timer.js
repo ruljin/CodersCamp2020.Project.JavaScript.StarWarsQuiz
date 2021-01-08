@@ -1,6 +1,6 @@
 const ls = require('../../scripts/localScorage');
 
-const TIME_TO_CHANGE_ELEMENTS_COLOR = 30;
+const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 30;
 const timer = {
   gameTime: 0,
   isTimerPaused: true,
@@ -63,7 +63,7 @@ const updateTime = () => {
 
   setTimerValues(seconds);
 
-  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR) changeTimerStyleToRed();
+  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED) changeTimerStyleToRed();
   if (checkGameFinished(seconds)) timer.pauseTimer();
 
   timer.decreaseGameTimer();
