@@ -1,7 +1,7 @@
 import '../../styles/assets.scss';
 import './game-over.scss';
 
-const localStorage = require('../../scripts/localScorage.js');
+const localStorage = require('../../scripts/localScorage');
 
 const header = document.querySelector('.container__header');
 const firstPlayer = document.querySelector('.table--first-player');
@@ -12,10 +12,8 @@ const second = document.querySelector('.table--second');
 const firstRow = document.querySelector('.table--first');
 const secondRow = document.querySelector('.table--second');
 
-let playerScore = 35;
-let computerScore = 18;
-//const playerScore = localStorage.getPlayerCorrectAnswersNumber;
-//const computerScore = localStorage.getComputerCorrectAnswersNumber;
+const playerScore = localStorage.getPlayerCorrectAnswersNumber;
+const computerScore = localStorage.getComputerCorrectAnswersNumber;
 
 //Set game over or you win
 function headerText() {
