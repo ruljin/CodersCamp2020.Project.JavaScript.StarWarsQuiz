@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.logo {
+  margin: 0 auto;
+
+  &__image {
+    width: 56rem;
+    height: 23rem;
+  }
+}
+
+.page-content {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text__clickable {
+  color: $tertiary-font-color;
+  font-style: italic;
+  cursor: pointer;
+}

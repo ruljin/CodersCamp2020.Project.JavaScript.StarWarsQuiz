@@ -5,41 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Star Wars Quiz</title>
   </head>
-  <body class="container container--cover-page">
+  <body class="container background">
     <header class="banner">
-      <p>Who is this character?</p>
+      <h1>Who is this character?</h1>
     </header>
-    <main class="container__question">
+    <main class="page-content">
       <img
+        id="questionImage"
         class="question-image"
-        src="../src/assets/img/modes/people/1.jpg"
-        alt="luke skywalker"
+        alt="Target question image"
       />
-      <div class="answers">
-        <div class="selector answers__item"><p>Luke Skywalker</p></div>
-        <div class="selector answers__item answers__item--blue">
-          <p>Darth Vader</p>
-        </div>
-        <div class="selector answers__item answers__item--red">
-          <p>Padme Amidala</p>
-        </div>
-        <div class="selector answers__item"><p>Jar Jar Binks</p></div>
+      <div class="selector-container">
+        <button class="selector selector--game">Luke Skywalker</button>
+        <button class="selector selector--game selector--blue">
+          Darth Vader
+        </button>
+        <button class="selector selector--game selector--red">
+          Padme Amidala
+        </button>
+        <button class="selector selector--game">Jar Jar Binks</button>
       </div>
     </main>
-    <footer class="container__footer">
-      <div class="container__light-timer">
-        <img src="../src/assets/ui/lightsaberHandle.png" alt="lightsaber" />
-        <div class="light-timer">
+    <footer>
+      <div class="light-timer">
+        <img
+          id="lightSaberImage"
+          src="../src/assets/ui/lightsaberHandle.png"
+          alt="Lightsaber"
+        />
+        <div class="light-timer__timer">
           <div class="light-timer__background"></div>
-          <div class="light-timer__countdown-timer shadow shadow--red"></div>
+          <div class="light-timer__blade"></div>
         </div>
       </div>
-      <div class="timer">
-        <p class="text text-shadow text-shadow--red">Time Left:</p>
-        <p class="text text--red text-shadow text-shadow--red timer__text">
-          0m 43s
-        </p>
-      </div>
+      <p class="timer">
+        <span class="text text--shadowed">Remaining time:</span>
+        <span class="text text--colored text--shadowed">0m 43s</span>
+      </p>
     </footer>
   </body>
 </html>
