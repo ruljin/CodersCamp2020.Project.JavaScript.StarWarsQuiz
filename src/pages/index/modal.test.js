@@ -32,7 +32,7 @@ test('Testing if function add classes to DOM', () => {
   expect(container.classList.contains('container--blur')).toBeTruthy();
 });
 
-test('Testing if function remove classes with DOM', () => {
+test('Testing if function remove classes from DOM', () => {
   addClass();
   removeClass();
 
