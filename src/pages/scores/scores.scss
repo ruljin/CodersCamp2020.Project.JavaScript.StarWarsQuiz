@@ -12,12 +12,9 @@
 }
 
 .table {
-  &__empty {
+  &--empty {
     font-weight: 600;
-    line-height: 5.5;
-  }
-
-  &__element {
-    padding-left: 1.5em;
+    line-height: 5;
+    padding-left: 0.75em;
   }
 }
