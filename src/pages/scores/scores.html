@@ -5,39 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Star Wars Quiz</title>
   </head>
+
   <body class="container background">
-    <header class="banner"><h1>Hall of fame</h1></header>
+    <header class="banner">
+      <h1>Hall of fame</h1>
+    </header>
     <main class="page-content">
-      <section class="selector-container">
-        <button class="selector selector--selected">People</button>
-        <button class="selector">Vehicles</button>
-        <button class="selector">Starships</button>
+      <section class="selector-container" id="button-row">
+        <button class="selector selector--people">People</button>
+        <button class="selector selector--vehicles">Vehicles</button>
+        <button class="selector selector--starships">Starships</button>
       </section>
       <table class="table">
-        <thead>
-          <tr class="table__row table__row--head">
-            <th class="table__data">Place</th>
-            <th class="table__data">Player</th>
-            <th class="table__data">Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table__row">
-            <td class="table__data">1st</td>
-            <td class="table__data">Computer</td>
-            <td class="table__data">15</td>
-          </tr>
-          <tr class="table__row table__row--highlighted">
-            <td class="table__data">2nd</td>
-            <td class="table__data">Ania</td>
-            <td class="table__data">14</td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__data">3rd</td>
-            <td class="table__data">Gizmo</td>
-            <td class="table__data">4</td>
+        <tbody class="table__empty">
+          <tr>
+            <th class="table__element">Leaderboard is empty...</th>
           </tr>
         </tbody>
+        <!-- <thead>
+        <tr class="table__row table__row--head">
+          <th class="table__data">Place</th>
+          <th class="table__data">Player</th>
+          <th class="table__data">Points</th>
+        </tr>
+      </thead> -->
+        <!-- <tbody>
+        <tr class="table__row">
+          <td class="table__data">1st</td>
+          <td class="table__data">Computer</td>
+          <td class="table__data">15</td>
+        </tr>
+        <tr class="table__row table__row--highlighted">
+          <td class="table__data">2nd</td>
+          <td class="table__data">Ania</td>
+          <td class="table__data">14</td>
+        </tr>
+        <tr class="table__row">
+          <td class="table__data">3rd</td>
+          <td class="table__data">Gizmo</td>
+          <td class="table__data">4</td>
+        </tr>
+      </tbody> -->
       </table>
     </main>
     <footer class="button-container">

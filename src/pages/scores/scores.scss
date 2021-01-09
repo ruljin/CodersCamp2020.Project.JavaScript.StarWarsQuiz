@@ -10,3 +10,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+.table {
+  &__empty {
+    font-weight: 600;
+    line-height: 5.5;
+  }
+
+  &__element {
+    padding-left: 1.5em;
+  }
+}
