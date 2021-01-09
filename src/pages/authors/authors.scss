@@ -1,6 +1,10 @@
 @import '../../styles/variables.scss';
 
-.container__star-wars-effect {
+.container--invisible {
+  display: none;
+}
+
+.star-wars-effect {
   position: absolute;
   margin: 0 auto;
   perspective: 680px;
@@ -11,6 +15,23 @@
   right: 0;
   overflow: hidden;
   width: 100vw;
+
+  &__text {
+    height: 100%;
+    width: 100vw;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    display: grid;
+    gap: 10rem;
+    animation: text-scroll 50s linear;
+    animation-delay: 10s;
+    text-align: center;
+  }
+
+  &--invisible {
+    display: none;
+  }
 }
 
 .logo {
@@ -29,57 +50,31 @@
   }
 }
 
-.scroll {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  animation: text-scroll 50s linear;
-  animation-delay: 10s;
-  text-align: center;
-  width: 100vw;
-
-  &__element {
-    margin-bottom: 10rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+.text {
+  &--very-large {
+    font-size: 6rem;
+    font-weight: 700;
   }
-}
 
-.text__scroll {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  text-shadow: 0 0 4px black;
-  font-size: 6rem;
+  &--no-select {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+  }
 }
 
 .button--skip {
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
 }
 
-.authors {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100vh;
-  display: none;
-}
-
 .list {
-  text-align: center;
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
 
   &__item {
-    margin-top: 2rem;
     text-shadow: 0 0 10px white;
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 }
 

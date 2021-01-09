@@ -1,25 +1,12 @@
-.container {
-  &--scores {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-  &__ranking {
-    display: grid;
-    grid-template-columns: 1fr 66vw 1fr;
-  }
+.page-content {
+  height: 100%;
+  width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  align-content: space-evenly;
 }
 
-.table {
-  grid-column-start: 2;
-
-  &__empty {
-    font-weight: 600;
-    line-height: 5.5;
-  }
-
-  &__element {
-    padding-left: 1.5em;
-  }
+.selector-container {
+  display: flex;
+  justify-content: space-between;
 }
