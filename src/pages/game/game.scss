@@ -1,15 +1,5 @@
 @import '../../styles/variables.scss';
 
-.text {
-  &--colored {
-    color: $quaternary-color;
-  }
-
-  &--shadowed {
-    text-shadow: 4px 4px 40px $quaternary-color;
-  }
-}
-
 .question-image {
   border-radius: 1.6rem;
   box-shadow: 4px 4px 40px $primary-color;
@@ -35,12 +25,12 @@
     width: 20vw;
   }
 
-  &--red {
+  &--wrong {
     border: 6px solid $quaternary-color;
     box-shadow: 0 0 20px $quaternary-color;
   }
 
-  &--blue {
+  &--correct {
     border: 6px solid $tertiary-color;
     box-shadow: 0 0 20px $tertiary-color;
   }
@@ -73,8 +63,8 @@
     height: 100%;
     border-radius: 8px;
     background-color: $secondary-color;
-    box-shadow: 10px -5px 15px $quaternary-color,
-      10px 5px 15px $quaternary-color;
+    box-shadow: 10px -5px 15px $tertiary-color, 10px 5px 15px $tertiary-color;
+    transition: width 0.99s linear, box-shadow 1s linear;
   }
 }
 
@@ -83,4 +73,10 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
+  transition: text-shadow 1s linear;
+  text-shadow: 4px 4px 40px $tertiary-color;
+}
+
+.text--colored {
+  color: $tertiary-color;
 }
