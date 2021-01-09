@@ -19,25 +19,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table__row">
+          <tr class="table__row" id="firstRow">
             <td class="table__data">1st</td>
-            <td class="table__data table--first-player"></td>
-            <td class="table__data table--first-score"></td>
+            <td class="table__data" id="firstPlayer"></td>
+            <td class="table__data" id="firstScore"></td>
           </tr>
-          <tr class="table__row table--second">
-            <td class="table__data table--second">2nd</td>
-            <td class="table__data table--second-player"></td>
-            <td class="table__data table--second-score"></td>
+          <tr class="table__row" id="secondRow">
+            <td class="table__data" id="second">2nd</td>
+            <td class="table__datar" id="secondPlayer"></td>
+            <td class="table__data" id="secondScore"></td>
           </tr>
         </tbody>
       </table>
-      <form class="form">
+      <form class="form" id="form">
         <label for="username" class="text text--small">
           Please fill your name in order to receive eternal glory in whole
           Galaxy!
         </label>
         <input id="username" class="form__input" type="text" />
-        <input class="button button--submit" type="submit" value="Submit" />
+        <input class="button button--submit" id ="submit" type="submit" value="Submit" />
       </form>
       <p class="text text--uppercase text--large text--alternative">
         May the force be with you!
