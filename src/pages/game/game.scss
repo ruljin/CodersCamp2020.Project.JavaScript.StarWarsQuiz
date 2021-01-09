@@ -123,7 +123,7 @@
     height: 100%;
     border-radius: 8px;
     background-color: #ffffff;
-    transition: width 0.2s linear;
+    transition: width 0.99s linear, box-shadow 1s linear;
   }
 }
 
@@ -134,5 +134,9 @@
 
   &__text {
     margin-left: 20px;
+  }
+
+  p {
+    transition: color 1s linear, text-shadow 1s linear;
   }
 }

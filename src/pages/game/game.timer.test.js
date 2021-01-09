@@ -5,13 +5,13 @@ test('checking timer functions', () => {
   const timerObject = timer.timer;
   timerObject.gameTime = 10;
   timerObject.decreaseGameTimer();
-  expect(timerObject.getGameTime()).toBe(9);
+  expect(timerObject.gameTime).toBe(9);
 
   timerObject.pauseTimer();
-  expect(timerObject.getIsTimerPaused()).toBe(true);
+  expect(timerObject.isTimerPaused).toBe(true);
 
   timerObject.runTimer();
-  expect(timerObject.getIsTimerPaused()).toBe(false);
+  expect(timerObject.isTimerPaused).toBe(false);
 });
 
 test('getting speed from localStorage', () => {

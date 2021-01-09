@@ -4,15 +4,6 @@ const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 30;
 const timer = {
   gameTime: 0,
   isTimerPaused: true,
-  setGameTime: function (gameTime) {
-    this.gameTime = gameTime;
-  },
-  getGameTime: function () {
-    return this.gameTime;
-  },
-  getIsTimerPaused: function () {
-    return this.isTimerPaused;
-  },
   runTimer: function () {
     this.isTimerPaused = false;
   },
@@ -59,7 +50,7 @@ const changeTimerStyleToRed = () => {
 };
 
 const updateTime = () => {
-  let seconds = timer.getGameTime();
+  let seconds = timer.gameTime;
 
   setTimerValues(seconds);
 
@@ -90,16 +81,18 @@ const checkGameFinished = seconds => {
   return seconds <= 0 ? true : false;
 };
 
-const timerInterval = setInterval(() => {
-  if (timer.getIsTimerPaused()) return;
-  updateTime();
-}, 1000);
+const timerInterval = () => {
+  setInterval(() => {
+    if (timer.isTimerPaused) return;
+    updateTime();
+  }, 1000);
+};
 
 const startGame = () => {
   const time = getSpeedFromLocalStorage();
-  timer.setGameTime(time);
+  timer.gameTime = time;
   timer.runTimer();
-  timerInterval;
+  timerInterval();
 };
 
 window.addEventListener('load', startGame, false);
