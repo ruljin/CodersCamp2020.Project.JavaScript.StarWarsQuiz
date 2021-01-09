@@ -26,22 +26,27 @@
         <button class="selector selector--game">Jar Jar Binks</button>
       </div>
     </main>
-    <footer>
-      <div class="light-timer">
+    <footer class="container__footer">
+      <div class="container__light-timer">
         <img
           id="lightSaberImage"
           src="../src/assets/ui/lightsaberHandle.png"
           alt="Lightsaber"
         />
-        <div class="light-timer__timer">
+        <div class="light-timer">
           <div class="light-timer__background"></div>
-          <div class="light-timer__blade"></div>
+          <div class="light-timer__countdown-timer shadow shadow--blue"></div>
         </div>
       </div>
-      <p class="timer">
-        <span class="text text--shadowed">Remaining time:</span>
-        <span class="text text--colored text--shadowed">0m 43s</span>
-      </p>
+      <div class="timer">
+        <p class="text text-shadow text-shadow--blue timer__text">Time Left:</p>
+        <p
+          id="time"
+          class="text text--blue text-shadow text-shadow--blue timer__text timer__text--margin"
+        >
+          Loading...
+        </p>
+      </div>
     </footer>
   </body>
 </html>
