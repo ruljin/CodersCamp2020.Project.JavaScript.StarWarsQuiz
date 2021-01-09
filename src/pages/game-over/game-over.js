@@ -3,7 +3,7 @@ import './game-over.scss';
 
 const localStorage = require('../../scripts/localScorage');
 
-const header = document.querySelector('.container__header');
+const header = document.querySelector('#banner');
 const firstPlayer = document.querySelector('.table--first-player');
 const firstScore = document.querySelector('.table--first-score');
 const secondPlayer = document.querySelector('.table--second-player');
