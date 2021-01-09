@@ -33,20 +33,13 @@ const secondsToTime = seconds => {
   return `${minutes}m ${seconds}s`;
 };
 
+// change function name
 const changeTimerStyleToRed = () => {
-  const lightTimer = document.querySelector('.light-timer__countdown-timer');
-  const timer = document.querySelector('.timer');
+  const lightTimerBlade = document.querySelector('#lightTimerBlade'); // animate 'box-shadow'
+  const textTimer = document.querySelector('#textTimer'); // animate 'text-shadow'
+  const textTimerTime = document.querySelector('#textTimerTime'); // animate 'color'
 
-  lightTimer.classList.remove(`shadow--blue`);
-  lightTimer.classList.add(`shadow--red`);
-
-  timer.children[0].classList.remove(`text-shadow--blue`);
-  timer.children[0].classList.add(`text-shadow--red`);
-
-  timer.children[1].classList.remove(`text--blue`);
-  timer.children[1].classList.add(`text--red`);
-  timer.children[1].classList.remove(`text-shadow--blue`);
-  timer.children[1].classList.add(`text-shadow--red`);
+  // here
 };
 
 const updateTime = () => {
@@ -54,20 +47,20 @@ const updateTime = () => {
 
   setTimerValues(seconds);
 
-  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED) changeTimerStyleToRed();
+  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED) changeTimerStyleToRed(); // set color change every second (or after x seconds every second)
   if (checkGameFinished(seconds)) timer.pauseTimer();
 
   timer.decreaseGameTimer();
 };
 
 const setTimerValues = seconds => {
-  const lightTimer = document.querySelector('.light-timer__countdown-timer');
-  const time = document.querySelector('#time');
+  const lightTimerBlade = document.querySelector('#lightTimerBlade');
+  const textTimerTime = document.querySelector('#textTimerTime');
   const timeToShow = secondsToTime(seconds);
   const lightTimerWidth = getLightTimerWidth(seconds);
 
-  time.innerHTML = timeToShow;
-  lightTimer.style.width = lightTimerWidth + '%';
+  textTimerTime.innerHTML = timeToShow;
+  lightTimerBlade.style.width = lightTimerWidth + '%';
 };
 
 const getLightTimerWidth = seconds => {

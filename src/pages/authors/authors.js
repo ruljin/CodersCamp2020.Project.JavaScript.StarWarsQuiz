@@ -13,7 +13,6 @@ const checkAnimationFinished = () => {
 };
 
 const skipAnimation = () => {
-  containerStarWarsEffect.style.display = 'none';
   containerStarWarsEffect.classList.add('star-wars-effect--invisible');
   containerAuthors.classList.remove('container--invisible');
 };
