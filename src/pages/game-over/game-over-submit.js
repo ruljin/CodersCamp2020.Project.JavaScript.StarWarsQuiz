@@ -13,8 +13,8 @@ const form = document.querySelector('#form');
 const input = document.querySelector('#username');
 const submit = document.querySelector('#submit');
 
-const playerScore = 20; 
-const computerScore = 15;
+const playerScore = 35; 
+const computerScore = 0;
 //const playerScore = localStorage.getPlayerCorrectAnswersNumber;
 //const computerScore = localStorage.getComputerCorrectAnswersNumber;
 const savePlayerScore = localStorage.savePlayerScore;
@@ -36,7 +36,7 @@ function headerText() {
 
 //Set first score on first place and highlight player
 function firstPlace() {
-    if (playerScore >= !computerScore) {
+    if (playerScore >= computerScore) {
         firstPlayer.innerText = "Player";
         firstScore.innerText = playerScore;
         firstRow.setAttribute("class", "table__row--highlighted"); 
