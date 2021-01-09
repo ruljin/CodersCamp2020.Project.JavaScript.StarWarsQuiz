@@ -1,7 +1,8 @@
 import '../../styles/assets.scss';
 import './game.scss';
+const localStorage = require('../../scripts/localScorage');
 
-//  4 przykładowe odpowiedzi
+// przykładowe odpowiedzi
 let answers = [
     {
       "fields": {
@@ -74,63 +75,159 @@ let answers = [
       },
       "model": "resources.people",
       "pk": 4
-    }
+    },
+    {
+      "fields": {
+        "edited": "2014-12-20T21:17:50.315Z",
+        "name": "Leia Organa",
+        "created": "2014-12-10T15:20:09.791Z",
+        "gender": "female",
+        "skin_color": "light",
+        "hair_color": "brown",
+        "height": "150",
+        "eye_color": "brown",
+        "mass": "49",
+        "homeworld": 2,
+        "birth_year": "19BBY",
+        "image": "leia_organa.jpg"
+      },
+      "model": "resources.people",
+      "pk": 5
+    },
+    {
+      "fields": {
+        "edited": "2014-12-20T21:17:50.317Z",
+        "name": "Owen Lars",
+        "created": "2014-12-10T15:52:14.024Z",
+        "gender": "male",
+        "skin_color": "light",
+        "hair_color": "brown, grey",
+        "height": "178",
+        "eye_color": "blue",
+        "mass": "120",
+        "homeworld": 1,
+        "birth_year": "52BBY",
+        "image": "owen_lars.jpg"
+      },
+      "model": "resources.people",
+      "pk": 6
+    },
+    {
+      "fields": {
+        "edited": "2014-12-20T21:17:50.319Z",
+        "name": "Beru Whitesun lars",
+        "created": "2014-12-10T15:53:41.121Z",
+        "gender": "female",
+        "skin_color": "light",
+        "hair_color": "brown",
+        "height": "165",
+        "eye_color": "blue",
+        "mass": "75",
+        "homeworld": 1,
+        "birth_year": "47BBY",
+        "image": "beru_whitesun_lars.jpg"
+      },
+      "model": "resources.people",
+      "pk": 7
+    },
   ]
 
 
-const answersWrapper = document.getElementsByClassName("answers");
+const answersWrapper = document.querySelector(".answers");
+const pictureTag = document.querySelector(".question-image");
 
 let shuffledAnswers = [];
-let shuffledNames = [];
 let correctAnswer;
+let correctAnswers = 0;
+let answersButtons;
 
 // Wstawia zdjęcie
 function changeImage(img) {
-  document.getElementsByClassName("question-image").src = img;
+  const load = "../../assets/img/modes/people/" + img["pk"]; + ".jpg";
+  pictureTag.setAttribute("src", load);
+  pictureTag.setAttribute("alt", img["fields"]["name"]);
 }
 
-/* Losuje poprawne pytanie, ładuje do niego zdjęcie, wybiera pozostałe 3 losowe 
-odpowiedzi i dodaje do nich poprawne, usuwa dane z poprzedniego pytania */
+/* Usuwa dane z poprzedniego pytania, losuje poprawne pytanie, ładuje do niego zdjęcie, wybiera pozostałe 3 losowe 
+odpowiedzi, dodaje do nich poprawne i sprawdza, czy prawidłowa odpowiedź się dubluje - w konsoli pojawia się poprawne pytanie*/
 startGame();
 function startGame() {
-  correctAnswer = answers[Math.floor(Math.random()*answers.length)];
-  changeImage(correctAnswer["fields"]["image"]);
-  for (var x=0; x<answers.length-1; x++) {
-    shuffledAnswers.push(answers[Math.floor(Math.random()*answers.length)]);
-  }
-  for (var x=0; x<shuffledAnswers.length; x++) {
-    shuffledNames.push(shuffledAnswers[x]["fields"]["name"]);
-  }
-  shuffledNames.push(correctAnswer["fields"]["name"]);
-  console.log(shuffledNames);
   resetState();
-  showAnswers(shuffledNames);
+  /* if (settings.category === "People") {
+    correctAnswer = 
+    ... */
+  correctAnswer = answers[Math.floor(Math.random()*answers.length)];
+  changeImage(correctAnswer);
+  for (var x=0; x<3; x++) {
+      shuffledAnswers.push(answers[Math.floor(Math.random()*answers.length)]["fields"]["name"]);
+  }
+  shuffledAnswers.push(correctAnswer["fields"]["name"]);
+  checkDuplicate(shuffledAnswers);
+  shuffleArray(shuffledAnswers);
+  showAnswers(shuffledAnswers);
+  console.log(correctAnswer["fields"]["name"])
 }
 
-/* pokazuje odpowiedzi */
-function showAnswers(options) {
-  const questionsTags = '<div class="selector answers__item"><p>' + options[0] + '</p></div>' 
-  + '<div class="selector answers__item"><p>' + options[1] + '</p></div>' 
-  + '<div class="selector answers__item"><p>' + options[2] + '</p></div>' 
-  + '<div class="selector answers__item"><p>' + options[3] + '</p></div>';
-  answersWrapper.innerHTML = questionsTags;
-  const option = answersWrapper.querySelectorAll("selector answers__item");
-  console.log(option);
-  for (var x=0; x<option.length; x++) {
-    option[x].addEventListener('click', selectAnswer)
+/* sprawdzanie, czy odpowiedź się dubluje - jeszcze nie działa w 100% :( */
+function checkDuplicate(arr) {
+  for (var x=0; x<arr.length-1; x++) {
+    if (arr[x] === correctAnswer["fields"]["name"]) {
+      arr[x] = answers[Math.floor(Math.random()*answers.length)]["fields"]["name"];
+    }
   }
 }
 
+/* Tasuje odpowiedzi wg algorytmu Fishera-Yatesa */
+function shuffleArray(arr) {
+  var i = arr.length, k , temp;      // k is to generate random index and temp is to swap the values
+  while(--i > 0){
+    k = Math.floor(Math.random() * (i+1));
+    temp = arr[k];
+    arr[k] = arr[i];
+    arr[i] = temp;
+  }
+  return arr;
+}
+
+/* pokazuje odpowiedzi i każdej odpowiedzi daje funkcję przy kliknięciu */
+function showAnswers(options) {
+    let questionsTags = '<div class="selector answers__item"><p>' + options[0] + '</p></div>' 
+        + '<div class="selector answers__item"><p>' + options[1] + '</p></div>' 
+        + '<div class="selector answers__item"><p>' + options[2] + '</p></div>' 
+        + '<div class="selector answers__item correct"><p>' + options[3] + '</p></div>';
+    answersWrapper.innerHTML = questionsTags;
+    answersButtons = answersWrapper.querySelectorAll(".selector");
+    for (var x=0; x<answersButtons.length; x++) {
+      answersButtons[x].addEventListener("click", selectAnswer);
+    }
+}
+
+/* Usuwa poprzednie ustawienia */
 function resetState() {
   while (answersWrapper.firstChild) {
-    answersWrapper.removeChild(answersWrapper.firstChild);
+      answersWrapper.removeChild(answersWrapper.firstChild);
   }
+  shuffledAnswers = [];
+  correctAnswer -= correctAnswer;
 }
 
+/* Przy nacisnięciu jakiegoś przyciska pojawia się na sekundę rozwiązanie, a potem kolejne pytanie */
 function selectAnswer(e) {
-  const selectedButton = e.target;
-  if (selectedButton===correctAnswer) {
-    
+  e.preventDefault();
+  const selectedButton = e.target
+  console.log(selectedButton)
+  if (selectedButton.innerText === correctAnswer["fields"]["name"]) {
+    correctAnswers++;
+    selectedButton.setAttribute("class", "selector answers__item answers__item--blue"); 
   }
+  else {
+    selectedButton.setAttribute("class", "selector answers__item answers__item--red"); 
+    for (var x=0; x<answersButtons.length; x++) {
+      if (answersButtons[x].innerText === correctAnswer["fields"]["name"]) {
+        answersButtons[x].setAttribute("class", "selector answers__item answers__item--blue");
+      }
+    }
+  }
+  setTimeout(function(){ startGame() }, 1000);
 }
 
