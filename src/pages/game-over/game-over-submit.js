@@ -13,8 +13,8 @@ const form = document.querySelector('#form');
 const input = document.querySelector('#username');
 const submit = document.querySelector('#submit');
 
-const playerScore = 35; 
-const computerScore = 0;
+const playerScore = 45; 
+const computerScore = 40;
 //const playerScore = localStorage.getPlayerCorrectAnswersNumber;
 //const computerScore = localStorage.getComputerCorrectAnswersNumber;
 const savePlayerScore = localStorage.savePlayerScore;
@@ -23,52 +23,54 @@ const storedCategory = saveSettings("category");
 
 
 //Set game over or you win
-function headerText() {
+
+function headerText()  {
     if (playerScore >= computerScore) {
-        header.innerText = "You Won!";
+        header.textContent = "You Won!";
         header.style.color = "#70b5f5";
     }
     else {
-        header.innerText = "Game over!";
+        header.textContent = "Game over!";
         header.style.color = "#ff0000";
     }
-};
+}
 
 //Set first score on first place and highlight player
+
 function firstPlace() {
     if (playerScore >= computerScore) {
-        firstPlayer.innerText = "Player";
-        firstScore.innerText = playerScore;
+        firstPlayer.textContent = "Player";
+        firstScore.textContent = playerScore;
         firstRow.setAttribute("class", "table__row--highlighted"); 
     }
     else {
-        firstPlayer.innerText = "Computer";
-        firstScore.innerText = computerScore;
+        firstPlayer.textContent = "Computer";
+        firstScore.textContent = computerScore;
     }
 };
 
 //Set second score on second place and highlight player
 function secondPlace() {
     if (computerScore > playerScore) {
-        secondPlayer.innerText = "Player";
-        secondScore.innerText = playerScore;
+        secondPlayer.textContent = "Player";
+        secondScore.textContent = playerScore;
         secondRow.setAttribute("class", "table__row--highlighted");
     }
     else {
-        secondPlayer.innerText = "Computer";
-        secondScore.innerText = computerScore;
+        secondPlayer.textContent = "Computer";
+        secondScore.textContent = computerScore;
     }
 };
 
 //Solo player mode 
 function soloPlayer() {
-    if (playerScore && !computerScore) {
-        header.innerText = "You Won!";
+    if (playerScore && !computerScore && computerScore == 0 && computerScore == ' ') {
+        header.textContent = "You Won!";
         header.style.color = "#70b5f5";
-        firstPlayer.innerText = "Player";
-        firstScore.innerText = playerScore;
+        firstPlayer.textContent = "Player";
+        firstScore.textContent = playerScore;
         firstRow.setAttribute("class", "table__row--highlighted"); 
-        second.innerText = "--";
+        second.textContent = "--";
     }
     else {
         console.log(headerText());
@@ -88,7 +90,7 @@ function saveName() {
 //Change text after submit  
 function changeSubmit(e) {
     e.preventDefault();
-    form.innerText = input.value + ", your score (" + playerScore + ") has been added to the hall of fame!"; 
+    form.textContent = input.value + ", your score (" + playerScore + ") has been added to the hall of fame!"; 
     form.setAttribute("class", "text--alternative");
     form.style.fontSize = "250%";
     form.style.margin = "auto";
@@ -104,3 +106,14 @@ console.log(submitChange());
 console.log(saveName());
 
 
+module.exports = {
+    headerText, 
+    firstPlace,
+    secondPlace, 
+    soloPlayer, 
+    saveName, 
+    changeSubmit, 
+    submitChange, 
+    playerScore, 
+    computerScore
+};
