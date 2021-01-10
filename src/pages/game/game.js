@@ -1,6 +1,24 @@
 import '../../styles/assets.scss';
 import './game.scss';
 const localStorage = require('../../scripts/localScorage');
+import sampleImage1 from '../../assets/img/modes/people/1.jpg';
+import sampleImage2 from '../../assets/img/modes/people/2.jpg';
+import sampleImage3 from '../../assets/img/modes/people/3.jpg';
+import sampleImage4 from '../../assets/img/modes/people/4.jpg';
+import sampleImage5 from '../../assets/img/modes/people/5.jpg';
+import sampleImage6 from '../../assets/img/modes/people/6.jpg';
+import sampleImage7 from '../../assets/img/modes/people/7.jpg';
+
+const sampleImages = {
+  1: sampleImage1, 
+  2: sampleImage2, 
+  3: sampleImage3, 
+  4: sampleImage4,
+  5: sampleImage5,
+  6: sampleImage6,
+  7: sampleImage7
+}
+const keyNames = Object.keys(sampleImages)
 
 // przykładowe odpowiedzi
 let answers = [
@@ -143,13 +161,16 @@ let answersButtons;
 
 // Wstawia zdjęcie
 function changeImage(img) {
-  const load = "../../assets/img/modes/people/" + img["pk"]; + ".jpg";
-  pictureTag.setAttribute("src", load);
-  pictureTag.setAttribute("alt", img["fields"]["name"]);
+  for (var x=0; x<answers.length; x++) {
+    if (img["pk"] == keyNames[x]) {
+      pictureTag.setAttribute("src", sampleImages[x+1]);
+      pictureTag.setAttribute("alt", img["fields"]["name"]);
+    }
+  }
 }
 
 /* Usuwa dane z poprzedniego pytania, losuje poprawne pytanie, ładuje do niego zdjęcie, wybiera pozostałe 3 losowe 
-odpowiedzi, dodaje do nich poprawne i sprawdza, czy prawidłowa odpowiedź się dubluje - w konsoli pojawia się poprawne pytanie*/
+odpowiedzi, dodaje do nich poprawne, sprawdza powtórki i miesza odpowiedzi - w konsoli pojawia się poprawne pytanie*/
 startGame();
 function startGame() {
   resetState();
@@ -168,14 +189,14 @@ function startGame() {
   console.log(correctAnswer["fields"]["name"])
 }
 
-/* sprawdzanie, czy odpowiedź się dubluje - jeszcze nie działa w 100% :( */
-function checkDuplicate(arr) {
-  for (var x=0; x<arr.length-1; x++) {
-    if (arr[x] === correctAnswer["fields"]["name"]) {
-      arr[x] = answers[Math.floor(Math.random()*answers.length)]["fields"]["name"];
+/* sprawdzanie, czy odpowiedź się dubluje */
+  function checkDuplicate(arr) {
+    let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+    while (findDuplicates(arr).length>0){
+      const indexOfDuplicate = arr.indexOf(findDuplicates(arr)[0]);
+      arr[indexOfDuplicate] = answers[Math.floor(Math.random()*answers.length)]["fields"]["name"];
     }
   }
-}
 
 /* Tasuje odpowiedzi wg algorytmu Fishera-Yatesa */
 function shuffleArray(arr) {
@@ -209,13 +230,14 @@ function resetState() {
   }
   shuffledAnswers = [];
   correctAnswer -= correctAnswer;
+  pictureTag.setAttribute("src", "");
+  pictureTag.setAttribute("alt", "");
 }
 
 /* Przy nacisnięciu jakiegoś przyciska pojawia się na sekundę rozwiązanie, a potem kolejne pytanie */
 function selectAnswer(e) {
   e.preventDefault();
-  const selectedButton = e.target
-  console.log(selectedButton)
+  const selectedButton = e.target;
   if (selectedButton.innerText === correctAnswer["fields"]["name"]) {
     correctAnswers++;
     selectedButton.setAttribute("class", "selector answers__item answers__item--blue"); 
@@ -231,3 +253,12 @@ function selectAnswer(e) {
   setTimeout(function(){ startGame() }, 1000);
 }
 
+module.exports = {
+  changeImage,
+  startGame,
+  checkDuplicate,
+  shuffleArray,
+  showAnswers,
+  resetState,
+  selectAnswer
+};
