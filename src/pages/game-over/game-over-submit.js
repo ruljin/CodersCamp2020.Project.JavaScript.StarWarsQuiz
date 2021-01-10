@@ -14,12 +14,12 @@ const input = document.querySelector('#username');
 const submit = document.querySelector('#submit');
 
 const playerScore = 45; 
-const computerScore = 40;
+const computerScore = 50;
 //const playerScore = localStorage.getPlayerCorrectAnswersNumber;
 //const computerScore = localStorage.getComputerCorrectAnswersNumber;
 const savePlayerScore = localStorage.savePlayerScore;
-const saveSettings = localStorage.saveSettings;
-const storedCategory = saveSettings("category");
+//const saveSettings = localStorage.getSettings;
+const storedCategory = localStorage.getSettings("category");
 
 
 //Set game over or you win
@@ -27,11 +27,11 @@ const storedCategory = saveSettings("category");
 function headerText()  {
     if (playerScore >= computerScore) {
         header.textContent = "You Won!";
-        header.style.color = "#70b5f5";
+        header.style.color = "rgb(112, 181, 245)";
     }
     else {
         header.textContent = "Game over!";
-        header.style.color = "#ff0000";
+        header.style.color = "rgb(255, 0, 0)";
     }
 }
 
