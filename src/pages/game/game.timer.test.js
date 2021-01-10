@@ -24,48 +24,54 @@ test('getting time text from seconds', () => {
   expect(timer.secondsToTime(140)).toBe('2m 20s');
 });
 
-// test('testing if function add classes to DOM', () => {
-//   document.body.innerHTML = `
-//     <footer class="container__footer">
-//       <div class="light-timer">
-//         <img
-//           id="lightSaberImage"
-//           alt="Lightsaber"
-//         />
-//         <div class="light-timer__timer">
-//           <div class="light-timer__background"></div>
-//           <div id="lightTimerBlade" class="light-timer__blade"></div>
-//         </div>
-//       </div>
-//       <p id="textTimer" class="timer">
-//         <span class="text">Remaining time:</span>
-//         <span id="textTimerTime" class="text text--colored">Loading...</span>
-//       </div>
-//     </footer>
-//     `;
+test('testing if function change timer colors', () => {
+  document.body.innerHTML = `
+    <footer class="container__footer">
+      <div class="light-timer">
+        <img
+          id="lightSaberImage"
+          alt="Lightsaber"
+        />
+        <div class="light-timer__timer">
+          <div class="light-timer__background"></div>
+          <div id="lightTimerBlade" class="light-timer__blade"></div>
+        </div>
+      </div>
+      <p id="textTimer" class="timer">
+        <span class="text">Remaining time:</span>
+        <span id="textTimerTime" class="text text--colored">Loading...</span>
+      </div>
+  </footer>
+    `;
 
-//   const lightTimerBlade = document.querySelector('#lightTimerBlade');
-//   const textTimerTime = document.querySelector('#textTimerTime');
+  const lightTimerBlade = document.querySelector('#lightTimerBlade');
+  const textTimer = document.querySelector('#textTimer');
+  const textTimerTime = document.querySelector('#textTimerTime');
 
-//   timer.changeTimerStyleToRed();
+  timer.changeTimerStyle('red', 2);
+  expect(lightTimerBlade.style.boxShadow).toBe(
+    `10px -5px 15px red, 10px 5px 15px red`
+  );
+  expect(lightTimerBlade.style.transition).toBe(
+    `width 0.99s linear, box-shadow 2s linear`
+  );
+  expect(textTimer.style.textShadow).toBe(`4px 4px 40px red`);
+  expect(textTimer.style.transition).toBe(`text-shadow 2s linear`);
+  expect(textTimerTime.style.color).toBe(`red`);
+  expect(textTimerTime.style.transition).toBe(`color 2s linear`);
 
-//   expect(lightTimerBlade.classList.contains('shadow--red')).toBeTruthy();
-//   expect(lightTimerBlade.classList.contains('shadow--blue')).toBeFalsy();
-//   expect(
-//     textTimerTime.children[0].classList.contains('text-shadow--red')
-//   ).toBeTruthy();
-//   expect(
-//     textTimerTime.children[0].classList.contains('text-shadow--blue')
-//   ).toBeFalsy();
-//   expect(textTimerTime.children[1].classList.contains('text--red')).toBeTruthy();
-//   expect(textTimerTime.children[1].classList.contains('text--blue')).toBeFalsy();
-//   expect(
-//     textTimerTime.children[1].classList.contains('text-shadow--red')
-//   ).toBeTruthy();
-//   expect(
-//     textTimerTime.children[1].classList.contains('text-shadow--blue')
-//   ).toBeFalsy();
-// });
+  timer.changeTimerStyle('yellow', 4);
+  expect(lightTimerBlade.style.boxShadow).toBe(
+    `10px -5px 15px yellow, 10px 5px 15px yellow`
+  );
+  expect(lightTimerBlade.style.transition).toBe(
+    `width 0.99s linear, box-shadow 4s linear`
+  );
+  expect(textTimer.style.textShadow).toBe(`4px 4px 40px yellow`);
+  expect(textTimer.style.transition).toBe(`text-shadow 4s linear`);
+  expect(textTimerTime.style.color).toBe(`yellow`);
+  expect(textTimerTime.style.transition).toBe(`color 4s linear`);
+});
 
 test('checking if function set timer values properly', () => {
   ls.saveSettings('', 200, '', '');

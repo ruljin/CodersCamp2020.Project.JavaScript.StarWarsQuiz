@@ -1,6 +1,7 @@
 const ls = require('../../scripts/localScorage');
 
-const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 30;
+const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 20;
+const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW = 40;
 const timer = {
   gameTime: 0,
   isTimerPaused: true,
@@ -33,13 +34,18 @@ const secondsToTime = seconds => {
   return `${minutes}m ${seconds}s`;
 };
 
-// change function name
-const changeTimerStyleToRed = () => {
-  const lightTimerBlade = document.querySelector('#lightTimerBlade'); // animate 'box-shadow'
-  const textTimer = document.querySelector('#textTimer'); // animate 'text-shadow'
-  const textTimerTime = document.querySelector('#textTimerTime'); // animate 'color'
+const changeTimerStyle = (color, time = 1) => {
+  const lightTimerBlade = document.querySelector('#lightTimerBlade');
+  const textTimer = document.querySelector('#textTimer');
+  const textTimerTime = document.querySelector('#textTimerTime');
 
-  // here
+  lightTimerBlade.style.transition = `width 0.99s linear, box-shadow ${time}s linear`;
+  textTimer.style.transition = `text-shadow ${time}s linear`;
+  textTimerTime.style.transition = `color ${time}s linear`;
+
+  lightTimerBlade.style.boxShadow = `10px -5px 15px ${color}, 10px 5px 15px ${color}`;
+  textTimer.style.textShadow = `4px 4px 40px ${color}`;
+  textTimerTime.style.color = `${color}`;
 };
 
 const updateTime = () => {
@@ -47,7 +53,10 @@ const updateTime = () => {
 
   setTimerValues(seconds);
 
-  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED) changeTimerStyleToRed(); // set color change every second (or after x seconds every second)
+  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED)
+    changeTimerStyle('#ff0000', 2.5);
+  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW)
+    changeTimerStyle('#fac300', 2.5);
   if (checkGameFinished(seconds)) timer.pauseTimer();
 
   timer.decreaseGameTimer();
@@ -94,7 +103,7 @@ module.exports = {
   timer,
   getSpeedFromLocalStorage,
   secondsToTime,
-  changeTimerStyleToRed,
+  changeTimerStyle,
   updateTime,
   getLightTimerWidth,
   checkGameFinished,
