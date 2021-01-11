@@ -27,7 +27,7 @@ function tableEmpty() {
   return `
     <tr class="table__row">
       <td class="table__data table__data--wide">
-        Laderboard is empty...
+        Leaderboard is empty...
       </td>
     </tr>
   `;

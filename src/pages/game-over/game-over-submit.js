@@ -140,9 +140,4 @@ module.exports = {
   blockInput,
   submitScore,
   handleSubmitButton
-  //playerCorrectAnswersNumber,
-  //computerCorrectAnswersNumber
-
-  //playerPlace,
-  //computerPlace,
 };
