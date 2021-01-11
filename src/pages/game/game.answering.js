@@ -82,6 +82,8 @@ const checkSelectedAnswer = evt => {
     highlightAnswerEl(getCorrectAnswerEl(), 'correct');
   }
 
+  destroyAnswerListeners();
+
   // RANDOMIZE COMPUTER ANSWER
 
   // ADD FUNCTION TO LOCALSTORAGE TO SET ANSWERED QUESTIONS NUMBER
@@ -122,6 +124,12 @@ const incrementComputerCorrectAnswersNumber = () => {
 const getAnswersElArray = () => {
   const answersContainerEl = document.querySelector('#answersContainer');
   return Array.prototype.slice.call(answersContainerEl.children);
+};
+
+const destroyAnswerListeners = () => {
+  getAnswersElArray().forEach(answerEl => {
+    answerEl.removeEventListener('click', checkSelectedAnswer);
+  });
 };
 
 setNextQuestion();
