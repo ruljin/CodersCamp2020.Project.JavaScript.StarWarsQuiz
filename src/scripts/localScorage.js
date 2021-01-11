@@ -60,11 +60,16 @@ const getFromLocalStorage = key => {
 };
 
 const getPlayerCorrectAnswersNumber = () => {
-  return getFromLocalStorage(config.LOCAL_STORAGE_PLAYER_CORRECT);
+  return getCorrectAnswersNumber(config.LOCAL_STORAGE_PLAYER_CORRECT);
 };
 
 const getComputerCorrectAnswersNumber = () => {
-  return getFromLocalStorage(config.LOCAL_STORAGE_COMPUTER_CORRECT);
+  return getCorrectAnswersNumber(config.LOCAL_STORAGE_COMPUTER_CORRECT);
+};
+
+const getCorrectAnswersNumber = key => {
+  const correctAnswersNumber = getFromLocalStorage(key);
+  return correctAnswersNumber === null ? 0 : correctAnswersNumber;
 };
 
 const removeFromLocalStorage = key => {
