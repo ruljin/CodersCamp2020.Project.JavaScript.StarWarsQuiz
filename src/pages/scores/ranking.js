@@ -14,19 +14,23 @@ function createTR(place, nickname, points, isHighlited) {
     place = place + 'th';
   }
 
-  return `<tr class="table__row ${
-    isHighlited ? 'table__row--highlighted' : ''
-  }">
-<td class="table__data">${place}</td>
-<td class="table__data">${nickname}</td>
-<td class="table__data">${points}</td>
-</tr>`;
+  return `
+    <tr class="table__row ${isHighlited ? 'table__row--highlighted' : ''}">
+      <td class="table__data">${place}</td>
+      <td class="table__data">${nickname}</td>
+      <td class="table__data">${points}</td>
+    </tr>
+  `;
 }
 
 function tableEmpty() {
-  return `<tr class="table__row">
-  <td class="table--empty">Laderboard is empty...</td>
-</tr>`;
+  return `
+    <tr class="table__row">
+      <td class="table__data table__data--wide">
+        Laderboard is empty...
+      </td>
+    </tr>
+  `;
 }
 
 function populateTable(category) {
