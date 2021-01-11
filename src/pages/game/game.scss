@@ -64,7 +64,7 @@
     border-radius: 8px;
     background-color: $secondary-color;
     box-shadow: 10px -5px 15px $tertiary-color, 10px 5px 15px $tertiary-color;
-    transition: width 0.99s linear, box-shadow 1s linear;
+    transition: width 0.99s linear, box-shadow 2.5s linear;
   }
 }
 
@@ -75,8 +75,10 @@
   gap: 2rem;
   transition: text-shadow 1s linear;
   text-shadow: 4px 4px 40px $tertiary-color;
+  transition: text-shadow 2.5s linear;
 }
 
 .text--colored {
   color: $tertiary-color;
+  transition: color 2.5s linear;
 }

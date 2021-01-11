@@ -41,36 +41,26 @@ test('testing if function change timer colors', () => {
         <span class="text">Remaining time:</span>
         <span id="textTimerTime" class="text text--colored">Loading...</span>
       </div>
-  </footer>
-    `;
+    </footer>
+  `;
 
   const lightTimerBlade = document.querySelector('#lightTimerBlade');
   const textTimer = document.querySelector('#textTimer');
   const textTimerTime = document.querySelector('#textTimerTime');
 
-  timer.changeTimerStyle('red', 2);
+  timer.changeTimerStyle('red');
   expect(lightTimerBlade.style.boxShadow).toBe(
     `10px -5px 15px red, 10px 5px 15px red`
   );
-  expect(lightTimerBlade.style.transition).toBe(
-    `width 0.99s linear, box-shadow 2s linear`
-  );
   expect(textTimer.style.textShadow).toBe(`4px 4px 40px red`);
-  expect(textTimer.style.transition).toBe(`text-shadow 2s linear`);
   expect(textTimerTime.style.color).toBe(`red`);
-  expect(textTimerTime.style.transition).toBe(`color 2s linear`);
 
-  timer.changeTimerStyle('yellow', 4);
+  timer.changeTimerStyle('yellow');
   expect(lightTimerBlade.style.boxShadow).toBe(
     `10px -5px 15px yellow, 10px 5px 15px yellow`
   );
-  expect(lightTimerBlade.style.transition).toBe(
-    `width 0.99s linear, box-shadow 4s linear`
-  );
   expect(textTimer.style.textShadow).toBe(`4px 4px 40px yellow`);
-  expect(textTimer.style.transition).toBe(`text-shadow 4s linear`);
   expect(textTimerTime.style.color).toBe(`yellow`);
-  expect(textTimerTime.style.transition).toBe(`color 4s linear`);
 });
 
 test('checking if function set timer values properly', () => {
@@ -92,7 +82,7 @@ test('checking if function set timer values properly', () => {
         <span id="textTimerTime" class="text text--colored">Loading...</span>
       </div>
     </footer>
-    `;
+  `;
 
   const lightTimerBlade = document.querySelector('#lightTimerBlade');
   const textTimerTime = document.querySelector('#textTimerTime');

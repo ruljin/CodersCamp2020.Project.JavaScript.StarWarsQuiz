@@ -34,14 +34,10 @@ const secondsToTime = seconds => {
   return `${minutes}m ${seconds}s`;
 };
 
-const changeTimerStyle = (color, time = 1) => {
+const changeTimerStyle = color => {
   const lightTimerBlade = document.querySelector('#lightTimerBlade');
   const textTimer = document.querySelector('#textTimer');
   const textTimerTime = document.querySelector('#textTimerTime');
-
-  lightTimerBlade.style.transition = `width 0.99s linear, box-shadow ${time}s linear`;
-  textTimer.style.transition = `text-shadow ${time}s linear`;
-  textTimerTime.style.transition = `color ${time}s linear`;
 
   lightTimerBlade.style.boxShadow = `10px -5px 15px ${color}, 10px 5px 15px ${color}`;
   textTimer.style.textShadow = `4px 4px 40px ${color}`;
@@ -54,9 +50,9 @@ const updateTime = () => {
   setTimerValues(seconds);
 
   if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED)
-    changeTimerStyle('#ff0000', 2.5);
+    changeTimerStyle('#ff0000');
   if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW)
-    changeTimerStyle('#fac300', 2.5);
+    changeTimerStyle('#fac300');
   if (checkGameFinished(seconds)) timer.pauseTimer();
 
   timer.decreaseGameTimer();
