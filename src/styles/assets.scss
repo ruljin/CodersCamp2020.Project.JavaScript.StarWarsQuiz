@@ -1,44 +1,27 @@
 @import 'reset';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 @import 'variables';
 
-.container {
-  font-family: 'Montserrat', sans-serif;
+.background {
   background-color: #000;
   background: url('../assets/ui/background.png') fixed;
   background-size: cover;
+}
 
-  &--cover-page {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  &--default {
-    display: grid;
-    grid-template-rows: min-content 1fr min-content;
-    place-items: center;
-  }
-
-  &__header {
-    width: 100%;
-    margin: 3rem 0;
-  }
-
-  &__body {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
-  &__footer {
-    width: 100%;
-    margin: 0 0 3rem 0;
-  }
+.container {
+  max-width: 130rem;
+  height: 100vh;
+  padding: 3rem 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template: min-content 1fr min-content / 80%;
+  justify-items: stretch;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -51,7 +34,9 @@
     0.4rem 0.4rem 4rem $primary-color;
   background-color: $primary-color;
   color: $primary-font-color;
+  text-align: center;
   font-size: $button-font-size;
+  line-height: $button-height;
   font-weight: 600;
   cursor: pointer;
 
@@ -59,6 +44,7 @@
     width: $button-width-large;
     height: $button-height-large;
     font-size: $button-font-size-large;
+    line-height: $button-height-large;
   }
 
   &--alternative {
@@ -69,7 +55,7 @@
 }
 
 .banner {
-  width: $banner-width;
+  width: 100%;
   height: $banner-height;
   border-radius: 0.9rem;
   margin: 0 auto;
@@ -113,6 +99,11 @@
   font-size: $text-font-size;
   font-weight: 600;
 
+  &--large {
+    font-size: $text-font-size-large;
+    font-weight: 700;
+  }
+
   &--uppercase {
     text-transform: uppercase;
   }
@@ -120,42 +111,70 @@
   &--alternative {
     color: $tertiary-font-color;
   }
-
-  &--large {
-    font-size: $text-font-size-large;
-    font-weight: 700;
-  }
 }
 
 .table {
-  border-radius: 0.9rem;
+  width: 100%;
+  height: calc(4rem * 3 + 4.5rem);
+  border-radius: $table-border;
+  position: relative;
+  display: block;
   background-color: $secondary-color;
+  text-align: left;
   font-size: $table-font-size;
+  font-weight: 600;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $table-border;
+    background-color: $primary-color;
+  }
+
+  &--no-scroll {
+    overflow-y: auto;
+  }
+
+  &--limited {
+    height: calc(4rem * 2 + 4.5rem);
+  }
+
+  &__body,
+  &__head {
+    width: 100%;
+    display: block;
+  }
 
   &__head {
-    line-height: 3;
+    height: 4.5rem;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background: $secondary-color;
     font-weight: 700;
   }
 
-  &__body {
-    font-weight: 600;
-  }
-
   &__row {
+    height: 4rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+
     &--highlighted {
-      background-color: $primary-color;
+      background: $primary-color;
     }
   }
 
   &__data {
-    padding: 0.5em 0;
+    padding-left: 7%;
   }
 
-  &__row &__data:first-child {
-    padding-left: 1.5em;
-  }
-
-  &__body &__row:last-child &__data {
-    padding-bottom: 1em;
+  &__row:last-child &__data:first-child {
+    border-bottom-left-radius: $table-border;
   }
 }

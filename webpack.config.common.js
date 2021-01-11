@@ -6,6 +6,7 @@ const createHtmlWebpackPlugin = siteName =>
   new HtmlWebpackPlugin({
     template: `./src/pages/${siteName}/${siteName}.html`,
     inject: 'head',
+    favicon: `./src/assets/ui/favicon.png`,
     scriptLoading: 'defer',
     chunks: [`${siteName}`],
     filename: `${siteName}.html`
