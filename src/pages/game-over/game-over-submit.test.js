@@ -54,57 +54,162 @@ ls.saveSettings('category1', 120, 'mode1', 'difficulty1');
 
 test('creating a Table Row for 1st place ', () => {
   gameOverSubmit.createTableRow(1, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(1,'Joda',20,true)).toMatch('<td class="table__data">1st</td>');
+  expect(gameOverSubmit.createTableRow(1, 'Joda', 20, true)).toMatch(
+    '<td class="table__data">1st</td>'
+  );
 }),
+  test('creating a Table Row for 2nd place ', () => {
+    gameOverSubmit.createTableRow(2, 'Joda', 20, true);
+    expect(gameOverSubmit.createTableRow(2, 'Joda', 20, true)).toMatch(
+      '<td class="table__data">2nd</td>'
+    );
+  }),
+  test('creating a Table Row for 3rd place ', () => {
+    gameOverSubmit.createTableRow(3, 'Joda', 20, true);
+    expect(gameOverSubmit.createTableRow(3, 'Joda', 20, true)).toMatch(
+      '<td class="table__data">3rd</td>'
+    );
+  }),
+  test('creating a Table Row for 5th place ', () => {
+    gameOverSubmit.createTableRow(5, 'Joda', 20, true);
+    expect(gameOverSubmit.createTableRow(5, 'Joda', 20, true)).toMatch(
+      '<td class="table__data">5th</td>'
+    );
+  }),
+  test('creating a Table Row - adding nickname ', () => {
+    gameOverSubmit.createTableRow(2, 'Joda', 20, true);
+    expect(gameOverSubmit.createTableRow(2, 'Joda', 20, true)).toMatch(
+      '<td class="table__data">Joda</td>'
+    );
+  }),
+  test('creating a Table Row - adding points ', () => {
+    gameOverSubmit.createTableRow(2, 'Joda', 20, true);
+    expect(gameOverSubmit.createTableRow(2, 'Joda', 20, true)).toMatch(
+      '<td class="table__data">20</td>'
+    );
+  }),
+  test('creating a Table Row - highliting  ', () => {
+    gameOverSubmit.createTableRow(2, 'Joda', 20, true);
+    expect(gameOverSubmit.createTableRow(2, 'Joda', 20, true)).toMatch(
+      '<tr class="table__row table__row--highlighted">'
+    );
+  }),
+  test('create player table row', () => {
+    gameOverSubmit.createPlayerTableRow(1);
+    expect(gameOverSubmit.createPlayerTableRow(1)).toMatch(
+      '<td class="table__data">1st</td>'
+    );
+  }),
+  test('create computer table row', () => {
+    gameOverSubmit.createComputerTableRow(2);
+    expect(gameOverSubmit.createComputerTableRow(2)).toMatch(
+      '<td class="table__data">2nd</td>'
+    );
+  }),
+  test('check computer mode', () => {
+    const settings = ls.getSettings();
+    expect(gameOverSubmit.checkComputerMode()).toBe(false);
+  }),
+  test('populate Table', () => {
+    //const [playerPlace, computerPlace] = getPlaces();
+    const tableBodyEl = document.querySelector('#tableBody');
+    const rowsEl = ['', ''];
+    expect(gameOverSubmit.populateTable(1)).toBe(undefined);
+  }),
+  test('block input', () => {
+    const usernameInputEl = document.querySelector('#usernameInput');
+    expect(gameOverSubmit.blockInput()).toBeTruthy;
+  }),
+  test('get points from correct answer number', () => {
+    expect(gameOverSubmit.getPointsFromCorrectAnswersNumber(11)).toBe(11);
+  }),
+  test('get places', () => {
+    ls.savePlayerCorrectAnswersNumber(10);
+    ls.saveComputerCorrectAnswersNumber(20);
+    expect(gameOverSubmit.getPlaces()).toStrictEqual([2, 1]);
+  }),
+  test('get places', () => {
+    ls.savePlayerCorrectAnswersNumber(20);
+    ls.saveComputerCorrectAnswersNumber(2);
+    expect(gameOverSubmit.getPlaces()).toStrictEqual([1, 2]);
+  }),
+  test('get player points', () => {
+    ls.savePlayerCorrectAnswersNumber(19);
+    expect(gameOverSubmit.getPlayerPoints()).toBe(
+      gameOverSubmit.getPointsFromCorrectAnswersNumber(19)
+    );
+  }),
+  test('get computer points', () => {
+    ls.saveComputerCorrectAnswersNumber(19);
+    expect(gameOverSubmit.getComputerPoints()).toBe(
+      gameOverSubmit.getPointsFromCorrectAnswersNumber(19)
+    );
+  }),
+  test('set banner', () => {
+    document.body.innerHTML = `<h1 id="banner" class="banner banner--alternative">Game Over</h1>`;
 
-test('creating a Table Row for 2nd place ', () => {
-  gameOverSubmit.createTableRow(2, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(2,'Joda',20,true)).toMatch('<td class="table__data">2nd</td>');
-}), 
+    ls.saveSettings('', '', 'solo', '');
+    gameOverSubmit.setBanner();
+    expect(document.querySelector('#banner').textContent).toBe('You Won!');
+    expect(
+      document.querySelector('#banner').classList.contains('banner--win')
+    ).toBe(true);
+  }),
+  test('set banner won', () => {
+    document.body.innerHTML = `<h1 id="banner" class="banner banner--alternative">Game Over</h1>`;
 
-test('creating a Table Row for 3rd place ', () => {
-  gameOverSubmit.createTableRow(3, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(3,'Joda',20,true)).toMatch('<td class="table__data">3rd</td>');
-}),
+    ls.saveSettings('', '', 'computer', '');
+    ls.savePlayerCorrectAnswersNumber(20);
+    ls.saveComputerCorrectAnswersNumber(2);
+    gameOverSubmit.setBanner();
+    expect(document.querySelector('#banner').textContent).toBe('You Won!');
+    expect(
+      document.querySelector('#banner').classList.contains('banner--win')
+    ).toBe(true);
+  }),
+  test('set banner lost', () => {
+    document.body.innerHTML = `<h1 id="banner" class="banner banner--alternative">Game Over</h1>`;
 
-test('creating a Table Row for 5th place ', () => {
-  gameOverSubmit.createTableRow(5, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(5,'Joda',20,true)).toMatch('<td class="table__data">5th</td>');
-}),
+    ls.saveSettings('', '', 'computer', '');
+    ls.savePlayerCorrectAnswersNumber(2);
+    ls.saveComputerCorrectAnswersNumber(20);
+    gameOverSubmit.setBanner();
+    expect(document.querySelector('#banner').textContent).toBe('Game Over!');
+    expect(
+      document.querySelector('#banner').classList.contains('banner--lose')
+    ).toBe(true);
+  }),
+  test('submit score', () => {
+    ls.savePlayerCorrectAnswersNumber(12);
+    ls.saveSettings('starships', '', '', '');
+    gameOverSubmit.submitScore('Joda');
+    expect(ls.getScoreboard()[0]).toStrictEqual({
+      name: 'Joda',
+      points: gameOverSubmit.getPointsFromCorrectAnswersNumber(12),
+      category: 'starships'
+    });
+  }),
+  test('switch label', () => {
+    document.body.innerHTML = `<label id="label" for="usernameInput" class="text text--small">
+  Please fill your name in order to receive eternal glory in whole
+  Galaxy!
+</label>`;
+    gameOverSubmit.switchLabel(false);
+    expect(document.querySelector('#label').textContent).toBe(
+      'Please enter valid name!'
+    );
+  }),
+  test('switch label', () => {
+    document.body.innerHTML = `<label id="label" for="usernameInput" class="text text--small">
+  Please fill your name in order to receive eternal glory in whole
+  Galaxy!
+</label>`;
+    ls.savePlayerCorrectAnswersNumber(14);
+    gameOverSubmit.switchLabel(true, 'Joda');
 
-test('creating a Table Row - adding nickname ', () => {
-  gameOverSubmit.createTableRow(2, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(2,'Joda',20,true)).toMatch('<td class="table__data">Joda</td>');
-}),
-
-test('creating a Table Row - adding points ', () => {
-  gameOverSubmit.createTableRow(2, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(2,'Joda',20,true)).toMatch('<td class="table__data">20</td>');
-}), 
-
-test('creating a Table Row - highliting  ', () => {
-  gameOverSubmit.createTableRow(2, 'Joda', 20, true);
-  expect(gameOverSubmit.createTableRow(2,'Joda',20,true)).toMatch('<tr class="table__row table__row--highlighted">');
-}),
-
-test('create player table row', () => {
-  gameOverSubmit.createPlayerTableRow(1);
-  expect(gameOverSubmit.createPlayerTableRow(1)).toMatch('<td class="table__data">1st</td>');
-}), 
-
-test('create computer table row', () => {
-  gameOverSubmit.createComputerTableRow(2);
-  expect(gameOverSubmit.createComputerTableRow(2)).toMatch('<td class="table__data">2nd</td>');
-}), 
-
-test('check computer mode', () => {
-  const settings = ls.getSettings();
-  expect(gameOverSubmit.checkComputerMode()).toBe(false)
-}),
-
-test('populate Table', () => {
-  //const [playerPlace, computerPlace] = getPlaces();
-  const tableBodyEl = document.querySelector('#tableBody');
-  const rowsEl = ['', ''];
-  expect(gameOverSubmit.populateTable(1)).toBe(undefined)
-}),
+    expect(document.querySelector('#label').textContent).toBe(
+      `Joda, your score - ${gameOverSubmit.getPointsFromCorrectAnswersNumber(
+        14
+      )} - has been added to the hall of fame!`
+    );
+  });

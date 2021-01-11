@@ -2,7 +2,6 @@ const ls = require('../../scripts/localScorage');
 const submitEl = document.querySelector('#submit');
 ls.saveSettings('test,', 120, 'computer', 'test');
 
-
 const createTableRow = (place, nickname, points, isHighlited) => {
   if (place === 1) {
     place = place + 'st';
@@ -78,7 +77,7 @@ const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
 
 const setBanner = () => {
   const bannerEl = document.querySelector('#banner');
-  if (checkComputerMode() && getPlaces[0] === 2) {
+  if (checkComputerMode() && getPlaces()[0] === 2) {
     bannerEl.textContent = 'Game Over!';
     bannerEl.classList.add('banner--lose');
   } else {
@@ -126,18 +125,24 @@ setBanner();
 submitEl.addEventListener('click', handleSubmitButton);
 
 module.exports = {
-    createTableRow, 
-    createPlayerTableRow, 
-    getPlayerPoints, 
-    createComputerTableRow, 
-    getComputerPoints, 
-    checkComputerMode, 
-    populateTable, 
-    getPointsFromCorrectAnswersNumber, 
-    setBanner, 
-    getPlaces, 
-    getPlayerPoints,
-    
-    //playerPlace,
-    //computerPlace,
-}
+  createTableRow,
+  createPlayerTableRow,
+  getPlayerPoints,
+  createComputerTableRow,
+  getComputerPoints,
+  checkComputerMode,
+  populateTable,
+  getPointsFromCorrectAnswersNumber,
+  setBanner,
+  getPlaces,
+  getPlayerPoints,
+  switchLabel,
+  blockInput,
+  submitScore,
+  handleSubmitButton
+  //playerCorrectAnswersNumber,
+  //computerCorrectAnswersNumber
+
+  //playerPlace,
+  //computerPlace,
+};
