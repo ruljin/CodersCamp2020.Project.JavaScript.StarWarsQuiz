@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings</title>
-  </head>
-  <body class="container background">
+document.body.innerHTML = `
     <header class="banner"><h1>Settings</h1></header>
     <main class="page-content">
       <div class="selector-container">
@@ -67,5 +60,69 @@
         PLAY
       </a>
     </footer>
-  </body>
-</html>
+`;
+
+const selectors = Array.prototype.slice.call(
+  document.querySelectorAll(
+    '.selector:not(.selector--static):not(.selector--empty)'
+  )
+);
+
+const modes = require('./modes');
+const ls = require('../../scripts/localScorage');
+
+test('Check if default settings are working', () => {
+  modes.setDefaultSettings();
+  modes.saveChoices();
+  expect(ls.getSettings()).toStrictEqual({
+    category: 'people',
+    speed: 'normal',
+    mode: 'computer',
+    difficulty: 'normal'
+  });
+});
+
+test('Check if setting own setting is working', () => {
+  modes.handleSelectorClick(selectors[2]);
+  modes.handleSelectorClick(selectors[5]);
+  modes.handleSelectorClick(selectors[7]);
+  modes.handleSelectorClick(selectors[10]);
+  modes.saveChoices();
+  expect(ls.getSettings()).toStrictEqual({
+    category: 'starships',
+    speed: 'long',
+    mode: 'computer',
+    difficulty: 'hard'
+  });
+});
+
+test('Check if setting solo mode clears difficilty', () => {
+  modes.handleSelectorClick(selectors[2]);
+  modes.handleSelectorClick(selectors[5]);
+  modes.handleSelectorClick(selectors[7]);
+  modes.handleSelectorClick(selectors[10]);
+
+  modes.handleSelectorClick(selectors[6]);
+  modes.saveChoices();
+  expect(ls.getSettings()).toStrictEqual({
+    category: 'starships',
+    speed: 'long',
+    mode: 'solo',
+    difficulty: ''
+  });
+});
+
+test('Check if setting computer mode from solo mode selects default difficulty', () => {
+  modes.handleSelectorClick(selectors[2]);
+  modes.handleSelectorClick(selectors[5]);
+  modes.handleSelectorClick(selectors[6]);
+
+  modes.handleSelectorClick(selectors[7]);
+  modes.saveChoices();
+  expect(ls.getSettings()).toStrictEqual({
+    category: 'starships',
+    speed: 'long',
+    mode: 'computer',
+    difficulty: 'normal'
+  });
+});
