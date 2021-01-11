@@ -1,5 +1,7 @@
 const ls = require('../../scripts/localScorage');
 const submitEl = document.querySelector('#submit');
+ls.saveSettings('test,', 120, 'computer', 'test');
+
 
 const createTableRow = (place, nickname, points, isHighlited) => {
   if (place === 1) {
@@ -122,3 +124,20 @@ const switchLabel = (isValid, username = '') => {
 populateTable();
 setBanner();
 submitEl.addEventListener('click', handleSubmitButton);
+
+module.exports = {
+    createTableRow, 
+    createPlayerTableRow, 
+    getPlayerPoints, 
+    createComputerTableRow, 
+    getComputerPoints, 
+    checkComputerMode, 
+    populateTable, 
+    getPointsFromCorrectAnswersNumber, 
+    setBanner, 
+    getPlaces, 
+    getPlayerPoints,
+    
+    //playerPlace,
+    //computerPlace,
+}
