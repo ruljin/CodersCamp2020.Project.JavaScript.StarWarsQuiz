@@ -136,19 +136,18 @@ const destroyAnswerListeners = () => {
 window.addEventListener('load', setNextQuestion, false);
 
 /* sprawdzanie, czy odpowiedź się dubluje */
-function checkDuplicate(arr) {
-  let findDuplicates = arr =>
-    arr.filter((item, index) => arr.indexOf(item) != index);
-  while (findDuplicates(arr).length > 0) {
-    const indexOfDuplicate = arr.indexOf(findDuplicates(arr)[0]);
-    arr[indexOfDuplicate] =
-      answers[Math.floor(Math.random() * answers.length)]['fields']['name'];
-  }
-  return arr;
-}
+// function checkDuplicate(arr) {
+//   let findDuplicates = arr =>
+//     arr.filter((item, index) => arr.indexOf(item) != index);
+//   while (findDuplicates(arr).length > 0) {
+//     const indexOfDuplicate = arr.indexOf(findDuplicates(arr)[0]);
+//     arr[indexOfDuplicate] =
+//       answers[Math.floor(Math.random() * answers.length)]['fields']['name'];
+//   }
+//   return arr;
+// }
 
 module.exports = {
-  checkDuplicate,
   getAnswersElArray,
   incrementComputerCorrectAnswersNumber,
   incrementPlayerCorrectAnswersNumber,

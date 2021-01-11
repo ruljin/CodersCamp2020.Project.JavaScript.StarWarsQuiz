@@ -3,61 +3,61 @@ const ls = require('../../scripts/localScorage');
 
 describe('Testing game answers file', () => {
   document.body.innerHTML = `
-  <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Star Wars Quiz</title>
-  </head>
-  <body class="container background">
-    <header class="banner">
-      <h1>Who is this character?</h1>
-    </header>
-    <main class="page-content">
-      <img
-        id="questionImage"
-        class="question-image"
-        alt="Target question image"
-      />
-      <div id="answersContainer" class="selector-container">
-        <button data-answer="" class="selector selector--game"></button>
-        <button data-answer="" class="selector selector--game"></button>
-        <button data-answer="" class="selector selector--game"></button>
-        <button data-answer="" class="selector selector--game"></button>
-      </div>
-    </main>
-    <footer class="container__footer">
-      <div class="light-timer">
-        <img id="lightSaberImage" alt="Lightsaber" />
-        <div class="light-timer__timer">
-          <div class="light-timer__background"></div>
-          <div id="lightTimerBlade" class="light-timer__blade"></div>
-        </div>
-      </div>
-      <p id="textTimer" class="timer">
-        <span class="text">Remaining time:</span>
-        <span id="textTimerTime" class="text text--colored">Loading...</span>
-      </p>
-    </footer>
-  </body>
-</html>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Star Wars Quiz</title>
+      </head>
+      <body class="container background">
+        <header class="banner">
+          <h1>Who is this character?</h1>
+        </header>
+        <main class="page-content">
+          <img
+            id="questionImage"
+            class="question-image"
+            alt="Target question image"
+          />
+          <div id="answersContainer" class="selector-container">
+            <button data-answer="" class="selector selector--game"></button>
+            <button data-answer="" class="selector selector--game"></button>
+            <button data-answer="" class="selector selector--game"></button>
+            <button data-answer="" class="selector selector--game"></button>
+          </div>
+        </main>
+        <footer class="container__footer">
+          <div class="light-timer">
+            <img id="lightSaberImage" alt="Lightsaber" />
+            <div class="light-timer__timer">
+              <div class="light-timer__background"></div>
+              <div id="lightTimerBlade" class="light-timer__blade"></div>
+            </div>
+          </div>
+          <p id="textTimer" class="timer">
+            <span class="text">Remaining time:</span>
+            <span id="textTimerTime" class="text text--colored">Loading...</span>
+          </p>
+        </footer>
+      </body>
+    </html>
   `;
-  test('testing checkDuplicate function', () => {
-    expect(gameAnswering.checkDuplicate([1, 2, 3, 4, 2, 3])).toBe([4, 5]);
+  // test('testing checkDuplicate function', () => {
+  //   expect(gameAnswering.checkDuplicate([1, 2, 3, 4, 2, 3])).toBe([4, 5]);
 
-    test('checking duplicates in array', () => {
-      let arr = ['a', 'b', 'c', 'd'];
-      expect(gameAnswering.checkDuplicates(arr)).toBe(
-        arr[0] !== arr[1] &&
-          arr[2] &&
-          arr[3] &&
-          arr[1] !== arr[2] &&
-          arr[3] &&
-          arr[2] !== arr[3]
-      );
-    });
-  });
+  //   test('checking duplicates in array', () => {
+  //     let arr = ['a', 'b', 'c', 'd'];
+  //     expect(gameAnswering.checkDuplicates(arr)).toBe(
+  //       arr[0] !== arr[1] &&
+  //         arr[2] &&
+  //         arr[3] &&
+  //         arr[1] !== arr[2] &&
+  //         arr[3] &&
+  //         arr[2] !== arr[3]
+  //     );
+  //   });
+  // });
 
   test('checking getAnswersElArray function', () => {
     const answersContainer = document.querySelector('#answersContainer');
@@ -126,11 +126,11 @@ describe('Testing game answers file', () => {
   test('checking clearAnswers function', () => {
     const answersContainerEl = document.querySelector('#answersContainer');
     answersContainerEl.innerHTML = `
-    <button data-answer="wrong" class="selector selector--game">test</button>
-    <button data-answer="wrong" class="selector selector--game">test2</button>
-    <button data-answer="correct" class="selector selector--game">answer</button>
-    <button data-answer="wrong" class="selector selector--game">wrong answer</button>
-  `;
+      <button data-answer="wrong" class="selector selector--game">test</button>
+      <button data-answer="wrong" class="selector selector--game">test2</button>
+      <button data-answer="correct" class="selector selector--game">answer</button>
+      <button data-answer="wrong" class="selector selector--game">wrong answer</button>
+    `;
 
     gameAnswering.clearAnswers();
 
