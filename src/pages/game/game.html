@@ -17,36 +17,27 @@
       />
       <div class="selector-container">
         <button class="selector selector--game">Luke Skywalker</button>
-        <button class="selector selector--game selector--blue">
+        <button class="selector selector--game selector--correct">
           Darth Vader
         </button>
-        <button class="selector selector--game selector--red">
+        <button class="selector selector--game selector--wrong">
           Padme Amidala
         </button>
         <button class="selector selector--game">Jar Jar Binks</button>
       </div>
     </main>
     <footer class="container__footer">
-      <div class="container__light-timer">
-        <img
-          id="lightSaberImage"
-          src="../src/assets/ui/lightsaberHandle.png"
-          alt="Lightsaber"
-        />
-        <div class="light-timer">
+      <div class="light-timer">
+        <img id="lightSaberImage" alt="Lightsaber" />
+        <div class="light-timer__timer">
           <div class="light-timer__background"></div>
-          <div class="light-timer__countdown-timer shadow shadow--blue"></div>
+          <div id="lightTimerBlade" class="light-timer__blade"></div>
         </div>
       </div>
-      <div class="timer">
-        <p class="text text-shadow text-shadow--blue timer__text">Time Left:</p>
-        <p
-          id="time"
-          class="text text--blue text-shadow text-shadow--blue timer__text timer__text--margin"
-        >
-          Loading...
-        </p>
-      </div>
+      <p id="textTimer" class="timer">
+        <span class="text">Remaining time:</span>
+        <span id="textTimerTime" class="text text--colored">Loading...</span>
+      </p>
     </footer>
   </body>
 </html>

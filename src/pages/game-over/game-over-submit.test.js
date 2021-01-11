@@ -59,55 +59,53 @@ const headerText = require('./game-over-submit');
 const header = document.getElementById('banner');
 
 describe('color of header', () => {
-    test('setting header color to blue when won', () => {
-        const playerScore = 30;
-        const computerScore = 20;
-        expect(header.style.color).toBe('rgb(112, 181, 245)');
-    });
-    test('setting header color to red when lost', () => {
-        const playerScore = 30;
-        const computerScore = 40;
-        expect(header.style.color).toBe('rgb(255, 0, 0)')
-    });
-    test('setting header color to blue when draft', () => {
-        const playerScore = 5;
-        const computerScore = 5;
-        expect(header.style.color).toBe('rgb(112, 181, 245)');
-    });
-    test('setting header color to blue when solo game', () => {
-        const playerScore = 10;
-        const computerScore = 0;
-        expect(header.style.color).toBe('rgb(112, 181, 245)');
-    })
+  test('setting header color to blue when won', () => {
+    const playerScore = 30;
+    const computerScore = 20;
+    expect(header.style.color).toBe('rgb(112, 181, 245)');
+  });
+  test('setting header color to red when lost', () => {
+    const playerScore = 30;
+    const computerScore = 40;
+    expect(header.style.color).toBe('rgb(255, 0, 0)');
+  });
+  test('setting header color to blue when draft', () => {
+    const playerScore = 5;
+    const computerScore = 5;
+    expect(header.style.color).toBe('rgb(112, 181, 245)');
+  });
+  test('setting header color to blue when solo game', () => {
+    const playerScore = 10;
+    const computerScore = 0;
+    expect(header.style.color).toBe('rgb(112, 181, 245)');
+  });
 });
 
 describe('text of header', () => {
-    test('setting text of header when won', () => {
-        const playerScore = 10;
-        const computerScore = 5;
-        expect(header.textContent).toBe('You Won!');
-    });
-    test('setting text of header when lost', () => {
-        const playerScore = 10;
-        const computerScore = 15;
-        expect(header.textContent).toBe('Game over!');
-    });
-    test('setting text of header when draft', () => {
-        const playerScore = 10;
-        const computerScore = 10;
-        expect(header.textContent).toBe('You Won!');
-    });
-    test('setting text of header when solo game', () => {
-        const playerScore = 10;
-        const computerScore = 0;
-        expect(header.textContent).toBe('You Won!');
-    })
-})
-
-
-function newFunction() {
+  test('setting text of header when won', () => {
     const playerScore = 10;
     const computerScore = 5;
-    headerText(playerScore, computerScore);
-}
+    expect(header.textContent).toBe('You Won!');
+  });
+  test('setting text of header when lost', () => {
+    const playerScore = 10;
+    const computerScore = 15;
+    expect(header.textContent).toBe('Game over!');
+  });
+  test('setting text of header when draft', () => {
+    const playerScore = 10;
+    const computerScore = 10;
+    expect(header.textContent).toBe('You Won!');
+  });
+  test('setting text of header when solo game', () => {
+    const playerScore = 10;
+    const computerScore = 0;
+    expect(header.textContent).toBe('You Won!');
+  });
+});
 
+function newFunction() {
+  const playerScore = 10;
+  const computerScore = 5;
+  headerText(playerScore, computerScore);
+}
