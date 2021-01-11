@@ -104,6 +104,7 @@ const getAnswerFromAnswerEl = answerEl => {
 };
 
 const checkAnswer = selectedAnswer => {
+  console.log(selectedAnswer, correctAnswer);
   return selectedAnswer === correctAnswer;
 };
 
@@ -117,8 +118,8 @@ const incrementPlayerCorrectAnswersNumber = () => {
 };
 
 const incrementComputerCorrectAnswersNumber = () => {
-  const prevCorrectAnswersCounter = ls.getPlayerCorrectAnswersNumber();
-  ls.savePlayerCorrectAnswersNumber(prevCorrectAnswersCounter + 1);
+  const prevCorrectAnswersCounter = ls.getComputerCorrectAnswersNumber();
+  ls.saveComputerCorrectAnswersNumber(prevCorrectAnswersCounter + 1);
 };
 
 const getAnswersElArray = () => {
@@ -132,7 +133,7 @@ const destroyAnswerListeners = () => {
   });
 };
 
-setNextQuestion();
+window.addEventListener('load', setNextQuestion, false);
 
 /* sprawdzanie, czy odpowiedź się dubluje */
 function checkDuplicate(arr) {
@@ -145,3 +146,18 @@ function checkDuplicate(arr) {
   }
   return arr;
 }
+
+module.exports = {
+  checkDuplicate,
+  getAnswersElArray,
+  incrementComputerCorrectAnswersNumber,
+  incrementPlayerCorrectAnswersNumber,
+  highlightAnswerEl,
+  checkAnswer,
+  getAnswerFromAnswerEl,
+  getCorrectAnswerEl,
+  shuffleArrayFisherYates,
+  saveCurrentCorrectAnswer,
+  changeImage,
+  clearAnswers
+};

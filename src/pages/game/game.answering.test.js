@@ -1,67 +1,144 @@
-document.body.innerHTML = `
-<main class="container__question">
-  <img class="question-image" src="" alt="" />
-  <div class="answers">
-  </div>
-</main>
-`;
-const answering = require('./game.answering.js');
-const sampleImage1 = require('../../assets/img/modes/people/1.jpg');
-let sampleAnswer = [
-  {
-    fields: {
-      edited: '2014-12-20T21:17:56.891Z',
-      name: 'Luke Skywalker',
-      created: '2014-12-09T13:50:51.644Z',
-      gender: 'male',
-      skin_color: 'fair',
-      hair_color: 'blond',
-      height: '172',
-      eye_color: 'blue',
-      mass: '77',
-      homeworld: 1,
-      birth_year: '19BBY',
-      image: 'luke_skywalker.jpg'
-    },
-    model: 'resources.people',
-    pk: 1
-  }
-];
+const gameAnswering = require('./game.answering');
+const ls = require('../../scripts/localScorage');
 
-// on tu przyjmuje obiekt jako argument
-test('checking adding pictures', () => {
-  const sampleImages = { 1: sampleImage1 };
-  const keyNames = Object.keys(sampleImages);
-  const pictureTag = document.querySelector('.question-image');
-  expect(answering.changeImage(sampleAnswer[0])).toBe(
-    pictureTag.complete && image.naturalHeight !== 0
-  );
-});
+describe('Testing game answers file', () => {
+  document.body.innerHTML = `
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars Quiz</title>
+  </head>
+  <body class="container background">
+    <header class="banner">
+      <h1>Who is this character?</h1>
+    </header>
+    <main class="page-content">
+      <img
+        id="questionImage"
+        class="question-image"
+        alt="Target question image"
+      />
+      <div id="answersContainer" class="selector-container">
+        <button data-answer="" class="selector selector--game"></button>
+        <button data-answer="" class="selector selector--game"></button>
+        <button data-answer="" class="selector selector--game"></button>
+        <button data-answer="" class="selector selector--game"></button>
+      </div>
+    </main>
+    <footer class="container__footer">
+      <div class="light-timer">
+        <img id="lightSaberImage" alt="Lightsaber" />
+        <div class="light-timer__timer">
+          <div class="light-timer__background"></div>
+          <div id="lightTimerBlade" class="light-timer__blade"></div>
+        </div>
+      </div>
+      <p id="textTimer" class="timer">
+        <span class="text">Remaining time:</span>
+        <span id="textTimerTime" class="text text--colored">Loading...</span>
+      </p>
+    </footer>
+  </body>
+</html>
+  `;
+  test('testing checkDuplicate function', () => {
+    expect(gameAnswering.checkDuplicate([1, 2, 3, 4, 2, 3])).toBe([4, 5]);
 
-test('checking loading answers', () => {
-  answering.startGame();
-  const correctAnswer = answers[0];
-  expect(correctAnswer['fields']['name'].length !== 0).toBeTruthy();
-});
+    test('checking duplicates in array', () => {
+      let arr = ['a', 'b', 'c', 'd'];
+      expect(gameAnswering.checkDuplicates(arr)).toBe(
+        arr[0] !== arr[1] &&
+          arr[2] &&
+          arr[3] &&
+          arr[1] !== arr[2] &&
+          arr[3] &&
+          arr[2] !== arr[3]
+      );
+    });
+  });
 
-test('checking duplicates in array', () => {
-  let arr = ['a', 'b', 'c', 'd'];
-  expect(checkDuplicates(arr)).toBe(
-    arr[0] !== arr[1] &&
-      arr[2] &&
-      arr[3] &&
-      arr[1] !== arr[2] &&
-      arr[3] &&
-      arr[2] !== arr[3]
-  );
-});
+  test('checking getAnswersElArray function', () => {
+    const answersContainer = document.querySelector('#answersContainer');
+    answersContainer.children[0].innerHTML = 'test';
 
-test('checking if at least one element has diffrent place', () => {
-  let arr = ['a', 'b', 'c', 'd'];
-  expect(shuffleArray(arr)).toBe(
-    arr.indexOf('a') !== 0 ||
-      arr.indexOf('b') !== 2 ||
-      arr.indexOf('c') !== 3 ||
-      arr.indexOf('d') !== 3
-  );
+    expect(gameAnswering.getAnswersElArray()[0].innerHTML).toBe(`test`);
+  });
+
+  test('checking incrementComputerCorrectAnswersNumber function', () => {
+    let currentAnswerCounter = ls.getComputerCorrectAnswersNumber();
+    gameAnswering.incrementComputerCorrectAnswersNumber();
+    expect(ls.getComputerCorrectAnswersNumber()).toBe(++currentAnswerCounter);
+  });
+
+  test('checking incrementPlayerCorrectAnswersNumber function', () => {
+    let currentAnswerCounter = ls.getPlayerCorrectAnswersNumber();
+    gameAnswering.incrementPlayerCorrectAnswersNumber();
+    expect(ls.getPlayerCorrectAnswersNumber()).toBe(++currentAnswerCounter);
+  });
+
+  test('checking highlightAnswerEl function', () => {
+    const answerElement = document.querySelectorAll('.selector');
+
+    gameAnswering.highlightAnswerEl(answerElement[0], 'wrong');
+    gameAnswering.highlightAnswerEl(answerElement[1], 'success');
+    gameAnswering.highlightAnswerEl(answerElement[2], 'success');
+    gameAnswering.highlightAnswerEl(answerElement[3], 'wrong');
+
+    expect(answerElement[0].classList.contains('selector--wrong')).toBeTruthy();
+    expect(
+      answerElement[1].classList.contains('selector--success')
+    ).toBeTruthy();
+    expect(
+      answerElement[2].classList.contains('selector--success')
+    ).toBeTruthy();
+    expect(answerElement[3].classList.contains('selector--wrong')).toBeTruthy();
+  });
+
+  test('checking checkAnswer and saveCurrentCorrectAnswer function', () => {
+    gameAnswering.saveCurrentCorrectAnswer('test');
+    expect(gameAnswering.checkAnswer('test')).toBeTruthy();
+  });
+
+  test('checking getAnswerFromAnswerEl function', () => {
+    const answer = document.querySelector('.selector');
+    answer.dataset.answer = 'test';
+    expect(gameAnswering.getAnswerFromAnswerEl(answer)).toBe('test');
+  });
+
+  test('checking getCorrectAnswerEl function', () => {
+    expect(gameAnswering.getCorrectAnswerEl().dataset.answer).toBe('test');
+  });
+
+  test('checking shuffleArrayFisherYates function', () => {
+    expect(gameAnswering.shuffleArrayFisherYates([0, 1, 2, 3])).toEqual(
+      expect.arrayContaining([0, 1, 2, 3])
+    );
+  });
+
+  test('checking changeImage function', () => {
+    const pictureEl = document.querySelector('#questionImage');
+    gameAnswering.changeImage('testSource');
+    expect(pictureEl.src).toMatch('testSource');
+  });
+
+  test('checking clearAnswers function', () => {
+    const answersContainerEl = document.querySelector('#answersContainer');
+    answersContainerEl.innerHTML = `
+    <button data-answer="wrong" class="selector selector--game">test</button>
+    <button data-answer="wrong" class="selector selector--game">test2</button>
+    <button data-answer="correct" class="selector selector--game">answer</button>
+    <button data-answer="wrong" class="selector selector--game">wrong answer</button>
+  `;
+
+    gameAnswering.clearAnswers();
+
+    const quantity = answersContainerEl.innerHTML
+      .trim()
+      .split(
+        '<button data-answer="" class="selector selector--game"></button>\n'
+      );
+    expect(quantity.length).toBe(4);
+  });
 });
