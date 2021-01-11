@@ -46,68 +46,149 @@ document.body.innerHTML = `
   </body>
 `;
 
-const doTest = require('./game-over-submit');
-const headerText = require('./game-over-submit');
-//const soloPlayer = require('./game-over-submit');
-//const firstPlace = require('./game-over-submit');
-//const secondPlace = require('./game-over-submit');
-//const saveName = require('./game-over-submit');
-//const changeSubmit = require('./game-over-submit');
-//const submitChange = require('./game-over-submit');
-//let playerScore = require('./game-over-submit');
-//let computerScore = require('./game-over-submit');
-const header = document.getElementById('banner');
+const gameOverSubmit = require('./game-over-submit.js');
 
-describe('color of header', () => {
-    test('setting header color to blue when won', () => {
-        const playerScore = 30;
-        const computerScore = 20;
-        expect(header.style.color).toBe('rgb(112, 181, 245)');
-    });
-    test('setting header color to red when lost', () => {
-        const playerScore = 30;
-        const computerScore = 40;
-        expect(header.style.color).toBe('rgb(255, 0, 0)')
-    });
-    test('setting header color to blue when draft', () => {
-        const playerScore = 5;
-        const computerScore = 5;
-        expect(header.style.color).toBe('rgb(112, 181, 245)');
-    });
-    test('setting header color to blue when solo game', () => {
-        const playerScore = 10;
-        const computerScore = 0;
-        expect(header.style.color).toBe('rgb(112, 181, 245)');
-    })
+
+describe('set header depending on scores', () => {
+
+  
+  test('setting header when Player wins', () => {
+    document.body.innerHTML = 
+    `<h1 class="banner" id="banner">Game Over</h1>`
+    const header = document.querySelector('#banner');
+    gameOverSubmit.headerText(10,5);
+
+    expect(header.textContent).toBe("You Won!");
+    expect(header.style.color).toBe('rgb(112, 181, 245)');
 });
+  test('setting header when Computer wins', () => {
+    document.body.innerHTML = 
+    `<h1 class="banner" id="banner">Game Over</h1>`
+    const header = document.querySelector('#banner');
+    gameOverSubmit.headerText(10,15);
 
-describe('text of header', () => {
-    test('setting text of header when won', () => {
-        const playerScore = 10;
-        const computerScore = 5;
-        expect(header.textContent).toBe('You Won!');
-    });
-    test('setting text of header when lost', () => {
-        const playerScore = 10;
-        const computerScore = 15;
-        expect(header.textContent).toBe('Game over!');
-    });
-    test('setting text of header when draft', () => {
-        const playerScore = 10;
-        const computerScore = 10;
-        expect(header.textContent).toBe('You Won!');
-    });
-    test('setting text of header when solo game', () => {
-        const playerScore = 10;
-        const computerScore = 0;
-        expect(header.textContent).toBe('You Won!');
-    })
+    expect(header.textContent).toBe("Game over!");
+    expect(header.style.color).toBe('rgb(255, 0, 0)');
+});
+  test('setting header when draft', () => {
+    document.body.innerHTML = 
+    `<h1 class="banner" id="banner">Game Over</h1>`
+    const header = document.querySelector('#banner');
+    gameOverSubmit.headerText(10,10);
+
+    expect(header.textContent).toBe("You Won!");
+    expect(header.style.color).toBe('rgb(112, 181, 245)');
+});
+}),
+
+describe('set first row depending on scores', () => {
+  test('setting first row when Player wins', () => {
+    document.body.innerHTML = 
+    `<tr class="table__row" id="firstRow">
+    <td class="table__data">1st</td>
+    <td class="table__data" id="firstPlayer"></td>
+    <td class="table__data" id="firstScore"></td>
+    </tr>`
+    const firstPlayer = document.querySelector('#firstPlayer');
+    const firstScore = document.querySelector('#firstScore');
+    const firstRow = document.querySelector('#firstRow');
+    gameOverSubmit.firstPlace(10,5);
+
+    expect(firstPlayer.textContent).toBe("Player");
+    expect(firstScore.textContent).toBe(10)
+    expect(firstRow.classList.contains('table__row--highlighted')).toBeTruthy();
+});
+  test('setting first row when Computer wins', () => {
+    document.body.innerHTML = 
+    `<tr class="table__row" id="firstRow">
+    <td class="table__data">1st</td>
+    <td class="table__data" id="firstPlayer"></td>
+    <td class="table__data" id="firstScore"></td>
+    </tr>`
+    const firstPlayer = document.querySelector('#firstPlayer');
+    const firstScore = document.querySelector('#firstScore');
+    const firstRow = document.querySelector('#firstRow');
+    gameOverSubmit.firstPlace(10,15);
+
+    expect(firstPlayer.textContent).toBe("Computer");
+    expect(firstScore.textContent).toBe(15)
+    expect(firstRow.classList.contains('table__row--highlighted')).toBeFalsy();
+});
+  test('setting first row when draft', () => {
+    document.body.innerHTML = 
+    `<tr class="table__row" id="firstRow">
+    <td class="table__data">1st</td>
+    <td class="table__data" id="firstPlayer"></td>
+    <td class="table__data" id="firstScore"></td>
+    </tr>`
+    const firstPlayer = document.querySelector('#firstPlayer');
+    const firstScore = document.querySelector('#firstScore');
+    const firstRow = document.querySelector('#firstRow');
+    gameOverSubmit.firstPlace(10,10);
+
+  expect(firstPlayer.textContent).toBe("Player");
+  expect(firstScore.textContent).toBe(10)
+  expect(firstRow.classList.contains('table__row--highlighted')).toBeTruthy();
+});
+}),
+
+describe('set second row depending on scores', () => {
+    document.body.innerHTML = 
+    `<tr class="table__row" id="secondRow">
+    <td class="table__data" id="second">2nd</td>
+    <td class="table__datar" id="secondPlayer"></td>
+    <td class="table__data" id="secondScore"></td>
+    </tr>`
+    const secondPlayer = document.querySelector('#secondPlayer');
+    const secondScore = document.querySelector('#secondScore');
+    const secondRow = document.querySelector('#secondRow');
+  
+  test('setting second row when Player wins', () => {
+    document.body.innerHTML = 
+    `<tr class="table__row" id="secondRow">
+    <td class="table__data" id="second">2nd</td>
+    <td class="table__datar" id="secondPlayer"></td>
+    <td class="table__data" id="secondScore"></td>
+    </tr>`
+    const secondPlayer = document.querySelector('#secondPlayer');
+    const secondScore = document.querySelector('#secondScore');
+    const secondRow = document.querySelector('#secondRow');
+    gameOverSubmit.secondPlace(10,5);
+
+    expect(secondPlayer.textContent).toBe("Computer");
+    expect(secondScore.textContent).toBe(5)
+    expect(secondRow.classList.contains('table__row--highlighted')).toBeFalsy();
+});
+  test('setting second row when Computer wins', () => {
+    document.body.innerHTML = 
+    `<tr class="table__row" id="secondRow">
+    <td class="table__data" id="second">2nd</td>
+    <td class="table__datar" id="secondPlayer"></td>
+    <td class="table__data" id="secondScore"></td>
+    </tr>`
+    const secondPlayer = document.querySelector('#secondPlayer');
+    const secondScore = document.querySelector('#secondScore');
+    const secondRow = document.querySelector('#secondRow');
+    gameOverSubmit.secondPlace(10,15);
+
+  expect(secondPlayer.textContent).toBe("Player");
+  expect(secondScore.textContent).toBe(10)
+  expect(secondRow.classList.contains('table__row--highlighted')).toBeTruthy();
+});
+test('setting second row when draft', () => {
+  document.body.innerHTML = 
+  `<tr class="table__row" id="secondRow">
+  <td class="table__data" id="second">2nd</td>
+  <td class="table__datar" id="secondPlayer"></td>
+  <td class="table__data" id="secondScore"></td>
+  </tr>`
+  const secondPlayer = document.querySelector('#secondPlayer');
+  const secondScore = document.querySelector('#secondScore');
+  const secondRow = document.querySelector('#secondRow');
+  gameOverSubmit.secondPlace(10,10);
+
+expect(secondPlayer.textContent).toBe("Computer");
+expect(secondScore.textContent).toBe(10)
+expect(secondRow.classList.contains('table__row--highlighted')).toBeFalsy();
+});
 })
-
-
-function newFunction() {
-    const playerScore = 10;
-    const computerScore = 5;
-    headerText(playerScore, computerScore);
-}
-
