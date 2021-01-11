@@ -34,3 +34,20 @@
   display: grid;
   place-items: center;
 }
+
+.banner {
+  &--alternative {
+    box-shadow: none;
+    background-color: transparent;
+    font-size: 10rem;
+    text-transform: uppercase;
+  }
+
+  &--win {
+    color: $tertiary-color;
+  }
+
+  &--lose {
+    color: $quaternary-color;
+  }
+}
