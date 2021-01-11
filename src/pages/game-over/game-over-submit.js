@@ -1,132 +1,124 @@
-const localStorage = require('../../scripts/localScorage');
+const ls = require('../../scripts/localScorage');
+const submitEl = document.querySelector('#submit');
 
-const header = document.querySelector('#banner');
-const firstPlayer = document.querySelector('#firstPlayer');
-const firstScore = document.querySelector('#firstScore');
-const secondPlayer = document.querySelector('#secondPlayer');
-const secondScore = document.querySelector('#secondScore');
-const second = document.querySelector('#second');
-const firstRow = document.querySelector('#firstRow');
-const secondRow = document.querySelector('#secondRow');
+const createTableRow = (place, nickname, points, isHighlited) => {
+  if (place === 1) {
+    place = place + 'st';
+  } else if (place === 2) {
+    place = place + 'nd';
+  } else if (place === 3) {
+    place = place + 'rd';
+  } else {
+    place = place + 'th';
+  }
 
-const form = document.querySelector('#form');
-const input = document.querySelector('#username');
-const submit = document.querySelector('#submit');
-
-const playerScore = 35; 
-const computerScore = 20;
-//const playerScore = localStorage.getPlayerCorrectAnswersNumber;
-//const computerScore = localStorage.getComputerCorrectAnswersNumber;
-const savePlayerScore = localStorage.savePlayerScore;
-//const saveSettings = localStorage.getSettings;
-const storedCategory = localStorage.getSettings("category");
-
-
-//Set game over or you win
-
-function headerText(pScore, cScore) {
-    const header = document.querySelector('#banner');   
-    if (pScore >= cScore) {
-        header.textContent = "You Won!";
-        header.style.color = "rgb(112, 181, 245)";
-    }
-    else {
-        header.textContent = "Game over!";
-        header.style.color = "rgb(255, 0, 0)";
-    }
-}
-
-//Set first score on first place and highlight player
-
-function firstPlace(pScore1, pScore2) {
-    const firstPlayer = document.querySelector('#firstPlayer');
-    const firstScore = document.querySelector('#firstScore');
-    const firstRow = document.querySelector('#firstRow');
-    if (pScore1 >= pScore2) {
-        firstPlayer.textContent = "Player";
-        firstScore.textContent = playerScore;
-        firstRow.setAttribute("class", "table__row--highlighted"); 
-    }
-    else {
-        firstPlayer.textContent = "Computer";
-        firstScore.textContent = computerScore;
-    }
+  return `
+    <tr class="table__row ${isHighlited ? 'table__row--highlighted' : ''}">
+      <td class="table__data">${place}</td>
+      <td class="table__data">${nickname}</td>
+      <td class="table__data">${points}</td>
+    </tr>
+  `;
 };
 
-//Set second score on second place and highlight player
-function secondPlace(pScore2, cScore2) {
-    const secondPlayer = document.querySelector('#secondPlayer');
-    const secondScore = document.querySelector('#secondScore');
-    const secondRow = document.querySelector('#secondRow');
-    if (cScore2 > pScore2) {
-        secondPlayer.textContent = "Player";
-        secondScore.textContent = playerScore;
-        secondRow.setAttribute("class", "table__row--highlighted");
-    }
-    else {
-        secondPlayer.textContent = "Computer";
-        secondScore.textContent = computerScore;
-    }
+const createPlayerTableRow = place => {
+  return createTableRow(place, 'Player', getPlayerPoints(), true);
 };
 
-//Solo player mode 
-function soloPlayer(pScoreSolo, cScoreSolo) {
-    const header = document.querySelector('#banner'); 
-    const firstPlayer = document.querySelector('#firstPlayer');
-    const firstScore = document.querySelector('#firstScore');
-    const firstRow = document.querySelector('#firstRow');
-    const second = document.querySelector('#second');
-
-    if (pScoreSolo && !cScoreSolo && cScoreSolo == 0 && cScoreSolo == ' ') {
-        header.textContent = "You Won!";
-        header.style.color = "rgb(112, 181, 245)";
-        firstPlayer.textContent = "Player";
-        firstScore.textContent = playerScore;
-        firstRow.setAttribute("class", "table__row--highlighted"); 
-        second.textContent = "--";
-    }
-    else {
-        console.log(headerText(playerScore, computerScore));
-        console.log(firstPlace(playerScore, computerScore));
-        console.log(secondPlace(playerScore, computerScore));
-    }
-}
-
-//Save player score to localStorage on submit
-function saveName() {
-    function save(){
-        localStorage.savePlayerScore(input.value, playerScore, storedCategory)
-    }
-    submit.addEventListener("click", save);
-}
-
-//Change text after submit  
-function changeSubmit(e) {
-    e.preventDefault();
-    form.textContent = input.value + ", your score (" + playerScore + ") has been added to the hall of fame!"; 
-    form.setAttribute("class", "text--alternative");
-    form.style.fontSize = "250%";
-    form.style.margin = "auto";
+const createComputerTableRow = place => {
+  return createTableRow(place, 'Computer', getComputerPoints(), false);
 };
 
-function submitChange() {
-submit.addEventListener ("click", changeSubmit);};
+const populateTable = () => {
+  const tableBodyEl = document.querySelector('#tableBody');
 
+  if (checkComputerMode()) {
+    const [playerPlace, computerPlace] = getPlaces();
 
-window.addEventListener('load', soloPlayer(playerScore, computerScore));
-//console.log(soloPlayer(playerScore, computerScore));
-console.log(submitChange());
-console.log(saveName());
+    const rowsEl = ['', ''];
+    rowsEl[playerPlace - 1] = createPlayerTableRow(playerPlace);
+    rowsEl[computerPlace - 1] = createComputerTableRow(computerPlace);
 
-
-module.exports = {
-    headerText, 
-    firstPlace,
-    secondPlace, 
-    soloPlayer, 
-    saveName, 
-    changeSubmit, 
-    submitChange, 
-    playerScore, 
-    computerScore
+    tableBodyEl.innerHTML = rowsEl.join('');
+  } else {
+    tableBodyEl.innerHTML = createPlayerTableRow(1);
+  }
 };
+
+const checkComputerMode = () => {
+  const settings = ls.getSettings();
+  return settings.mode === 'computer';
+};
+
+const getPlaces = () => {
+  const playerCorrectAnswersNumber = ls.getPlayerCorrectAnswersNumber();
+  const computerCorrectAnswersNumber = ls.getComputerCorrectAnswersNumber();
+
+  return playerCorrectAnswersNumber >= computerCorrectAnswersNumber
+    ? [1, 2]
+    : [2, 1];
+};
+
+const getPlayerPoints = () => {
+  const correctAnswersNumber = ls.getPlayerCorrectAnswersNumber();
+  return getPointsFromCorrectAnswersNumber(correctAnswersNumber);
+};
+
+const getComputerPoints = () => {
+  const correctAnswersNumber = ls.getComputerCorrectAnswersNumber();
+  return getPointsFromCorrectAnswersNumber(correctAnswersNumber);
+};
+
+const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
+  // CALCULATE THE POINTS
+  return correctAnswersNumber;
+};
+
+const setBanner = () => {
+  const bannerEl = document.querySelector('#banner');
+  if (checkComputerMode() && getPlaces[0] === 2) {
+    bannerEl.textContent = 'Game Over!';
+    bannerEl.classList.add('banner--lose');
+  } else {
+    bannerEl.textContent = 'You Won!';
+    bannerEl.classList.add('banner--win');
+  }
+};
+
+const handleSubmitButton = evt => {
+  evt.preventDefault();
+  const usernameInputEl = document.querySelector('#usernameInput');
+  const username = usernameInputEl.value;
+
+  if (usernameInputEl.disabled === true) {
+    return;
+  }
+
+  if (username !== '') {
+    submitScore(username);
+    blockInput();
+    switchLabel(true, username);
+  } else {
+    switchLabel(false);
+  }
+};
+
+const submitScore = username => {
+  ls.savePlayerScore(username, getPlayerPoints(), ls.getSettings().category);
+};
+
+const blockInput = () => {
+  const usernameInputEl = document.querySelector('#usernameInput');
+  usernameInputEl.disabled = true;
+};
+
+const switchLabel = (isValid, username = '') => {
+  const labelEl = document.querySelector('#label');
+  labelEl.textContent = isValid
+    ? `${username}, your score - ${getPlayerPoints()} - has been added to the hall of fame!`
+    : `Please enter valid name!`;
+};
+
+populateTable();
+setBanner();
+submitEl.addEventListener('click', handleSubmitButton);

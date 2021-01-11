@@ -1,6 +1,7 @@
 const ls = require('../../scripts/localScorage');
 
-const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 30;
+const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 20;
+const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW = 40;
 const timer = {
   gameTime: 0,
   isTimerPaused: true,
@@ -33,20 +34,14 @@ const secondsToTime = seconds => {
   return `${minutes}m ${seconds}s`;
 };
 
-const changeTimerStyleToRed = () => {
-  const lightTimer = document.querySelector('.light-timer__countdown-timer');
-  const timer = document.querySelector('.timer');
+const changeTimerStyle = color => {
+  const lightTimerBlade = document.querySelector('#lightTimerBlade');
+  const textTimer = document.querySelector('#textTimer');
+  const textTimerTime = document.querySelector('#textTimerTime');
 
-  lightTimer.classList.remove(`shadow--blue`);
-  lightTimer.classList.add(`shadow--red`);
-
-  timer.children[0].classList.remove(`text-shadow--blue`);
-  timer.children[0].classList.add(`text-shadow--red`);
-
-  timer.children[1].classList.remove(`text--blue`);
-  timer.children[1].classList.add(`text--red`);
-  timer.children[1].classList.remove(`text-shadow--blue`);
-  timer.children[1].classList.add(`text-shadow--red`);
+  lightTimerBlade.style.boxShadow = `10px -5px 15px ${color}, 10px 5px 15px ${color}`;
+  textTimer.style.textShadow = `4px 4px 40px ${color}`;
+  textTimerTime.style.color = `${color}`;
 };
 
 const updateTime = () => {
@@ -54,20 +49,23 @@ const updateTime = () => {
 
   setTimerValues(seconds);
 
-  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED) changeTimerStyleToRed();
+  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED)
+    changeTimerStyle('#ff0000');
+  if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW)
+    changeTimerStyle('#fac300');
   if (checkGameFinished(seconds)) timer.pauseTimer();
 
   timer.decreaseGameTimer();
 };
 
 const setTimerValues = seconds => {
-  const lightTimer = document.querySelector('.light-timer__countdown-timer');
-  const time = document.querySelector('#time');
+  const lightTimerBlade = document.querySelector('#lightTimerBlade');
+  const textTimerTime = document.querySelector('#textTimerTime');
   const timeToShow = secondsToTime(seconds);
   const lightTimerWidth = getLightTimerWidth(seconds);
 
-  time.innerHTML = timeToShow;
-  lightTimer.style.width = lightTimerWidth + '%';
+  textTimerTime.innerHTML = timeToShow;
+  lightTimerBlade.style.width = lightTimerWidth + '%';
 };
 
 const getLightTimerWidth = seconds => {
@@ -101,7 +99,7 @@ module.exports = {
   timer,
   getSpeedFromLocalStorage,
   secondsToTime,
-  changeTimerStyleToRed,
+  changeTimerStyle,
   updateTime,
   getLightTimerWidth,
   checkGameFinished,

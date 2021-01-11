@@ -38,6 +38,6 @@ test('saving, getting and removing computer and player answers to/from local sto
   expect(localStorage.getComputerCorrectAnswersNumber()).toBe(20);
   localStorage.removeFromLocalStorage(config.LOCAL_STORAGE_PLAYER_CORRECT);
   localStorage.removeFromLocalStorage(config.LOCAL_STORAGE_COMPUTER_CORRECT);
-  expect(localStorage.getPlayerCorrectAnswersNumber()).toBe(null);
-  expect(localStorage.getComputerCorrectAnswersNumber()).toBe(null);
+  expect(localStorage.getPlayerCorrectAnswersNumber()).toBe(0);
+  expect(localStorage.getComputerCorrectAnswersNumber()).toBe(0);
 });
