@@ -41,7 +41,7 @@ const randomizeNewQuestion = () => {
 };
 
 const setNewAnswers = answers => {
-  const shuffledAnswers = shuffleArrayFisherYates(answers);
+  const shuffledAnswers = shuffleArray(answers);
   for (let i = 0; i < getAnswersElArray().length; i++) {
     getAnswersElArray()[i].textContent = shuffledAnswers[i];
     getAnswersElArray()[i].dataset.answer = shuffledAnswers[i];
@@ -57,7 +57,7 @@ const saveCurrentCorrectAnswer = answer => {
   correctAnswer = answer;
 };
 
-const shuffleArrayFisherYates = arr => {
+const shuffleArray = arr => {
   let arrCopy = [...arr];
   let i = arrCopy.length;
 
@@ -155,7 +155,7 @@ module.exports = {
   checkAnswer,
   getAnswerFromAnswerEl,
   getCorrectAnswerEl,
-  shuffleArrayFisherYates,
+  shuffleArrayFisherYates: shuffleArray,
   saveCurrentCorrectAnswer,
   changeImage,
   clearAnswers
