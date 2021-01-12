@@ -14,10 +14,7 @@ function removeClass() {
 }
 
 function modalClick(e) {
-  e.preventDefault();
   e.stopPropagation();
-  e.stopImmediatePropagation();
-  return false;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
