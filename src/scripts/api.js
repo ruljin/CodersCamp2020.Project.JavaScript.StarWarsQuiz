@@ -3,19 +3,19 @@ const SW_API_PEOPLE = `${SW_API_BASE_URL}people/`;
 const SW_API_VEHICLES = `${SW_API_BASE_URL}vehicles/`;
 const SW_API_STARSHIPS = `${SW_API_BASE_URL}starships/`;
 
-const get_person = async id => {
-  return get_from_api(SW_API_PEOPLE, id);
+const getPerson = async id => {
+  return await getFromAPI(SW_API_PEOPLE, id);
 };
 
-const get_vehicle = async id => {
-  return get_from_api(SW_API_VEHICLES, id);
+const getVehicle = async id => {
+  return await getFromAPI(SW_API_VEHICLES, id);
 };
 
-const get_starship = async id => {
-  return get_from_api(SW_API_STARSHIPS, id);
+const getStarship = async id => {
+  return await getFromAPI(SW_API_STARSHIPS, id);
 };
 
-const get_from_api = async (link, id) => {
+const getFromAPI = async (link, id) => {
   let data = { next: link };
   const objects = [];
 
@@ -28,7 +28,7 @@ const get_from_api = async (link, id) => {
   return objects.map(object => object.name)[id];
 };
 
-const get_lengths = async () => {
+const getLengths = async () => {
   const lengths = { people: 0, vehicles: 0, starships: 0 };
 
   let res = await fetch(`${SW_API_PEOPLE}`);
@@ -46,4 +46,4 @@ const get_lengths = async () => {
   return lengths;
 };
 
-export { get_person, get_vehicle, get_starship, get_lengths };
+export { getPerson, getVehicle, getStarship, getLengths };

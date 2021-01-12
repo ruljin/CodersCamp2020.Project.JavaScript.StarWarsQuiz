@@ -1,17 +1,23 @@
 const ls = require('../../scripts/localScorage');
+const api = require('../../scripts/api');
+const config = require('../../../config');
 let correctAnswer = '';
+let availableQuestionsIds = [];
+let questionsLength = 0;
+let firstQuestion = true;
 
-const setNextQuestion = () => {
+const setNextQuestion = async () => {
+  if (firstQuestion) {
+    await populateQuestionsIds();
+  }
   clearAnswers();
   const [
     correctAnswerText,
-    wrongAnswer1,
-    wrongAnswer2,
-    wrongAnswer3,
+    fakeAnswers,
     correctAnswerImage
-  ] = randomizeNewQuestion();
+  ] = await randomizeNewQuestion();
   saveCurrentCorrectAnswer(correctAnswerText);
-  setNewAnswers([correctAnswerText, wrongAnswer1, wrongAnswer2, wrongAnswer3]);
+  setNewAnswers([correctAnswerText, ...fakeAnswers]);
   changeImage(correctAnswerImage);
 };
 
@@ -28,16 +34,85 @@ const clearAnswers = () => {
   });
 };
 
-const randomizeNewQuestion = () => {
-  // CHECK DUPLICATE QUESTIONS ARRAY
+const randomizeNewQuestion = async () => {
+  const questionId = randomQuestionId();
+  const answer = await getAnswerFromAPI(questionId);
+  const category = ls.getSettings().category;
 
-  // MAKE API CALL
+  const img = require(`../../assets/img/modes/${category}/${
+    questionId + 1
+  }.jpg`);
 
-  // ADD QUESTION TO DUPLICATE QUESTIONS ARRAY
+  return [answer, await getFakeAnswersFromAPI(), img];
+};
 
-  const img = require('../../assets/img/modes/people/1.jpg');
+const randomQuestionId = () => {
+  const questionId = Math.floor(Math.random() * availableQuestionsIds.length);
+  availableQuestionsIds.splice(questionId, 1);
+  return questionId;
+};
 
-  return ['SampleCorrect', 'SampleWrong1', 'SampleWrong2', 'SampleWrong3', img];
+const getAnswerFromAPI = async id => {
+  const category = ls.getSettings().category;
+  if (category === config.CATEGORIES[0]) return await api.getPerson(id);
+  if (category === config.CATEGORIES[1]) return await api.getVehicle(id);
+  if (category === config.CATEGORIES[2]) return await api.getStarship(id);
+};
+
+const getFakeAnswersFromAPI = async id => {
+  let fakeQuestionId, fakeQuestionId2, fakeQuestionId3;
+
+  do {
+    fakeQuestionId = Math.floor(Math.random() * questionsLength);
+  } while (id === fakeQuestionId);
+
+  do {
+    fakeQuestionId2 = Math.floor(Math.random() * questionsLength);
+  } while (id === fakeQuestionId2 && fakeQuestionId === fakeQuestionId2);
+
+  do {
+    fakeQuestionId3 = Math.floor(Math.random() * questionsLength);
+  } while (
+    id === fakeQuestionId3 &&
+    fakeQuestionId2 === fakeQuestionId3 &&
+    fakeQuestionId1 === fakeQuestionId3
+  );
+
+  const category = ls.getSettings().category;
+  if (category === config.CATEGORIES[0]) {
+    return [
+      await api.getPerson(fakeQuestionId),
+      await api.getPerson(fakeQuestionId2),
+      await api.getPerson(fakeQuestionId3)
+    ];
+  }
+  if (category === config.CATEGORIES[1]) {
+    return [
+      await api.getVehicle(fakeQuestionId),
+      await api.getVehicle(fakeQuestionId2),
+      await api.getVehicle(fakeQuestionId3)
+    ];
+  }
+  if (category === config.CATEGORIES[2]) {
+    return [
+      await api.getStarship(fakeQuestionId),
+      await api.getStarship(fakeQuestionId2),
+      await api.getStarship(fakeQuestionId3)
+    ];
+  }
+};
+
+const populateQuestionsIds = async () => {
+  const lengths = await api.getLengths();
+  const category = ls.getSettings().category;
+
+  if (category === config.CATEGORIES[0]) questionsLength = lengths.people;
+  if (category === config.CATEGORIES[1]) questionsLength = lengths.vehicles;
+  if (category === config.CATEGORIES[2]) questionsLength = lengths.starships;
+
+  for (let i = 0; i < questionsLength; i++) {
+    availableQuestionsIds[i] = i;
+  }
 };
 
 const setNewAnswers = answers => {
@@ -134,18 +209,6 @@ const destroyAnswerListeners = () => {
 };
 
 window.addEventListener('load', setNextQuestion, false);
-
-/* sprawdzanie, czy odpowiedź się dubluje */
-// function checkDuplicate(arr) {
-//   let findDuplicates = arr =>
-//     arr.filter((item, index) => arr.indexOf(item) != index);
-//   while (findDuplicates(arr).length > 0) {
-//     const indexOfDuplicate = arr.indexOf(findDuplicates(arr)[0]);
-//     arr[indexOfDuplicate] =
-//       answers[Math.floor(Math.random() * answers.length)]['fields']['name'];
-//   }
-//   return arr;
-// }
 
 module.exports = {
   getAnswersElArray,
