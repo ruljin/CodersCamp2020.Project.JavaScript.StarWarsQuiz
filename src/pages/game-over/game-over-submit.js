@@ -1,6 +1,5 @@
 const ls = require('../../scripts/localScorage');
 const submitEl = document.querySelector('#submit');
-ls.saveSettings('test,', 120, 'computer', 'test');
 
 const createTableRow = (place, nickname, points, isHighlited) => {
   if (place === 1) {
