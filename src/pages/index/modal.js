@@ -3,12 +3,12 @@ const buttonClose = document.querySelector('.button--close');
 const backgroundClose = document.querySelector('.modal-wrap');
 const modal = document.querySelector('.modal');
 
-function addClass() {
+function openModal() {
   document.querySelector('.modal-wrap').classList.add('active');
   document.querySelector('.container').classList.add('container--blur');
 }
 
-function removeClass() {
+function closeModal() {
   document.querySelector('.modal-wrap').classList.remove('active');
   document.querySelector('.container').classList.remove('container--blur');
 }
@@ -18,10 +18,10 @@ function modalClick(e) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  text.addEventListener('click', addClass);
-  buttonClose.addEventListener('click', removeClass);
-  backgroundClose.addEventListener('click', removeClass);
+  text.addEventListener('click', openModal);
+  buttonClose.addEventListener('click', closeModal);
+  backgroundClose.addEventListener('click', closeModal);
   modal.addEventListener('click', modalClick);
 });
 
-module.exports = { addClass, removeClass };
+module.exports = { openModal, closeModal };
