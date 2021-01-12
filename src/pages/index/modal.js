@@ -1,5 +1,7 @@
 const text = document.querySelector('.text__clickable');
 const buttonClose = document.querySelector('.button--close');
+const backgroundClose = document.querySelector('.modal-wrap');
+const modal = document.querySelector('.modal');
 
 function addClass() {
   document.querySelector('.modal-wrap').classList.add('active');
@@ -11,9 +13,18 @@ function removeClass() {
   document.querySelector('.container').classList.remove('container--blur');
 }
 
+function modalClick(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+  return false;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   text.addEventListener('click', addClass);
   buttonClose.addEventListener('click', removeClass);
+  backgroundClose.addEventListener('click', removeClass);
+  modal.addEventListener('click', modalClick);
 });
 
 module.exports = { addClass, removeClass };
