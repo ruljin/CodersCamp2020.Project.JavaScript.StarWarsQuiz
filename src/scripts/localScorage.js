@@ -86,15 +86,25 @@ const removeLastScoreFromScoreboard = scoreboard => {
   return scoreboard.slice(1);
 };
 
+const saveAnswersNumber = number => {
+  saveToLocalStorage(config.LOCAL_STORAGE_ANSWERS, number);
+};
+
+const getAnswersNumber = () => {
+  getFromLocalStorage(config.LOCAL_STORAGE_ANSWERS);
+};
+
 module.exports = {
   saveSettings,
   savePlayerScore,
   savePlayerCorrectAnswersNumber,
   saveComputerCorrectAnswersNumber,
+  saveAnswersNumber,
   getSettings,
   getScoreboard,
   getPlayerCorrectAnswersNumber,
   getComputerCorrectAnswersNumber,
+  getAnswersNumber,
   removeFromLocalStorage,
   removeLastScore
 };
