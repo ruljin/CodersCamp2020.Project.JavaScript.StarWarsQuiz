@@ -48,9 +48,9 @@ document.body.innerHTML = `
 </html>
 `;
 
-const gameOverSubmit = require('./game-over-submit');
 const ls = require('../../scripts/localScorage');
 ls.saveSettings('category1', 120, 'mode1', 'difficulty1');
+const gameOverSubmit = require('./game-over-submit');
 
 test('creating a Table Row for 1st place ', () => {
   gameOverSubmit.createTableRow(1, 'Joda', 20, true);
@@ -107,18 +107,8 @@ test('creating a Table Row for 1st place ', () => {
     );
   }),
   test('check computer mode', () => {
-    const settings = ls.getSettings();
+    ls.saveSettings('', '', 'solo', '');
     expect(gameOverSubmit.checkComputerMode()).toBe(false);
-  }),
-  test('populate Table', () => {
-    //const [playerPlace, computerPlace] = getPlaces();
-    const tableBodyEl = document.querySelector('#tableBody');
-    const rowsEl = ['', ''];
-    expect(gameOverSubmit.populateTable(1)).toBe(undefined);
-  }),
-  test('block input', () => {
-    const usernameInputEl = document.querySelector('#usernameInput');
-    expect(gameOverSubmit.blockInput()).toBeTruthy;
   }),
   test('get points from correct answer number', () => {
     expect(gameOverSubmit.getPointsFromCorrectAnswersNumber(11)).toBe(11);
