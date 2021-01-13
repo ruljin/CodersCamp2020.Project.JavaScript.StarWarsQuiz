@@ -1,6 +1,15 @@
 const ls = require('../../scripts/localScorage');
 let correctAnswer = '';
 
+window.onload = function clear() {
+  ls.removeFromLocalStorage('playerCorrectAnswers');
+  ls.removeFromLocalStorage('computerCorrectAnswers');
+};
+
+if (ls.getSettings() === null) {
+  location.href = './index.html';
+}
+
 const setNextQuestion = () => {
   clearAnswers();
   const [

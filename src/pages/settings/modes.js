@@ -1,4 +1,9 @@
 const ls = require('../../scripts/localScorage');
+window.onload = function clear() {
+  ls.removeFromLocalStorage('playerCorrectAnswers');
+  ls.removeFromLocalStorage('computerCorrectAnswers');
+  ls.removeFromLocalStorage('settings');
+};
 
 const selectors = Array.prototype.slice.call(
   document.querySelectorAll(

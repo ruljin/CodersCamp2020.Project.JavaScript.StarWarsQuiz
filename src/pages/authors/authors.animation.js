@@ -1,3 +1,10 @@
+const ls = require('../../scripts/localScorage');
+window.onload = function clear() {
+  ls.removeFromLocalStorage('playerCorrectAnswers');
+  ls.removeFromLocalStorage('computerCorrectAnswers');
+  ls.removeFromLocalStorage('settings');
+};
+
 const ANIMATION_DURATION = 60;
 
 const buttonSkip = document.querySelector('#buttonSkip');

@@ -3,6 +3,12 @@ const selectorOne = document.querySelector('.selector:nth-of-type(1)');
 const tableBody = document.querySelector('#tableBody');
 const scoreboard = localStorage.getScoreboard();
 
+window.onload = function clear() {
+  localStorage.removeFromLocalStorage('playerCorrectAnswers');
+  localStorage.removeFromLocalStorage('computerCorrectAnswers');
+  localStorage.removeFromLocalStorage('settings');
+};
+
 function createTR(place, nickname, points, isHighlited) {
   if (place === 1) {
     place = place + 'st';
