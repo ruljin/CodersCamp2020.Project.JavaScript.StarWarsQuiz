@@ -1,5 +1,3 @@
-
-
 document.body.innerHTML = `
     <header class="banner"><h1>Settings</h1></header>
     <main class="page-content">
@@ -64,10 +62,7 @@ document.body.innerHTML = `
     </footer>
 `;
 
-import imagePeople from '../../assets/img/modes/people/1.jpg';
-import imageVehicles from '../../assets/img/modes/vehicles/18.jpg';
-import imageStarships from '../../assets/img/modes/starships/28.jpg';
 
 test('change image for starships', () => {
-    
+
 })

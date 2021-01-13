@@ -1,4 +1,3 @@
-
 const imageSignature = document.querySelector('#signature');
 const button = document.querySelectorAll('.selector');
 
@@ -17,12 +16,10 @@ function changeImage() {
         imageSignature.textContent = "Vehicles"
     }
     else if (selectedButton.dataset.value === 'starships') {
-        console.log('test')
         document.querySelector('#categorySampleImage').src = imageStarships
         imageSignature.textContent = "Starships"
     }
     else {
-        
         document.querySelector('#categorySampleImage').src = imagePeople
         imageSignature.textContent = "People"
     }
