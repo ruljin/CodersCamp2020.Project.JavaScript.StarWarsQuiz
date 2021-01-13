@@ -47,6 +47,7 @@ const populateTable = () => {
 
 const checkComputerMode = () => {
   const settings = ls.getSettings();
+  if (settings === null) return false;
   return settings.mode === 'computer';
 };
 
