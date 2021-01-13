@@ -190,3 +190,13 @@ test('creating a Table Row for 1st place ', () => {
       )} - has been added to the hall of fame!`
     );
   });
+test('testing getPointsFromCorrectAnswersNumber', () => {
+  ls.saveAnswersNumber(10);
+  expect(gameOverSubmit.getPointsFromCorrectAnswersNumber(10)).toBe(60);
+})
+
+test('testing getTimeModifier', () => {
+  expect(gameOverSubmit.getTimeModifier('fast')).toBe(3);
+  expect(gameOverSubmit.getTimeModifier('normal')).toBe(2);
+  expect(gameOverSubmit.getTimeModifier('long')).toBe(1);
+})
