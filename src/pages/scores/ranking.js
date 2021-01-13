@@ -4,11 +4,13 @@ const tableBody = document.querySelector('#tableBody');
 const scoreboard = localStorage.getScoreboard();
 
 function createTR(place, nickname, points, isHighlited) {
-  if (place === 1) {
+  let j = place % 10;
+  let k = place % 100;
+  if (j == 1 && k != 11) {
     place = place + 'st';
-  } else if (place === 2) {
+  } else if (j == 2 && k != 12) {
     place = place + 'nd';
-  } else if (place === 3) {
+  } else if (j == 3 && k != 13) {
     place = place + 'rd';
   } else {
     place = place + 'th';
