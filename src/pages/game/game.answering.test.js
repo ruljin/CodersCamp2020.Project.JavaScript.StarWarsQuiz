@@ -52,15 +52,19 @@ describe('Testing game answers file', () => {
   });
 
   test('checking incrementComputerCorrectAnswersNumber function', () => {
-    let currentAnswerCounter = ls.getComputerCorrectAnswersNumber();
+    let currentAnswerCounter = ls.getComputerCorrectAnswersNumber() || 0;
     gameAnswering.incrementComputerCorrectAnswersNumber();
-    expect(ls.getComputerCorrectAnswersNumber()).toBe(++currentAnswerCounter);
+    expect(ls.getComputerCorrectAnswersNumber() || 0).toBe(
+      ++currentAnswerCounter
+    );
   });
 
   test('checking incrementPlayerCorrectAnswersNumber function', () => {
-    let currentAnswerCounter = ls.getPlayerCorrectAnswersNumber();
+    let currentAnswerCounter = ls.getPlayerCorrectAnswersNumber() || 0;
     gameAnswering.incrementPlayerCorrectAnswersNumber();
-    expect(ls.getPlayerCorrectAnswersNumber()).toBe(++currentAnswerCounter);
+    expect(ls.getPlayerCorrectAnswersNumber() || 0).toBe(
+      ++currentAnswerCounter
+    );
   });
 
   test('checking highlightAnswerEl function', () => {

@@ -7,7 +7,6 @@ let availableQuestionsIds = [];
 let allQuestionsIds = [];
 let firstQuestion = true;
 
-
 window.onload = function clear() {
   ls.removeFromLocalStorage('playerCorrectAnswers');
   ls.removeFromLocalStorage('computerCorrectAnswers');
@@ -27,7 +26,7 @@ const setNextQuestion = async () => {
     location.replace('game-over.html');
     return;
   }
-  
+
   const [
     correctAnswerText,
     fakeAnswers,
@@ -190,7 +189,6 @@ const checkSelectedAnswer = evt => {
     randomComputerAnswer();
   }
 
-  console.log(ls.getAnswersNumber());
   if (ls.getAnswersNumber() == null) {
     ls.saveAnswersNumber(1);
   } else {
@@ -204,7 +202,7 @@ const checkSelectedAnswer = evt => {
 
 const randomComputerAnswer = () => {
   const difficulty = ls.getSettings().difficulty;
-  const computerScore = ls.getComputerCorrectAnswersNumber();
+  const computerScore = ls.getComputerCorrectAnswersNumber() || 0;
 
   if (difficulty === 'easy') {
     if (Math.random() <= 0.25)
@@ -237,12 +235,12 @@ const highlightAnswerEl = (answerEl, type) => {
 };
 
 const incrementPlayerCorrectAnswersNumber = () => {
-  const prevCorrectAnswersCounter = ls.getPlayerCorrectAnswersNumber();
+  const prevCorrectAnswersCounter = ls.getPlayerCorrectAnswersNumber() || 0;
   ls.savePlayerCorrectAnswersNumber(prevCorrectAnswersCounter + 1);
 };
 
 const incrementComputerCorrectAnswersNumber = () => {
-  const prevCorrectAnswersCounter = ls.getComputerCorrectAnswersNumber();
+  const prevCorrectAnswersCounter = ls.getComputerCorrectAnswersNumber() || 0;
   ls.saveComputerCorrectAnswersNumber(prevCorrectAnswersCounter + 1);
 };
 

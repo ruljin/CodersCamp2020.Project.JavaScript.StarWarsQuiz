@@ -69,7 +69,7 @@ const getComputerCorrectAnswersNumber = () => {
 
 const getCorrectAnswersNumber = key => {
   const correctAnswersNumber = getFromLocalStorage(key);
-  return correctAnswersNumber === null ? 0 : correctAnswersNumber;
+  return correctAnswersNumber;
 };
 
 const removeFromLocalStorage = key => {

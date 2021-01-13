@@ -98,11 +98,10 @@ const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
       (correctAnswersNumber / ls.getAnswersNumber()) *
         (correctAnswersNumber * timeModifier)
     );
-    console.log(ls.getAnswersNumber());
   return points;
 };
 
-const getTimeModifier = (timeModifier) => {
+const getTimeModifier = timeModifier => {
   if (timeModifier === 'long') {
     return 1;
   } else if (timeModifier === 'normal') {
