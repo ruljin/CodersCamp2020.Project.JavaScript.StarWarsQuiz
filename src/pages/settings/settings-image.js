@@ -2,17 +2,17 @@ const imageSignature = document.querySelector('#signature');
 const button = document.querySelectorAll('.selector');
 
 
-import imagePeople from '../../assets/img/modes/people/1.jpg';
-import imageVehicles from '../../assets/img/modes/vehicles/18.jpg';
-import imageStarships from '../../assets/img/modes/starships/28.jpg';
-import { doc } from 'prettier';
+const imagePeople = require('../../assets/img/modes/people/1.jpg');
+const imageVehicles = require('../../assets/img/modes/vehicles/18.jpg');
+const imageStarships = require('../../assets/img/modes/starships/28.jpg');
+
 
 
 function changeImage() {
     const selectedButton = document.querySelector('.selector--selected');
     if (selectedButton.dataset.value === 'vehicles') {
         
-        document.querySelector('#categorySampleImage').src = imageVehicles
+        document.querySelector('#categorySampleImage').src = imageVehicles;
         imageSignature.textContent = "Vehicles"
     }
     else if (selectedButton.dataset.value === 'starships') {
@@ -27,4 +27,9 @@ function changeImage() {
 
  
 button.forEach(button => {
-    button.addEventListener("click", changeImage)})
+    button.addEventListener("click", changeImage)});
+
+
+module.exports = {
+  changeImage
+};
