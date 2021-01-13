@@ -43,21 +43,6 @@ describe('Testing game answers file', () => {
       </body>
     </html>
   `;
-  // test('testing checkDuplicate function', () => {
-  //   expect(gameAnswering.checkDuplicate([1, 2, 3, 4, 2, 3])).toBe([4, 5]);
-
-  //   test('checking duplicates in array', () => {
-  //     let arr = ['a', 'b', 'c', 'd'];
-  //     expect(gameAnswering.checkDuplicates(arr)).toBe(
-  //       arr[0] !== arr[1] &&
-  //         arr[2] &&
-  //         arr[3] &&
-  //         arr[1] !== arr[2] &&
-  //         arr[3] &&
-  //         arr[2] !== arr[3]
-  //     );
-  //   });
-  // });
 
   test('checking getAnswersElArray function', () => {
     const answersContainer = document.querySelector('#answersContainer');
@@ -67,15 +52,19 @@ describe('Testing game answers file', () => {
   });
 
   test('checking incrementComputerCorrectAnswersNumber function', () => {
-    let currentAnswerCounter = ls.getComputerCorrectAnswersNumber();
+    let currentAnswerCounter = ls.getComputerCorrectAnswersNumber() || 0;
     gameAnswering.incrementComputerCorrectAnswersNumber();
-    expect(ls.getComputerCorrectAnswersNumber()).toBe(++currentAnswerCounter);
+    expect(ls.getComputerCorrectAnswersNumber() || 0).toBe(
+      ++currentAnswerCounter
+    );
   });
 
   test('checking incrementPlayerCorrectAnswersNumber function', () => {
-    let currentAnswerCounter = ls.getPlayerCorrectAnswersNumber();
+    let currentAnswerCounter = ls.getPlayerCorrectAnswersNumber() || 0;
     gameAnswering.incrementPlayerCorrectAnswersNumber();
-    expect(ls.getPlayerCorrectAnswersNumber()).toBe(++currentAnswerCounter);
+    expect(ls.getPlayerCorrectAnswersNumber() || 0).toBe(
+      ++currentAnswerCounter
+    );
   });
 
   test('checking highlightAnswerEl function', () => {

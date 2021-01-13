@@ -2,23 +2,36 @@ const ls = require('../../scripts/localScorage');
 
 const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_RED = 20;
 const TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW = 40;
-const timer = {
-  gameTime: 0,
-  isTimerPaused: true,
-  runTimer: function () {
-    this.isTimerPaused = false;
-  },
-  pauseTimer: function () {
-    this.isTimerPaused = true;
-  },
-  decreaseGameTimer: function () {
-    this.gameTime--;
-  }
+let isTimerPaused = true;
+let gameTime = 0;
+
+const runTimer = () => {
+  isTimerPaused = false;
+};
+
+const pauseTimer = () => {
+  isTimerPaused = true;
+};
+
+const decreaseGameTimer = () => {
+  gameTime--;
+};
+
+const setGameTime = value => {
+  gameTime = value;
+};
+
+const getGameTime = () => {
+  return gameTime;
+};
+
+const getIsTimerPaused = () => {
+  return isTimerPaused;
 };
 
 const getSpeedFromLocalStorage = () => {
   const settings = ls.getSettings();
-  if (!settings) throw new Error('Failed to load data from localStorage');
+  if (!settings) return 0;
 
   return settings.speed;
 };
@@ -45,7 +58,7 @@ const changeTimerStyle = color => {
 };
 
 const updateTime = () => {
-  let seconds = timer.gameTime;
+  let seconds = gameTime;
 
   setTimerValues(seconds);
 
@@ -53,9 +66,12 @@ const updateTime = () => {
     changeTimerStyle('#ff0000');
   if (seconds == TIME_TO_CHANGE_ELEMENTS_COLOR_TO_YELLOW)
     changeTimerStyle('#fac300');
-  if (checkGameFinished(seconds)) timer.pauseTimer();
+  if (checkGameFinished(seconds)) {
+    pauseTimer();
+    location.replace('game-over.html');
+  }
 
-  timer.decreaseGameTimer();
+  decreaseGameTimer();
 };
 
 const setTimerValues = seconds => {
@@ -81,27 +97,39 @@ const checkGameFinished = seconds => {
 
 const timerInterval = () => {
   setInterval(() => {
-    if (timer.isTimerPaused) return;
+    if (isTimerPaused) return;
     updateTime();
   }, 1000);
 };
 
 const startGame = () => {
-  const time = getSpeedFromLocalStorage();
-  timer.gameTime = time;
-  timer.runTimer();
+  const timeName = getSpeedFromLocalStorage();
+  let time = 0;
+  if (timeName === 'long') {
+    time = 60;
+  } else if (timeName === 'normal') {
+    time = 40;
+  } else if (timeName === 'fast') {
+    time = 20;
+  }
+  gameTime = time;
+  runTimer();
   timerInterval();
 };
 
-window.addEventListener('load', startGame, false);
-
 module.exports = {
-  timer,
   getSpeedFromLocalStorage,
   secondsToTime,
   changeTimerStyle,
   updateTime,
   getLightTimerWidth,
   checkGameFinished,
-  setTimerValues
+  setTimerValues,
+  startGame,
+  pauseTimer,
+  runTimer,
+  decreaseGameTimer,
+  getGameTime,
+  setGameTime,
+  getIsTimerPaused
 };

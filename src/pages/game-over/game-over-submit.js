@@ -1,13 +1,31 @@
 const ls = require('../../scripts/localScorage');
 const submitEl = document.querySelector('#submit');
-ls.saveSettings('test,', 120, 'computer', 'test');
+
+if (ls.getSettings() === null) {
+  location.href = './index.html';
+}
+
+if (
+  ls.getSettings().mode === 'solo' &&
+  ls.getPlayerCorrectAnswersNumber() === null
+) {
+  location.href = './index.html';
+} else if (
+  ls.getSettings().mode === 'computer' &&
+  ls.getPlayerCorrectAnswersNumber() === null &&
+  ls.getComputerCorrectAnswersNumber() === null
+) {
+  location.href = './index.html';
+}
 
 const createTableRow = (place, nickname, points, isHighlited) => {
-  if (place === 1) {
+  const j = place % 10;
+  const k = place % 100;
+  if (j == 1 && k != 11) {
     place = place + 'st';
-  } else if (place === 2) {
+  } else if (j == 2 && k != 12) {
     place = place + 'nd';
-  } else if (place === 3) {
+  } else if (j == 3 && k != 13) {
     place = place + 'rd';
   } else {
     place = place + 'th';
@@ -48,6 +66,7 @@ const populateTable = () => {
 
 const checkComputerMode = () => {
   const settings = ls.getSettings();
+  if (settings === null) return false;
   return settings.mode === 'computer';
 };
 
@@ -71,8 +90,25 @@ const getComputerPoints = () => {
 };
 
 const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
-  // CALCULATE THE POINTS
-  return correctAnswersNumber;
+  const speed = ls.getSettings.speed;
+  const timeModifier = getTimeModifier(speed);
+  const points =
+    Math.floor(correctAnswersNumber * timeModifier) +
+    Math.floor(
+      (correctAnswersNumber / ls.getAnswersNumber()) *
+        (correctAnswersNumber * timeModifier)
+    );
+  return points;
+};
+
+const getTimeModifier = timeModifier => {
+  if (timeModifier === 'long') {
+    return 1;
+  } else if (timeModifier === 'normal') {
+    return 2;
+  } else {
+    return 3;
+  }
 };
 
 const setBanner = () => {
@@ -99,6 +135,9 @@ const handleSubmitButton = evt => {
     submitScore(username);
     blockInput();
     switchLabel(true, username);
+
+    ls.removeFromLocalStorage('playerCorrectAnswers');
+    ls.removeFromLocalStorage('computerCorrectAnswers');
   } else {
     switchLabel(false);
   }
@@ -139,10 +178,6 @@ module.exports = {
   switchLabel,
   blockInput,
   submitScore,
-  handleSubmitButton
-  //playerCorrectAnswersNumber,
-  //computerCorrectAnswersNumber
-
-  //playerPlace,
-  //computerPlace,
+  handleSubmitButton,
+  getTimeModifier
 };

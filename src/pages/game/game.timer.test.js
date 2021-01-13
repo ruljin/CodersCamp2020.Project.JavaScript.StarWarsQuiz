@@ -2,16 +2,15 @@ const timer = require('./game.timer.js');
 const ls = require('../../scripts/localScorage');
 
 test('checking timer functions', () => {
-  const timerObject = timer.timer;
-  timerObject.gameTime = 10;
-  timerObject.decreaseGameTimer();
-  expect(timerObject.gameTime).toBe(9);
+  timer.setGameTime(10);
+  timer.decreaseGameTimer();
+  expect(timer.getGameTime()).toBe(9);
 
-  timerObject.pauseTimer();
-  expect(timerObject.isTimerPaused).toBe(true);
+  timer.pauseTimer();
+  expect(timer.getIsTimerPaused()).toBe(true);
 
-  timerObject.runTimer();
-  expect(timerObject.isTimerPaused).toBe(false);
+  timer.runTimer();
+  expect(timer.getIsTimerPaused()).toBe(false);
 });
 
 test('getting speed from localStorage', () => {

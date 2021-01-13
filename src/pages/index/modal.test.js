@@ -1,4 +1,4 @@
-const { addClass, removeClass } = require('./modal.js');
+const { openModal, closeModal } = require('./modal.js');
 
 document.body.innerHTML = `
   <div class="container background"></div>
@@ -27,15 +27,15 @@ const modal = document.querySelector('.modal-wrap');
 const container = document.querySelector('.container');
 
 test('Testing if function add classes to DOM', () => {
-  addClass();
+  openModal();
 
   expect(modal.classList.contains('active')).toBeTruthy();
   expect(container.classList.contains('container--blur')).toBeTruthy();
 });
 
 test('Testing if function remove classes from DOM', () => {
-  addClass();
-  removeClass();
+  openModal();
+  closeModal();
 
   expect(modal.classList.contains('active')).toBeFalsy();
   expect(container.classList.contains('container--blur')).toBeFalsy();

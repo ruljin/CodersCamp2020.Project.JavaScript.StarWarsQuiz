@@ -48,9 +48,9 @@ document.body.innerHTML = `
 </html>
 `;
 
-const gameOverSubmit = require('./game-over-submit');
 const ls = require('../../scripts/localScorage');
 ls.saveSettings('category1', 120, 'mode1', 'difficulty1');
+const gameOverSubmit = require('./game-over-submit');
 
 test('creating a Table Row for 1st place ', () => {
   gameOverSubmit.createTableRow(1, 'Joda', 20, true);
@@ -107,21 +107,8 @@ test('creating a Table Row for 1st place ', () => {
     );
   }),
   test('check computer mode', () => {
-    const settings = ls.getSettings();
+    ls.saveSettings('', '', 'solo', '');
     expect(gameOverSubmit.checkComputerMode()).toBe(false);
-  }),
-  test('populate Table', () => {
-    //const [playerPlace, computerPlace] = getPlaces();
-    const tableBodyEl = document.querySelector('#tableBody');
-    const rowsEl = ['', ''];
-    expect(gameOverSubmit.populateTable(1)).toBe(undefined);
-  }),
-  test('block input', () => {
-    const usernameInputEl = document.querySelector('#usernameInput');
-    expect(gameOverSubmit.blockInput()).toBeTruthy;
-  }),
-  test('get points from correct answer number', () => {
-    expect(gameOverSubmit.getPointsFromCorrectAnswersNumber(11)).toBe(11);
   }),
   test('get places', () => {
     ls.savePlayerCorrectAnswersNumber(10);
@@ -179,16 +166,6 @@ test('creating a Table Row for 1st place ', () => {
       document.querySelector('#banner').classList.contains('banner--lose')
     ).toBe(true);
   }),
-  test('submit score', () => {
-    ls.savePlayerCorrectAnswersNumber(12);
-    ls.saveSettings('starships', '', '', '');
-    gameOverSubmit.submitScore('Joda');
-    expect(ls.getScoreboard()[0]).toStrictEqual({
-      name: 'Joda',
-      points: gameOverSubmit.getPointsFromCorrectAnswersNumber(12),
-      category: 'starships'
-    });
-  }),
   test('switch label', () => {
     document.body.innerHTML = `<label id="label" for="usernameInput" class="text text--small">
   Please fill your name in order to receive eternal glory in whole
@@ -213,3 +190,13 @@ test('creating a Table Row for 1st place ', () => {
       )} - has been added to the hall of fame!`
     );
   });
+test('testing getPointsFromCorrectAnswersNumber', () => {
+  ls.saveAnswersNumber(10);
+  expect(gameOverSubmit.getPointsFromCorrectAnswersNumber(10)).toBe(60);
+});
+
+test('testing getTimeModifier', () => {
+  expect(gameOverSubmit.getTimeModifier('fast')).toBe(3);
+  expect(gameOverSubmit.getTimeModifier('normal')).toBe(2);
+  expect(gameOverSubmit.getTimeModifier('long')).toBe(1);
+});

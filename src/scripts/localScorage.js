@@ -69,7 +69,7 @@ const getComputerCorrectAnswersNumber = () => {
 
 const getCorrectAnswersNumber = key => {
   const correctAnswersNumber = getFromLocalStorage(key);
-  return correctAnswersNumber === null ? 0 : correctAnswersNumber;
+  return correctAnswersNumber;
 };
 
 const removeFromLocalStorage = key => {
@@ -86,15 +86,25 @@ const removeLastScoreFromScoreboard = scoreboard => {
   return scoreboard.slice(1);
 };
 
+const saveAnswersNumber = number => {
+  saveToLocalStorage(config.LOCAL_STORAGE_ANSWERS, number);
+};
+
+const getAnswersNumber = () => {
+  return getFromLocalStorage(config.LOCAL_STORAGE_ANSWERS);
+};
+
 module.exports = {
   saveSettings,
   savePlayerScore,
   savePlayerCorrectAnswersNumber,
   saveComputerCorrectAnswersNumber,
+  saveAnswersNumber,
   getSettings,
   getScoreboard,
   getPlayerCorrectAnswersNumber,
   getComputerCorrectAnswersNumber,
+  getAnswersNumber,
   removeFromLocalStorage,
   removeLastScore
 };

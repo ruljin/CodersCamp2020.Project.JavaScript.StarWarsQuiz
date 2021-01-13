@@ -11,9 +11,9 @@ test('Testing if the function adds a row table and highlights the result', funct
 });
 
 test('Testing if the function adds a row table without highlighting the result', function () {
-  expect(createTR(4, 'Ania', 25, false)).toBe(`
+  expect(createTR(22, 'Ania', 25, false)).toBe(`
     <tr class="table__row ">
-      <td class="table__data">4th</td>
+      <td class="table__data">22nd</td>
       <td class="table__data">Ania</td>
       <td class="table__data">25</td>
     </tr>
