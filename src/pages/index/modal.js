@@ -2,6 +2,14 @@ const text = document.querySelector('.text__clickable');
 const buttonClose = document.querySelector('.button--close');
 const backgroundClose = document.querySelector('.modal-wrap');
 const modal = document.querySelector('.modal');
+const ls = require('../../scripts/localScorage');
+
+window.onload = function clear() {
+  ls.removeFromLocalStorage('playerCorrectAnswers');
+  ls.removeFromLocalStorage('computerCorrectAnswers');
+  ls.removeFromLocalStorage('settings');
+  ls.removeFromLocalStorage('answers');
+};
 
 function openModal() {
   document.querySelector('.modal-wrap').classList.add('active');
