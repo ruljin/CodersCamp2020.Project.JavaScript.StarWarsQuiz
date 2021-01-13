@@ -1,24 +1,32 @@
 const ls = require('../../scripts/localScorage');
 const api = require('../../scripts/api');
 const config = require('../../../config');
+const timer = require('./game.timer');
 let correctAnswer = '';
 let availableQuestionsIds = [];
-let questionsLength = 0;
+let allQuestionsIds = [];
 let firstQuestion = true;
 
 const setNextQuestion = async () => {
   if (firstQuestion) {
-    await populateQuestionsIds();
+    populateQuestionsIds();
+    timer.startGame();
+    firstQuestion = false;
   }
-  clearAnswers();
+  if (availableQuestionsIds.length === 0) {
+    location.replace('game-over.html');
+    return;
+  }
   const [
     correctAnswerText,
     fakeAnswers,
     correctAnswerImage
   ] = await randomizeNewQuestion();
   saveCurrentCorrectAnswer(correctAnswerText);
+  clearAnswers();
   setNewAnswers([correctAnswerText, ...fakeAnswers]);
   changeImage(correctAnswerImage);
+  timer.runTimer();
 };
 
 const clearAnswers = () => {
@@ -39,16 +47,15 @@ const randomizeNewQuestion = async () => {
   const answer = await getAnswerFromAPI(questionId);
   const category = ls.getSettings().category;
 
-  const img = require(`../../assets/img/modes/${category}/${
-    questionId + 1
-  }.jpg`);
+  const img = require(`../../assets/img/modes/${category}/${questionId}.jpg`);
 
-  return [answer, await getFakeAnswersFromAPI(), img];
+  return [answer, await getFakeAnswersFromAPI(questionId), img];
 };
 
 const randomQuestionId = () => {
-  const questionId = Math.floor(Math.random() * availableQuestionsIds.length);
-  availableQuestionsIds.splice(questionId, 1);
+  const index = Math.floor(Math.random() * availableQuestionsIds.length);
+  const questionId = availableQuestionsIds[index];
+  availableQuestionsIds.splice(index, 1);
   return questionId;
 };
 
@@ -63,19 +70,22 @@ const getFakeAnswersFromAPI = async id => {
   let fakeQuestionId, fakeQuestionId2, fakeQuestionId3;
 
   do {
-    fakeQuestionId = Math.floor(Math.random() * questionsLength);
+    fakeQuestionId =
+      allQuestionsIds[Math.floor(Math.random() * allQuestionsIds.length)];
   } while (id === fakeQuestionId);
 
   do {
-    fakeQuestionId2 = Math.floor(Math.random() * questionsLength);
-  } while (id === fakeQuestionId2 && fakeQuestionId === fakeQuestionId2);
+    fakeQuestionId2 =
+      allQuestionsIds[Math.floor(Math.random() * allQuestionsIds.length)];
+  } while (id === fakeQuestionId2 || fakeQuestionId === fakeQuestionId2);
 
   do {
-    fakeQuestionId3 = Math.floor(Math.random() * questionsLength);
+    fakeQuestionId3 =
+      allQuestionsIds[Math.floor(Math.random() * allQuestionsIds.length)];
   } while (
-    id === fakeQuestionId3 &&
-    fakeQuestionId2 === fakeQuestionId3 &&
-    fakeQuestionId1 === fakeQuestionId3
+    id === fakeQuestionId3 ||
+    fakeQuestionId2 === fakeQuestionId3 ||
+    fakeQuestionId === fakeQuestionId3
   );
 
   const category = ls.getSettings().category;
@@ -102,16 +112,22 @@ const getFakeAnswersFromAPI = async id => {
   }
 };
 
-const populateQuestionsIds = async () => {
-  const lengths = await api.getLengths();
+const populateQuestionsIds = () => {
   const category = ls.getSettings().category;
 
-  if (category === config.CATEGORIES[0]) questionsLength = lengths.people;
-  if (category === config.CATEGORIES[1]) questionsLength = lengths.vehicles;
-  if (category === config.CATEGORIES[2]) questionsLength = lengths.starships;
+  if (category === config.CATEGORIES[0]) {
+    availableQuestionsIds = [...config.CATEGORY_PEOPLE_IDS];
+    allQuestionsIds = [...config.CATEGORY_PEOPLE_IDS];
+  }
 
-  for (let i = 0; i < questionsLength; i++) {
-    availableQuestionsIds[i] = i;
+  if (category === config.CATEGORIES[1]) {
+    availableQuestionsIds = [...config.CATEGORY_VEHICLES_IDS];
+    allQuestionsIds = [...config.CATEGORY_VEHICLES_IDS];
+  }
+
+  if (category === config.CATEGORIES[2]) {
+    availableQuestionsIds = [...config.CATEGORY_STARSHIPS_IDS];
+    allQuestionsIds = [...config.CATEGORY_STARSHIPS_IDS];
   }
 };
 
@@ -147,6 +163,8 @@ const shuffleArray = arr => {
 };
 
 const checkSelectedAnswer = evt => {
+  destroyAnswerListeners();
+  timer.pauseTimer();
   const selectedAnswerEl = evt.currentTarget;
 
   if (checkAnswer(getAnswerFromAnswerEl(selectedAnswerEl))) {
@@ -157,11 +175,13 @@ const checkSelectedAnswer = evt => {
     highlightAnswerEl(getCorrectAnswerEl(), 'correct');
   }
 
-  destroyAnswerListeners();
-
   // RANDOMIZE COMPUTER ANSWER
 
-  // ADD FUNCTION TO LOCALSTORAGE TO SET ANSWERED QUESTIONS NUMBER
+  if (ls.getAnswersNumber() == null) {
+    ls.saveAnswersNumber(1);
+  } else {
+    ls.saveAnswersNumber(ls.getAnswersNumber() + 1);
+  }
 
   setTimeout(() => {
     setNextQuestion();
@@ -179,7 +199,6 @@ const getAnswerFromAnswerEl = answerEl => {
 };
 
 const checkAnswer = selectedAnswer => {
-  console.log(selectedAnswer, correctAnswer);
   return selectedAnswer === correctAnswer;
 };
 

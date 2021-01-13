@@ -16,34 +16,9 @@ const getStarship = async id => {
 };
 
 const getFromAPI = async (link, id) => {
-  let data = { next: link };
-  const objects = [];
-
-  while (data.next !== null) {
-    const res = await fetch(`${data.next}`);
-    data = await res.json();
-    objects.push(...data.results);
-  }
-
-  return objects.map(object => object.name)[id];
-};
-
-const getLengths = async () => {
-  const lengths = { people: 0, vehicles: 0, starships: 0 };
-
-  let res = await fetch(`${SW_API_PEOPLE}`);
+  let res = await fetch(`${link}${id}`);
   let data = await res.json();
-  lengths.people = data.count;
-
-  res = await fetch(`${SW_API_VEHICLES}`);
-  data = await res.json();
-  lengths.vehicles = data.count;
-
-  res = await fetch(`${SW_API_STARSHIPS}`);
-  data = await res.json();
-  lengths.starships = data.count;
-
-  return lengths;
+  return data.name;
 };
 
-export { getPerson, getVehicle, getStarship, getLengths };
+module.exports = { getPerson, getVehicle, getStarship };
