@@ -175,7 +175,9 @@ const checkSelectedAnswer = evt => {
     highlightAnswerEl(getCorrectAnswerEl(), 'correct');
   }
 
-  // RANDOMIZE COMPUTER ANSWER
+  if (ls.getSettings().mode === 'computer') {
+    randomComputerAnswer();
+  }
 
   if (ls.getAnswersNumber() == null) {
     ls.saveAnswersNumber(1);
@@ -186,6 +188,22 @@ const checkSelectedAnswer = evt => {
   setTimeout(() => {
     setNextQuestion();
   }, 1000);
+};
+
+const randomComputerAnswer = () => {
+  const difficulty = ls.getSettings().difficulty;
+  const computerScore = ls.getComputerCorrectAnswersNumber();
+
+  if (difficulty === 'easy') {
+    if (Math.random() <= 0.25)
+      ls.saveComputerCorrectAnswersNumber(computerScore + 1);
+  } else if (difficulty === 'normal') {
+    if (Math.random() <= 0.5)
+      ls.saveComputerCorrectAnswersNumber(computerScore + 1);
+  } else if (difficulty === 'hard') {
+    if (Math.random() <= 0.75)
+      ls.saveComputerCorrectAnswersNumber(computerScore + 1);
+  }
 };
 
 const getCorrectAnswerEl = () => {
