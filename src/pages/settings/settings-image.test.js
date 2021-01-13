@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings</title>
-  </head>
-  <body class="container background">
+
+
+document.body.innerHTML = `
     <header class="banner"><h1>Settings</h1></header>
     <main class="page-content">
       <div class="selector-container">
@@ -54,7 +49,7 @@
           class="category-image__image"
           alt="Category sample image"
         />
-        <p class="text text--alternative category-image__label" id="signature">People</p>
+        <p class="text text--alternative category-image__label">People</p>
       </div>
     </main>
     <footer class="button-container">
@@ -67,5 +62,12 @@
         PLAY
       </a>
     </footer>
-  </body>
-</html>
+`;
+
+import imagePeople from '../../assets/img/modes/people/1.jpg';
+import imageVehicles from '../../assets/img/modes/vehicles/18.jpg';
+import imageStarships from '../../assets/img/modes/starships/28.jpg';
+
+test('change image for starships', () => {
+    
+})
