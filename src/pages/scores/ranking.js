@@ -2,6 +2,12 @@ const localStorage = require('../../scripts/localScorage');
 const selectorOne = document.querySelector('.selector:nth-of-type(1)');
 const tableBody = document.querySelector('#tableBody');
 const scoreboard = localStorage.getScoreboard();
+const scoreboardHighlighted = scoreboard.map(data => {
+  return { ...data, highlighted: false };
+});
+if (scoreboardHighlighted[0]) {
+  scoreboardHighlighted[0].highlighted = true;
+}
 
 function createTR(place, nickname, points, isHighlited) {
   const j = place % 10;
@@ -40,19 +46,18 @@ function populateTable(category) {
     tableBody.removeChild(tableBody.firstChild);
   }
 
-  let number = 1;
-
-  const scoreboardMaxToMin = scoreboard.sort(
+  const scoreboardMaxToMin = scoreboardHighlighted.sort(
     (a, b) => parseFloat(b.points) - parseFloat(a.points)
   );
 
+  let number = 1;
   scoreboardMaxToMin.filter(function (element) {
     if (element.category === category) {
       const tableRows = createTR(
         number,
         element.name,
         element.points,
-        number === 1 ? true : false
+        element.highlighted === true ? true : false
       );
       tableBody.innerHTML += tableRows;
       number++;
