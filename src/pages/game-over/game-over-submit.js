@@ -77,7 +77,7 @@ const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
 
 const getTimeModifier = () => {
   const timeModifier = ls.getSettings().speed;
-  if (timeModifier === 'slow') {
+  if (timeModifier === 'long') {
     timeModifier = 1;
   } else if ( timeModifier === 'normal') {
     timeModifier = 2;

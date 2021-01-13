@@ -91,7 +91,7 @@ const saveAnswersNumber = number => {
 };
 
 const getAnswersNumber = () => {
-  getFromLocalStorage(config.LOCAL_STORAGE_ANSWERS);
+  return getFromLocalStorage(config.LOCAL_STORAGE_ANSWERS);
 };
 
 module.exports = {
