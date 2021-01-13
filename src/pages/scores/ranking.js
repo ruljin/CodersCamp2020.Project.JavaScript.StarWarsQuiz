@@ -4,8 +4,8 @@ const tableBody = document.querySelector('#tableBody');
 const scoreboard = localStorage.getScoreboard();
 
 function createTR(place, nickname, points, isHighlited) {
-  let j = place % 10;
-  let k = place % 100;
+  const j = place % 10;
+  const k = place % 100;
   if (j == 1 && k != 11) {
     place = place + 'st';
   } else if (j == 2 && k != 12) {
@@ -41,7 +41,12 @@ function populateTable(category) {
   }
 
   let number = 1;
-  scoreboard.filter(function (element) {
+
+  const scoreboardMaxToMin = scoreboard.sort(
+    (a, b) => parseFloat(b.points) - parseFloat(a.points)
+  );
+
+  scoreboardMaxToMin.filter(function (element) {
     if (element.category === category) {
       const tableRows = createTR(
         number,
