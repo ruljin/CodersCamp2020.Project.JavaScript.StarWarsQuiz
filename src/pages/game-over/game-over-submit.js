@@ -71,17 +71,19 @@ const getComputerPoints = () => {
 };
 
 const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
+  const speed = ls.getSettings.speed;
+  const timeModifier = getTimeModifier(speed);
   const points =
-    Math.floor(correctAnswersNumber * getTimeModifier()) +
+    Math.floor(correctAnswersNumber * timeModifier) +
     Math.floor(
       (correctAnswersNumber / ls.getAnswersNumber()) *
-        (correctAnswersNumber * getTimeModifier())
+        (correctAnswersNumber * timeModifier)
     );
+    console.log(ls.getAnswersNumber());
   return points;
 };
 
-const getTimeModifier = () => {
-  let timeModifier = ls.getSettings().speed;
+const getTimeModifier = (timeModifier) => {
   if (timeModifier === 'long') {
     return 1;
   } else if (timeModifier === 'normal') {
@@ -155,5 +157,6 @@ module.exports = {
   switchLabel,
   blockInput,
   submitScore,
-  handleSubmitButton
+  handleSubmitButton,
+  getTimeModifier
 };
