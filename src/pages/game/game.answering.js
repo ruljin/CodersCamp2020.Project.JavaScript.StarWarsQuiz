@@ -179,6 +179,7 @@ const checkSelectedAnswer = evt => {
     randomComputerAnswer();
   }
 
+  console.log(ls.getAnswersNumber());
   if (ls.getAnswersNumber() == null) {
     ls.saveAnswersNumber(1);
   } else {
