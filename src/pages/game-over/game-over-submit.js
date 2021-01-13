@@ -71,15 +71,20 @@ const getComputerPoints = () => {
 };
 
 const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
-  const correctAnswersNumber = Math.floor(ls.getPlayerCorrectAnswersNumber * getTimeModifier) + Math.floor((ls.getPlayerCorrectAnswersNumber / ls.getAnswersNumber) * (ls.getPlayerCorrectAnswersNumber * getTimeModifier))
-  return correctAnswersNumber;
+  const points =
+    Math.floor(ls.getPlayerCorrectAnswersNumber * getTimeModifier) +
+    Math.floor(
+      (ls.getPlayerCorrectAnswersNumber / ls.getAnswersNumber) *
+        (ls.getPlayerCorrectAnswersNumber * getTimeModifier)
+    );
+  return points;
 };
 
 const getTimeModifier = () => {
   const timeModifier = ls.getSettings().speed;
   if (timeModifier === 'long') {
     timeModifier = 1;
-  } else if ( timeModifier === 'normal') {
+  } else if (timeModifier === 'normal') {
     timeModifier = 2;
   } else {
     timeModifier = 3;
