@@ -72,24 +72,23 @@ const getComputerPoints = () => {
 
 const getPointsFromCorrectAnswersNumber = correctAnswersNumber => {
   const points =
-    Math.floor(ls.getPlayerCorrectAnswersNumber * getTimeModifier) +
+    Math.floor(correctAnswersNumber * getTimeModifier()) +
     Math.floor(
-      (ls.getPlayerCorrectAnswersNumber / ls.getAnswersNumber) *
-        (ls.getPlayerCorrectAnswersNumber * getTimeModifier)
+      (correctAnswersNumber / ls.getAnswersNumber()) *
+        (correctAnswersNumber * getTimeModifier())
     );
   return points;
 };
 
 const getTimeModifier = () => {
-  const timeModifier = ls.getSettings().speed;
+  let timeModifier = ls.getSettings().speed;
   if (timeModifier === 'long') {
-    timeModifier = 1;
+    return 1;
   } else if (timeModifier === 'normal') {
-    timeModifier = 2;
+    return 2;
   } else {
-    timeModifier = 3;
+    return 3;
   }
-  return timeModifier;
 };
 
 const setBanner = () => {

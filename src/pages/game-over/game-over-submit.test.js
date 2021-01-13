@@ -110,9 +110,6 @@ test('creating a Table Row for 1st place ', () => {
     ls.saveSettings('', '', 'solo', '');
     expect(gameOverSubmit.checkComputerMode()).toBe(false);
   }),
-  test('get points from correct answer number', () => {
-    expect(gameOverSubmit.getPointsFromCorrectAnswersNumber(11)).toBe(11);
-  }),
   test('get places', () => {
     ls.savePlayerCorrectAnswersNumber(10);
     ls.saveComputerCorrectAnswersNumber(20);
@@ -168,16 +165,6 @@ test('creating a Table Row for 1st place ', () => {
     expect(
       document.querySelector('#banner').classList.contains('banner--lose')
     ).toBe(true);
-  }),
-  test('submit score', () => {
-    ls.savePlayerCorrectAnswersNumber(12);
-    ls.saveSettings('starships', '', '', '');
-    gameOverSubmit.submitScore('Joda');
-    expect(ls.getScoreboard()[0]).toStrictEqual({
-      name: 'Joda',
-      points: gameOverSubmit.getPointsFromCorrectAnswersNumber(12),
-      category: 'starships'
-    });
   }),
   test('switch label', () => {
     document.body.innerHTML = `<label id="label" for="usernameInput" class="text text--small">
