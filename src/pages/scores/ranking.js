@@ -7,6 +7,7 @@ window.onload = function clear() {
   localStorage.removeFromLocalStorage('playerCorrectAnswers');
   localStorage.removeFromLocalStorage('computerCorrectAnswers');
   localStorage.removeFromLocalStorage('settings');
+  ls.removeFromLocalStorage('answers');
 };
 
 function createTR(place, nickname, points, isHighlited) {
