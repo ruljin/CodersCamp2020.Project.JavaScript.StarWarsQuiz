@@ -10,15 +10,17 @@
 - [Setup](#setup)
 
 ## The project team
-Authors of this project are course participants who worked under the supervision of an experienced mentor. <br>
-**Mentor:** [Filip Kuca](https://github.com/ruljin) <br>
-**Participants:**
+Authors of this project are course participants who worked under the supervision of an experienced mentor.
+
+**Authors:**
 - [Dominik Puchała](https://github.com/Suegro24) (Product Owner)
 -	[Jędrzej Ratajczak](https://github.com/Mrozelek) (Tech Lead)
 -	[Adrianna Krupa](https://github.com/adax10/) (Development Manager)
 -	[Weronika Brzeczkowska-Kuzianik](https://github.com/brzeczkowskaw)
 -	[Kamila Grusza](https://github.com/kami3la)
 -	[Konrad Mierzejewski](https://github.com/KonradMierzejewski)
+
+**Mentor:** [Filip Kuca](https://github.com/ruljin) 
 
 ## General info
 Our project is a quiz that tests the knowledge of the Star Wars universe. This is a browser based web application, so no installation is required. 
@@ -35,6 +37,7 @@ Our project is a quiz that tests the knowledge of the Star Wars universe. This i
 -	SCSS
 -	JavaScript
 -	Star Wars API
+- Webpack
 
 ## Setup
 #### Demo
