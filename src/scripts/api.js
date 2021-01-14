@@ -1,4 +1,4 @@
-const SW_API_BASE_URL = 'https://swapi.dev/api/';
+const SW_API_BASE_URL = 'http://swapi.dev/api/';
 const SW_API_PEOPLE = `${SW_API_BASE_URL}people/`;
 const SW_API_VEHICLES = `${SW_API_BASE_URL}vehicles/`;
 const SW_API_STARSHIPS = `${SW_API_BASE_URL}starships/`;
