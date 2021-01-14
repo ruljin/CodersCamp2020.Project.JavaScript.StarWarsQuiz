@@ -255,7 +255,25 @@ const destroyAnswerListeners = () => {
   });
 };
 
+const changeSiteQuestion = () => {
+  const siteQuestionEl = document.querySelector('#siteQuestion');
+  const category = ls.getSettings().category;
+
+  if (category === config.CATEGORIES[0]) {
+    siteQuestionEl.textContent = 'Who is this character?';
+  }
+
+  if (category === config.CATEGORIES[1]) {
+    siteQuestionEl.textContent = 'What is this vehicle?';
+  }
+
+  if (category === config.CATEGORIES[2]) {
+    siteQuestionEl.textContent = 'What is this spaceship?';
+  }
+};
+
 window.addEventListener('load', setNextQuestion, false);
+window.addEventListener('load', changeSiteQuestion, false);
 
 module.exports = {
   getAnswersElArray,
