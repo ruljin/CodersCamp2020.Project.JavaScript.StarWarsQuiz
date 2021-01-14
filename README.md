@@ -1,6 +1,6 @@
 # CodersCamp 2020 - JavaScript Project
 
-**The project was created as part of the 6th edition of the CodersCamp course.**
+**The project was created as part of the 6th edition of the [CodersCamp](https://coderscamp.pl/) course.**
 
 ## Table of Contests
 - [The project team](#the-project-team)
