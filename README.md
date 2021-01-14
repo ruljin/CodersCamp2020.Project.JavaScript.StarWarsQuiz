@@ -41,8 +41,9 @@ Our project is a quiz that tests the knowledge of the Star Wars universe. This i
 To view a demo click here.
 #### Getting started
 If you want to run the application on the local machine, follow these steps:
-1. Install dependencies with the command: `npm install`
-2. Start development server `npm start`
+1. Clone down this repo
+2. Install dependencies with the command: `npm install`
+3. Start development server `npm start`
 The application will be available at `localhost:8080/index.html`
 #### Running tests
 To run the application tests, follow these steps:
