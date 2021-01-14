@@ -82,10 +82,13 @@ const setTimerValues = seconds => {
 
   textTimerTime.innerHTML = timeToShow;
   lightTimerBlade.style.width = lightTimerWidth + '%';
+  console.log(lightTimerWidth);
 };
 
 const getLightTimerWidth = seconds => {
-  const gameSpeed = getSpeedFromLocalStorage();
+  const gameSpeedType = getSpeedFromLocalStorage();
+  const gameSpeed = gameSpeedType.toLowerCase() == 'fast' ? 20 : gameSpeedType.toLowerCase() == 'normal' ? 40 : 60;
+  
 
   let result = 100 * ((gameSpeed - seconds) / gameSpeed);
   return result;
