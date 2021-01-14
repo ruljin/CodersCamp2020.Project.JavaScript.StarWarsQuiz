@@ -16,8 +16,7 @@ const getStarship = async id => {
 };
 
 const getFromAPI = async (link, id) => {
-  console.log(`${link}${id}`);
-  let res = await fetch(`${link}${id}`);
+  let res = await fetch(`${link}${id}/`);
   let data = await res.json();
   return data.name;
 };
