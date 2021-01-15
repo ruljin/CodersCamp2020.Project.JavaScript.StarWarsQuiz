@@ -27,7 +27,7 @@ Our project is a quiz that tests the knowledge of the Star Wars universe. This i
 
 ## Features
 -	The main page contains the rules of the game and shows a sample photo and answers to a question relevant to People category.
--	Before each game, player is taken to the settings, where he choose the category (next to it is an example photo), speed and mode of his game. Additionally, if he chose to fight against the computer, he has to select the difficulty level.
+-	Before each game, player is taken to the settings, where he chooses the category (next to it there is an example photo), speed and mode of his game. Additionally, if he chose to fight against the computer, he has to select the difficulty level.
 -	Once the game starts, the timer starts counting down, and at the bottom of the screen the lightsaber shows how much time is left. After selecting the answer, it is shown for a second whether the answer was right or wrong. Then the question is changed to the next one and so until the end of time.
 -	After finishing the game, the player's score is summed up and if the player writes his name, it will appear in the overall ranking of the players.
 -	The application is responsive, so there is an option to display it on tablets and phones.
