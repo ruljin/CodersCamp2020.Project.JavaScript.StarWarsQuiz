@@ -37,11 +37,11 @@
   filter: blur(2px);
 }
 
-.modal-wrap {
+.modal-wrap, .modal-easter-egg {
   display: none;
 }
 
-.modal-wrap.active {
+.modal-wrap.active, .modal-easter-egg.active {
   display: block;
   position: fixed;
   top: 0;
@@ -67,12 +67,76 @@
   }
 }
 
+.modal-easter-egg {
+
+  .modal-footer {
+
+    .button--close {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      margin: 0;
+    }
+  }
+}
+
+.arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+
+  &__line {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: $primary-color;
+    transform: rotate(-35deg) translateY(-6px);
+
+    &:last-child {
+      transform: rotate(35deg) translateY(6px);
+    }
+  }
+
+  &--left {
+    left: 5%;
+    top: 50%;
+  }
+
+  &--right {
+    right: 5%;
+    top: 50%;
+
+    & .arrow__line {
+      transform: rotate(35deg) translateY(-6px);
+
+      &:last-child {
+        transform: rotate(-35deg) translateY(6px);
+      }
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    cursor: default;
+    
+    & .arrow__line {
+      background-color: $quinary-color;
+    }
+  }
+}
+
 .modal-body {
   pointer-events: none;
   user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &--pointer-event-enable {
+    pointer-events: initial;
+  }
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -83,6 +147,10 @@
   width: 240px;
   border-radius: 1.6rem;
   box-shadow: 4px 4px 40px $primary-color;
+}
+
+.easter-egg-image {
+  max-height:500px;
 }
 
 .selector-container {
