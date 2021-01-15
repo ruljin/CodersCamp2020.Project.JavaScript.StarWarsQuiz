@@ -5,11 +5,12 @@
   background-color: #000;
   background: url('../assets/ui/background.png') fixed;
   background-size: cover;
+  background-repeat: repeat;
 }
 
 .container {
   max-width: 130rem;
-  height: 100vh;
+  min-height: 100vh;
   padding: 3rem 0;
   margin: 0 auto;
   display: grid;
