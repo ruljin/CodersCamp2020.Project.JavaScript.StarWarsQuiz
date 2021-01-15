@@ -82,7 +82,6 @@ const setTimerValues = seconds => {
 
   textTimerTime.innerHTML = timeToShow;
   lightTimerBlade.style.width = lightTimerWidth + '%';
-  console.log(lightTimerWidth);
 };
 
 const getLightTimerWidth = seconds => {
