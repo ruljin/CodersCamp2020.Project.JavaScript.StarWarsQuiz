@@ -167,6 +167,8 @@
 
   @media (max-width: 600px) {
     height: 30vh;
+    width: 90vw;
+    margin-left: -5vw;
   }
 
   &::-webkit-scrollbar {
@@ -199,8 +201,8 @@
   }
 
   &__head, &__row {
-    @media (max-width: 350px) {
-      width: 120%;
+    @media (max-width: 400px) {
+      font-size: 1.5rem;
     }
   }
 
