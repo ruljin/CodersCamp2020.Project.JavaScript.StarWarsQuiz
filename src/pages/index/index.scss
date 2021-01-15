@@ -10,6 +10,10 @@
   &__image {
     width: 56rem;
     height: 23rem;
+
+    @media (max-width: 800px) {
+      width: 80vw;
+    }
   }
 }
 
@@ -69,6 +73,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 }
 
 .question-image {
@@ -84,11 +92,25 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: space-evenly;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 }
 
 .selector {
   &--game {
     width: 20vw;
+
+    @media (max-width: 1000px) {
+      width: 70vw;
+      border-radius: 9999px;
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    
   }
 }
 
@@ -99,4 +121,8 @@
   & .button--close {
     margin-right: 5vw;
   }
+}
+
+@media (max-width: 800px) {
+
 }

@@ -51,9 +51,18 @@
 }
 
 .text {
+
   &--very-large {
     font-size: 6rem;
     font-weight: 700;
+
+    @media (max-width: 570px) {
+      font-size: 4rem;
+    }
+
+    @media (max-width: 370px) {
+      font-size: 3rem;
+    }
   }
 
   &--no-select {
@@ -75,6 +84,7 @@
 
   &__item {
     text-shadow: 0 0 10px white;
+    text-align: center;
   }
 }
 

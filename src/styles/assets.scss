@@ -13,6 +13,7 @@
   padding: 3rem 0;
   margin: 0 auto;
   display: grid;
+  row-gap: 30px;
   grid-template: min-content 1fr min-content / 80%;
   justify-items: stretch;
   justify-content: center;
@@ -23,6 +24,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 }
 
 .button {
@@ -42,11 +47,26 @@
   cursor: pointer;
   user-select: none;
 
+  @media (max-width: 800px) {
+    height: $button-height-mobile;
+    line-height: $button-height-mobile;
+    border-radius: 9999px;
+    margin-bottom: 20px;
+  }
+
   &--large {
     width: $button-width-large;
     height: $button-height-large;
     font-size: $button-font-size-large;
     line-height: $button-height-large;
+
+    @media (max-width: 800px) {
+      width: $button-width;
+      height: $button-height-mobile;
+      font-size: $button-font-size;
+      line-height: $button-height-mobile;
+      order: -1;
+    }
   }
 
   &--alternative {
@@ -69,6 +89,12 @@
   color: $primary-font-color;
   font-size: $banner-font-size;
   font-weight: 600;
+
+  @media (max-width: 600px) {
+    height: unset;
+    text-align: center;
+    padding: 10px;
+  }
 }
 
 .selector {
@@ -84,6 +110,11 @@
   cursor: pointer;
   user-select: none;
 
+  @media (max-width: 800px) {
+    border-radius: 9999px;
+    height: $button-height-mobile;
+  }
+
   &--static {
     outline: none;
     box-shadow: inset 0.2rem 0.3rem 0.4rem rgb(0, 0, 0.5),
@@ -95,6 +126,10 @@
   &--selected {
     border: 0.5rem solid $primary-color;
     box-shadow: 0.4rem 0.4rem 4rem $primary-color;
+
+    @media (max-width: 800px) {
+      box-shadow: inset 4px 4px 8px 0px rgba(0,0,0,0.75);
+    }
   }
 }
 
@@ -129,6 +164,10 @@
   font-weight: 600;
   overflow-y: scroll;
 
+  @media (max-width: 600px) {
+    height: 30vh;
+  }
+
   &::-webkit-scrollbar {
     width: 1em;
   }
@@ -152,6 +191,18 @@
     display: block;
   }
 
+  &__body {
+    .table__body {
+      word-break: break-word;
+    }
+  }
+
+  &__head, &__row {
+    @media (max-width: 350px) {
+      width: 120%;
+    }
+  }
+
   &__head {
     height: 4.5rem;
     position: sticky;
@@ -163,11 +214,14 @@
   }
 
   &__row {
-    height: 4rem;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+
+    @media (max-width: 300px) {
+      text-align: center;
+    }
 
     &--highlighted {
       background: $primary-color;

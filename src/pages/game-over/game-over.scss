@@ -1,5 +1,14 @@
 @import '../../styles/variables.scss';
 
+.container {
+
+  @media (max-width: 800px) {
+    display: block;
+    width: 90vw;
+  }
+  
+}
+
 .form {
   height: 6rem;
   width: 100%;
@@ -8,39 +17,126 @@
   gap: 2rem;
   align-items: center;
 
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+    width: 80vw;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   &__input {
     height: 6rem;
     padding: 1rem;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 1.5rem;
     font-size: $text-font-size;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+   
   }
 }
 
-.text--small {
-  font-size: 1.5rem;
+.label {
+  @media (max-width: 800px) {
+    text-align: center;
+    grid-area: 1 / 1 / span 1 / span 2;
+  }
+
+  @media (max-width: 600px) {
+    grid-area: unset;
+  }
+  
 }
 
-.button--submit {
-  justify-self: end;
-  width: 15rem;
+.text {
+
+  &--small {
+    font-size: 1.5rem;
+  }
+
+  &--label {
+    text-align: center;
+    margin-top: 3rem;
+
+    @media (max-width: 600px) {
+      margin-top: 12rem;
+    }
+  }
+}
+
+.button {
+
+  &--submit {
+    justify-self: end;
+    width: 15rem;
+  
+    @media (max-width: 600px) {
+      justify-self: center;
+    }
+  }
+
+  &-container {
+    flex-direction: row;
+    justify-content: space-around;
+
+    @media (max-width: 450px) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &-mobile--large {
+    @media (max-width: 800px) {
+      height: 6rem;
+      line-height: 6rem;
+      border-radius: rem;
+    }
+  }
+
 }
 
 .page-content {
-  height: 100%;
   padding: 7rem 0 4rem 0;
-  max-width: 80rem;
   margin: auto;
   display: grid;
+  row-gap: 3rem;
   place-items: center;
+
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 0;
+    margin-top: 100px;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 40px;
+  }
 }
 
 .banner {
+
   &--alternative {
     box-shadow: none;
     background-color: transparent;
     font-size: 10rem;
     text-transform: uppercase;
+
+    @media (max-width: 830px) {
+      font-size: 9rem;
+    }
+
+    @media (max-width: 700px) {
+      font-size: 8rem;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 6rem;
+    }
   }
 
   &--win {
@@ -49,5 +145,12 @@
 
   &--lose {
     color: $quaternary-color;
+  }
+}
+
+.table {
+
+  &__data {
+    padding: 0 1rem;
   }
 }
