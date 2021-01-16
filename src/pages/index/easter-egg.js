@@ -1,9 +1,11 @@
-const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 const buttonCloseEasterEgg = document.querySelector('#buttonCloseEasterEgg');
-let keyPressed = [];
 const easterEggArrowLeft = document.querySelector('#easterEggArrowLeft');
 const easterEggArrowRight = document.querySelector('#easterEggArrowRight');
 const modal = document.querySelector('#easterEggModal');
+const backgroundClose = document.querySelector('.modal-easter-egg');
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let keyPressed = [];
+
 
 import memImage1 from '../../assets/ui/mem1.jpg';
 import memImage2 from '../../assets/ui/mem2.jpg';
@@ -32,7 +34,7 @@ const checkKonamiCode = (e) => {
     keyPressed.push(addPressedKey(e.key));
     keyPressed = getLastTenItemsOfArray(keyPressed);
     if (compareArrays(keyPressed, konamiCode)) {
-        toggleEasterEggModal('open');
+        toggleEasterEggModal('open', memImageObject.memImages[0]);
     }
 }
 
@@ -68,6 +70,8 @@ const toggleEasterEggModal = (state, image = undefined) => {
     else if (state == 'close') {
         modalContainer.classList.remove('active');
         container.classList.remove('container--blur');
+        memImageObject.currentImageShown = 0;
+        checkArrowStyles();
     }
     else {
         throw new Error(`State '${state}' is unknown, expected 'open' or 'close'`);
@@ -86,38 +90,25 @@ const easterEggSwapImage = (direction) => {
         easterEggImage.src = memImageObject.getCurrentImage();
     }
     else {
-        throw new Error(`Direction ${direction} is unknown, expexted 'left' or 'right'`);
+        throw new Error(`Direction ${direction} is unknown, expected 'left' or 'right'`);
     }
 
     checkArrowStyles();
 }
 
 const checkArrowStyles = () => {
-    if (memImageObject.currentImageShown == 0) {
-        easterEggArrowLeft.classList.add('arrow--disabled');
-    }
-    else if (memImageObject.currentImageShown > 0) {
-        easterEggArrowLeft.classList.remove('arrow--disabled');
-    }
-
-    if (memImageObject.currentImageShown < memImageObject.maxImageIndex) {
-        easterEggArrowRight.classList.remove('arrow--disabled');
-    }
-    else if (memImageObject.currentImageShown == memImageObject.maxImageIndex) {
-        
-        easterEggArrowRight.classList.add('arrow--disabled');
-    }
+    memImageObject.currentImageShown == 0 ? easterEggArrowLeft.classList.add('arrow--disabled') : easterEggArrowLeft.classList.remove('arrow--disabled');
+    memImageObject.currentImageShown == memImageObject.maxImageIndex ? easterEggArrowRight.classList.add('arrow--disabled') : easterEggArrowRight.classList.remove('arrow--disabled');
 }
 
 const modalStopPropagation = (e) => {
     e.stopPropagation();
 }
 
-toggleEasterEggModal('open', memImage1); //do usunięcia
-
-window.addEventListener('load', consoleLogHint.bind(null, 'Dear user\nTry to use the Konami Code and you will get eternal glory and worship!'),false) ;
+window.addEventListener('load', consoleLogHint.bind(null, 'Dear user\nTry to use the Konami Code and you will get eternal glory and worship!'), false) ;
 window.addEventListener('keydown', checkKonamiCode, false);
 buttonCloseEasterEgg.addEventListener('click', toggleEasterEggModal.bind(null, 'close'), false);
 easterEggArrowLeft.addEventListener('click', easterEggSwapImage.bind(null, 'left'), false);
 easterEggArrowRight.addEventListener('click', easterEggSwapImage.bind(null, 'right'), false);
 modal.addEventListener('click', modalStopPropagation, false);
+backgroundClose.addEventListener('click', toggleEasterEggModal.bind(null, 'close'), false);

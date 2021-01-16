@@ -76,25 +76,17 @@
   }
 }
 
-.modal-easter-egg {
-
-  .modal-footer {
-
-    .button--close {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      margin: 0;
-    }
-  }
-}
-
 .arrow {
   position: absolute;
   width: 20px;
   height: 20px;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  top: 50%;
+
+  @media (max-width: 1000px) {
+    top: 10%;
+  }
 
   &__line {
     position: absolute;
@@ -109,13 +101,11 @@
   }
 
   &--left {
-    left: 5%;
-    top: 50%;
+    left: 30px;
   }
 
   &--right {
-    right: 5%;
-    top: 50%;
+    right: 10px;
 
     & .arrow__line {
       transform: rotate(35deg) translateY(-6px);
@@ -199,8 +189,4 @@
   & .button--close {
     margin-right: 5vw;
   }
-}
-
-@media (max-width: 800px) {
-
 }
