@@ -50,6 +50,10 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 
+  @media (max-width: 1000px) {
+    position: sticky;
+  }
+
   & .modal {
     display: flex;
     flex-direction: column;
@@ -60,10 +64,15 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 82.5%;
+    min-height: 820px;
     background-color: #000;
     background: url('../../assets/ui/background.png');
     background-size: cover;
     box-shadow: 4px 4px 40px $primary-color;
+
+    @media (max-width: 1000px) {
+      transform: translate(-50%, -110%);
+    }
   }
 }
 
@@ -154,7 +163,7 @@
 }
 
 .selector-container {
-  height: 30vh;
+  min-height: 30vh;
   flex-basis: 58%;
   display: flex;
   flex-wrap: wrap;
@@ -163,6 +172,7 @@
 
   @media (max-width: 1000px) {
     flex-direction: column;
+    min-height: unset;
   }
 }
 

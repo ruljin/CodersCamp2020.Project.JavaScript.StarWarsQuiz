@@ -150,6 +150,10 @@
 
 .table {
 
+  @media (max-width: 600px) {
+    margin-left: unset;
+  }
+
   &__data {
     padding: 0 1rem;
   }

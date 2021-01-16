@@ -5,11 +5,12 @@
   background-color: #000;
   background: url('../assets/ui/background.png') fixed;
   background-size: cover;
+  background-repeat: repeat;
 }
 
 .container {
   max-width: 130rem;
-  height: 100vh;
+  min-height: 100vh;
   padding: 3rem 0;
   margin: 0 auto;
   display: grid;
@@ -166,6 +167,8 @@
 
   @media (max-width: 600px) {
     height: 30vh;
+    width: 90vw;
+    margin-left: -5vw;
   }
 
   &::-webkit-scrollbar {
@@ -198,8 +201,8 @@
   }
 
   &__head, &__row {
-    @media (max-width: 350px) {
-      width: 120%;
+    @media (max-width: 400px) {
+      font-size: 1.5rem;
     }
   }
 
