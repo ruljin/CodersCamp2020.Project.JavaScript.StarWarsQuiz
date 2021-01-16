@@ -85,7 +85,8 @@ const setTimerValues = seconds => {
 };
 
 const getLightTimerWidth = seconds => {
-  const gameSpeed = getSpeedFromLocalStorage();
+  const gameSpeedType = getSpeedFromLocalStorage();
+  const gameSpeed = gameSpeedType == 'fast' ? 20 : gameSpeedType == 'normal' ? 40 : 60; 
 
   let result = 100 * ((gameSpeed - seconds) / gameSpeed);
   return result;

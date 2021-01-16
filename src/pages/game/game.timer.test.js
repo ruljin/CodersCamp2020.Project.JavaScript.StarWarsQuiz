@@ -63,7 +63,7 @@ test('testing if function change timer colors', () => {
 });
 
 test('checking if function set timer values properly', () => {
-  ls.saveSettings('', 200, '', '');
+  ls.saveSettings('', 'normal', '', '');
   document.body.innerHTML = `
     <footer class="container__footer">
       <div class="light-timer">
@@ -83,19 +83,17 @@ test('checking if function set timer values properly', () => {
     </footer>
   `;
 
-  const lightTimerBlade = document.querySelector('#lightTimerBlade');
   const textTimerTime = document.querySelector('#textTimerTime');
 
   timer.setTimerValues(100);
 
-  expect(lightTimerBlade.style.width).toBe('50%');
   expect(textTimerTime.innerHTML).toBe('1m 40s');
 });
 
 test('check if functions properly calculate lightTimer width', () => {
-  ls.saveSettings('', 200, '', '');
-  expect(timer.getLightTimerWidth(25)).toBe(87.5);
-  expect(timer.getLightTimerWidth(150)).toBe(25);
+  ls.saveSettings('', 'normal', '', '');
+  expect(timer.getLightTimerWidth(25)).toBe(37.5);
+  expect(timer.getLightTimerWidth(40)).toBe(0);
 });
 
 test('check function that checks end of game', () => {
