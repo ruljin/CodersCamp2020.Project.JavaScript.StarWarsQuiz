@@ -64,13 +64,17 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 82.5%;
-    min-height: 820px;
     background-color: #000;
     background: url('../../assets/ui/background.png');
     background-size: cover;
     box-shadow: 4px 4px 40px $primary-color;
 
     @media (max-width: 1000px) {
+      min-height: 820px;
+      transform: translate(-50%, -105%);
+    }
+
+    @media (max-width: 400px) {
       transform: translate(-50%, -110%);
     }
   }
