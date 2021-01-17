@@ -8,6 +8,7 @@
 - [Features](#features)
 - [Technologies](#technologies)
 - [Setup](#setup)
+- [Organization of work](#organization-of-work)
 
 ## The project team
 Authors of this project are course participants who worked under the supervision of an experienced mentor.
@@ -38,17 +39,29 @@ Our project is a quiz that tests the knowledge of the Star Wars universe. This i
 -	JavaScript
 -	Star Wars API
 - Webpack
+- BEM methodology
+- Jest
+- Scrum
+- Figma
+- Trello
 
 ## Setup
 #### Demo
-To view a demo click here.
+To view a demo click [here](https://ruljin.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz/).
 #### Getting started
 If you want to run the application on the local machine, follow these steps:
 1. Clone down this repo
 2. Install dependencies with the command: `npm install`
-3. Start development server `npm start`
+3. Start development server `npm start` 
+
 The application will be available at `localhost:8080/index.html`
 #### Running tests
 To run the application tests, follow these steps:
 1. Install dependencies with the command: `npm install` (if you haven't already done so before)
 2. Run the tests by running the command: `npm test`
+
+## Organization of work
+#### Figma
+Using Figma, we created our own prototype of a user interface adapted to Desktop, and also made a version adapted to display on Phones. All designs can be viewed [here](https://www.figma.com/file/vbC47jUATnlH9UKey12pPG/Star-Wars-Quiz?node-id=0%3A1).
+#### Trello
+We also used Trello, where we organized all our work. More precisely, we shared responsibilities for each sprint, exchanged comments and approved our tasks.
