@@ -26,8 +26,8 @@ Authors of this project are course participants who worked under the supervision
 ## General info
 Our project is a quiz that tests the knowledge of the Star Wars universe. This is a browser based web application, so no installation is required. 
 
-<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/dev/src/assets/ui/rulesView.png">
-<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/dev/src/assets/ui/gameView.png">
+<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/main/src/assets/ui/rulesView.png">
+<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/main/src/assets/ui/gameView.png">
 
 ## Features
 -	The main page contains the rules of the game and shows a sample photo and answers to a question relevant to People category.
