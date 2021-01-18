@@ -17,7 +17,11 @@ const getStarship = async id => {
 
 const getFromAPI = async (link, id) => {
   let res = await fetch(`${link}${id}/`);
+  if (!res.ok) {
+    location.href = './index.html';
+  }
   let data = await res.json();
+
   return data.name;
 };
 
