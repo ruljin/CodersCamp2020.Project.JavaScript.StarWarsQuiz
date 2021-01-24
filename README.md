@@ -26,14 +26,16 @@ Authors of this project are course participants who worked under the supervision
 ## General info
 Our project is a quiz that tests the knowledge of the Star Wars universe. This is a browser based web application, so no installation is required. 
 
-<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/dev/src/assets/ui/rulesView.png">
-<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/dev/src/assets/ui/gameView.png">
+<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/main/src/assets/ui/rulesView.png">
+<img src="https://github.com/ruljin/CodersCamp2020.Project.JavaScript.StarWarsQuiz/blob/main/src/assets/ui/gameView.png">
 
 ## Features
--	The main page contains the rules of the game and shows a sample photo and answers to a question relevant to People category.
+-	The main page contains the rules of the game and shows a sample photo and answers to a question relevant to People category. Additionally, if the player uses the Konami code, he will find an easter egg.
 -	Before each game, player is taken to the settings, where he chooses the category (next to it there is an example photo), speed and mode of his game. Additionally, if he chose to fight against the computer, he has to select the difficulty level.
 -	Once the game starts, the timer starts counting down, and at the bottom of the screen the lightsaber shows how much time is left. After selecting the answer, it is shown for a second whether the answer was right or wrong. Then the question is changed to the next one and so until the end of time.
--	After finishing the game, the player's score is summed up and if the player writes his name, it will appear in the overall ranking of the players.
+- If the player does not answer any question, he will be redirected to the home page.
+-	After finishing the game, the player's score is summed up and if the player writes his name, it will appear in the overall ranking of the players. 
+- Each game category has its own ranking showing all the results obtained by the players. If a player's score is far in the ranking, it is also displayed at the top of the ranking.
 -	The application is responsive, so there is an option to display it on tablets and phones.
 
 ## Technologies
